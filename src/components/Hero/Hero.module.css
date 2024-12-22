@@ -76,10 +76,11 @@
     position: absolute;
     width: 50vw;
     height: 50vw;
-    min-width: 350px;
-    min-width: 350px;
-    top: -128px;
-    left: -10vw;
+    min-width: 150px; /* Adjust minimum size for smaller screens */
+    max-width: 100%; /* Prevent exceeding the viewport width */
+    max-height: 100%; /* Prevent exceeding the viewport height */
+    top: max(-128px, -10vh); /* Dynamically adjust based on viewport */
+    left: max(-10vw, 0); /* Ensure it doesn't go off-screen */
     border-radius: 764px;
     background: rgba(109, 109, 109, 0.7);
     filter: blur(100px);
@@ -90,10 +91,11 @@
     position: absolute;
     width: 70vw;
     height: 50vw;
-    min-width: 350px;
-    min-width: 250px;
-    top: 246px;
-    right: -25vw;
+    min-width: 250px; /* Adjust minimum size for smaller screens */
+    max-width: 100%; /* Prevent exceeding the viewport width */
+    max-height: 100%; /* Prevent exceeding the viewport height */
+    top: max(246px, 50vh); /* Dynamically adjust based on viewport */
+    right: max(-25vw, 0); /* Ensure it doesn't go off-screen */
     border-radius: 764px;
     background: rgba(184, 184, 184, 0.7);
     filter: blur(100px);
@@ -101,6 +103,21 @@
 }
 
 @media screen and (max-width: 830px) {
+
+    .topBlur {
+        width: 80vw;
+        height: 40vw;
+        top: -5vh; 
+        left: 0;
+    }
+
+    .bottomBlur {
+        width: 90vw; 
+        height: 40vw;
+        top: 60vh; 
+        right: 0; 
+    }
+
     .container {
         flex-direction: column-reverse;
         align-items: center;

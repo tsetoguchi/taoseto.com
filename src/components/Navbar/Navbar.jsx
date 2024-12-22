@@ -10,15 +10,16 @@ import styles from './Navbar.module.css';
 export const MyNavbar = () => {
     
     return (
-        <Navbar expand="lg" className={`${styles.customNavbar} bg-dark`}>
+        <Navbar expand="lg" className={`fixed-top ${styles.customNavbar} bg-dark`}>
           <Container>
           <Navbar.Brand href="/" className={styles.title}>Tao Seto</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ms-auto">
-                <Nav.Link className={styles.navLink} as={Link} to="#about">About</Nav.Link>
-                <Nav.Link className={styles.navLink} as={Link} to="#experience">Experience</Nav.Link>
-                <Nav.Link className={styles.navLink} as={Link} to="#projects">Projects</Nav.Link>
+                
+                <Nav.Link className={styles.navLink} as={Link} to="/Experience">Experience</Nav.Link>
+                <Nav.Link className={styles.navLink} as={Link} to="/Projects">Projects</Nav.Link>
+                {/* <Nav.Link className={styles.navLink} as={Link} to="/konac">KONAC</Nav.Link> */}
               </Nav>
             </Navbar.Collapse>
           </Container>

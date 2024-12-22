@@ -1,0 +1,16 @@
+.carousel {
+    height: 100vh; /* Full viewport height */
+    max-height: 100vh; /* Prevent exceeding viewport height */
+    overflow: hidden; /* Prevent content from overflowing */
+  }
+  
+  .carousel-item {
+    height: 100%; /* Carousel items inherit full height */
+  }
+  
+  .carousel-item img {
+    height: 100%; /* Make the image fill the container */
+    object-fit: cover; /* Crop proportionally without distortion */
+    width: 100%; /* Full width to avoid gaps */
+  }
+  
