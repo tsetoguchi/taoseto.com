@@ -8,31 +8,52 @@
     justify-content: space-between;
     padding-top: 61px;
     z-index: 2;
+    background-color: var(--color-nav) !important;
 }
 
 .navLink {
     font-size: 25px !important;
-    font-family: var(--font-roboto) !important;
-    color: white !important; /* White text */
-    text-decoration: none; /* Remove underline */
+    font-family: var(--font-default) !important;
+    color: var(--color-text) !important;
+    text-decoration: none;
     margin-left: auto !important;
+    transition: color 0.3s ease, transform 1s ease !important;
 }
 
+  
 .navLink:hover {
-    color: lightgray; /* Slightly different color on hover */
+color: var(--color-secondary) !important; /* Change to desired hover color */
+transform: scale(1.1); /* Optionally add a slight scaling effect */
 }
+
+
+.navLinkExperience {
+    margin-right: 5%; 
+}
+
+
+.navLinkProjects {
+    margin-left: 5%; 
+}
+  
 
 .bg-dark {
     z-index: 10;
+    background-color: var(--color-nav) !important;
 }
 
 .title {
     font-size: 50px !important;
-
     font-weight: 600;
     text-decoration: none;
     color: var(--color-text) !important;
     pointer-events: auto;
+    margin-left: -20%;
+    transition: color 0.3s ease, transform 1s ease !important;
+}
+
+.title:hover {
+    /* Nothing as of now. */
 }
 
 .menu {

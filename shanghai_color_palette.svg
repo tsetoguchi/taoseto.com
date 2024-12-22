@@ -1,0 +1,42 @@
+<svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="200" fill="#ffffff"/>
+    
+    <!-- Color squares with labels -->
+    <g transform="translate(50,40)">
+        <!-- Deep Teal -->
+        <rect x="0" y="0" width="80" height="80" fill="#1A2F35"/>
+        <text x="0" y="100" font-family="Arial" font-size="14">Deep Teal</text>
+        <text x="0" y="120" font-family="Arial" font-size="12" fill="#666">#1A2F35</text>
+        
+        <!-- Warm Amber -->
+        <rect x="120" y="0" width="80" height="80" fill="#FFA030"/>
+        <text x="120" y="100" font-family="Arial" font-size="14">Warm Amber</text>
+        <text x="120" y="120" font-family="Arial" font-size="12" fill="#666">#FFA030</text>
+        
+        <!-- Rich Black -->
+        <rect x="240" y="0" width="80" height="80" fill="#0A0A0A"/>
+        <text x="240" y="100" font-family="Arial" font-size="14">Rich Black</text>
+        <text x="240" y="120" font-family="Arial" font-size="12" fill="#666">#0A0A0A</text>
+        
+        <!-- Cool White -->
+        <rect x="360" y="0" width="80" height="80" fill="#F5F5F5"/>
+        <text x="360" y="100" font-family="Arial" font-size="14">Cool White</text>
+        <text x="360" y="120" font-family="Arial" font-size="12" fill="#666">#F5F5F5</text>
+        
+        <!-- Steel Gray -->
+        <rect x="480" y="0" width="80" height="80" fill="#404B55"/>
+        <text x="480" y="100" font-family="Arial" font-size="14">Steel Gray</text>
+        <text x="480" y="120" font-family="Arial" font-size="12" fill="#666">#404B55</text>
+        
+        <!-- Midnight Blue -->
+        <rect x="600" y="0" width="80" height="80" fill="#001525"/>
+        <text x="600" y="100" font-family="Arial" font-size="14">Midnight Blue</text>
+        <text x="600" y="120" font-family="Arial" font-size="12" fill="#666">#001525</text>
+        
+        <!-- Golden Yellow -->
+        <rect x="0" y="140" width="80" height="80" fill="#FFD700"/>
+        <text x="0" y="240" font-family="Arial" font-size="14">Golden Yellow</text>
+        <text x="0" y="260" font-family="Arial" font-size="12" fill="#666">#FFD700</text>
+    </g>
+</svg>

@@ -1,16 +1,33 @@
 .carousel {
-    height: 100vh; /* Full viewport height */
-    max-height: 100vh; /* Prevent exceeding viewport height */
-    overflow: hidden; /* Prevent content from overflowing */
+    height: 100vh;
+    max-height: 100vh; 
+    overflow: hidden;
+    position: relative;
   }
   
   .carousel-item {
-    height: 100%; /* Carousel items inherit full height */
+    height: 100%; 
+    position: relative;
   }
   
   .carousel-item img {
-    height: 100%; /* Make the image fill the container */
-    object-fit: cover; /* Crop proportionally without distortion */
-    width: 100%; /* Full width to avoid gaps */
+    height: 100vh; 
+    object-fit: cover; 
+    width: 100%; 
   }
+
+/* Style the caption */
+.carousel-caption {
+    position: absolute; /* Position the caption absolutely */
+    bottom: 10%; /* Add space from the bottom */
+    left: 50%; /* Center the caption horizontally */
+    transform: translateX(-50%); /* Ensure it is centered */
+    color: white; /* Ensure the text is readable */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 80%; /* Optionally limit the width of the caption */
+    text-align: center; /* Center the text */
+}
+
   
