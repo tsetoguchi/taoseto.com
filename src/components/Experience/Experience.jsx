@@ -1,86 +1,59 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Modal from 'react-bootstrap/Modal';
 import styles from './Experience.module.css';
 
+
 import StateStreet from '../../../assets/experience/StateStreet.jpg';
-import Kohgendo from '../../../assets/experience/Kohgendo.jpg';
+import Kohgendo from '../../../assets/experience/Kohgendo.webp';
+
 
 export const Experience = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState({ title: '', company: '', details: '' });
 
-  const experiences = [
-    {
-      id: 1,
-      title: 'Site Reliability Engineer',
-      company: 'State Street - Boston, MA',
-      logo: StateStreet,
-      details: `Led the full-stack development of a client web application, optimizing navigation speed and 
-      reducing click expenditure by 75%. Participated in daily Scrum meetings to identify and automate manu
-      al operational tasks, resulting in over $500,000 in cost savings. Collaborated with operations teams 
-      to mitigate failure patterns, minimize downtime, and improve system stability, achieving a performance
-       increase of up to 200%. Enhanced application reliability b   y 180% through proactive system performance
-        analysis using tools such as Dynatrace and Splunk to detect and address anomalies.`,
-    },
-    {
-      id: 2,
-      title: 'Music Producer',
-      company: 'KohGenDo - Tokyo, Japan',
-      logo: Kohgendo,
-      details: `Produced, mixed, and mastered music using FL Studio and Ableton for a KohGenDo commercial 
-      broadcast to millions on national television and YouTube Ads, significantly boosting brand visibility. 
-      Collaborated with renowned Japanese actress Hikari Mitsushima to refine and finalize the music, ensuring 
-      it aligned with the commercial’s vision. Supervised and conducted recording sessions with a guitarist, 
-      delivering high-quality recordings under tight deadlines, demonstrating strong project management and 
-      coordination skills.`,
-    },
-  ];
+  // const images = [
+  //   { src: StateStreet, alt: 'State Street' },
+  //   { src: Kohgendo, alt: 'KohGenDo' },
+  // ];
 
-  const handleShow = (experience) => {
-    setModalContent(experience);
-    setShowModal(true);
-  };
 
-  const handleClose = () => setShowModal(false);
 
-  return (
-    <section className={styles.container}>
-      <div className="row">
-        {experiences.map((exp) => (
-          <div className="col-md-6 col-lg-6" key={exp.id}>
-            <Card className={styles.card}>
-              <Card.Img variant="top" src={exp.logo} />
-              <Card.Body>
-                <Card.Title>{exp.company}</Card.Title>
-                <Card.Text>{exp.title}</Card.Text>
-                <Button variant="outline-dark" onClick={() => handleShow(exp)}>
-                  Learn More
-                </Button>
-              </Card.Body>
-            </Card>
+    return (
+      <section className={styles.container}>
+          <div className={styles.content}>
+          <h1 className={styles.experience}>
+            <a 
+              href="https://www.statestreet.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={styles.link} // Optional: Add a CSS class for styling
+            >
+              State Street
+            </a>
+          </h1>
+            <p className={styles.description}>
+              Led full-stack development of a client web app, improving navigation speed and minimizing click expenditure by 75%.<br />
+              Engaged in daily Scrum meetings and automated manual operational tasks, exceeding $500,000 in cost savings.<br />
+              Cooperated with operations teams to mitigate failure patterns, reduce downtime, and improve stability, enhancing performance by up to 200%.<br />
+              Enhanced application reliability by up to 180%, proactively analyzing system performance using tools like Dynatrace and Splunk to detect and address anomalies.
+            </p>
+
+            <h1 className={styles.experience}>
+              <a 
+                href="https://www.kohgendo.com/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.link} // Optional: Add a CSS class for styling
+              >
+                Koh Gen Do
+              </a>
+            </h1>
+            <p className={styles.description}>
+              Produced, mixed, and mastered music using FL Studio and Ableton for a KohGenDo commercial broadcast to millions on national television and YouTube Ads, contributing to an increase in brand visibility.<br />
+              Collaborated closely with renowned Japanese actress Hikari Mitsushima to refine and finalize music, ensuring alignment with the commercial’s vision.<br />
+              Supervised and conducted recording sessions with a guitarist, achieving high-quality recordings under tight deadlines, showcasing strong project management skills.
+            </p>
           </div>
-        ))}
-      </div>
-
-      {/* Modal */}
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{modalContent.company}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p><strong>Role:</strong> {modalContent.title}</p>
-          <p><strong>Details:</strong> {modalContent.details}</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </section>
-  );
+          
+      </section>
+    )
+  
 };
 
 export default Experience;

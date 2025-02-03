@@ -1,33 +1,82 @@
-.carousel {
-    height: 100vh;
-    max-height: 100vh; 
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .carousel-item {
-    height: 100%; 
-    position: relative;
-  }
-  
-  .carousel-item img {
-    height: 100vh; 
-    object-fit: cover; 
-    width: 100%; 
-  }
-
-/* Style the caption */
-.carousel-caption {
-    position: absolute; /* Position the caption absolutely */
-    bottom: 10%; /* Add space from the bottom */
-    left: 50%; /* Center the caption horizontally */
-    transform: translateX(-50%); /* Ensure it is centered */
-    color: white; /* Ensure the text is readable */
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    padding: 10px;
-    border-radius: 5px;
-    max-width: 80%; /* Optionally limit the width of the caption */
-    text-align: center; /* Center the text */
+.container {
+  background-color: var(--color-bg) !important;
+  height: 100vh;
+  padding-top: 6% !important;
 }
 
-  
+.carousel {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  position: relative;
+}
+
+.carouselItem {
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  width: 100%;
+  position: relative;
+}
+
+.imageContainer img {
+  max-height: 70vh;
+  width: auto;
+  object-fit: contain;
+}
+
+.carouselContent {
+  background-color: var(--color-bg);
+  padding: 1rem;
+  margin-top: -1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.carouselIndicators {
+  margin-bottom: 1rem;
+
+}
+
+.carouselControls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.carouselCaption {
+  position: relative !important;
+  left: auto !important;
+  transform: none !important;
+  bottom: auto !important;
+  color: white;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 80%;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.carouselCaption h3,
+.carouselCaption p {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.captionWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-text);
+}

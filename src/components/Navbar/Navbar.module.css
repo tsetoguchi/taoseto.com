@@ -20,23 +20,40 @@
     transition: color 0.3s ease, transform 1s ease !important;
 }
 
-  
+
 .navLink:hover {
 color: var(--color-secondary) !important; /* Change to desired hover color */
 transform: scale(1.1); /* Optionally add a slight scaling effect */
 }
 
 
+
 .navLinkExperience {
     margin-right: 5%; 
 }
 
-
 .navLinkProjects {
-    margin-left: 5%; 
-}
-  
+    margin-right: 5%; 
 
+}
+
+.navLinkGitHub {
+    margin-left: 65%; 
+}
+
+.navLinkLinkedin {
+    margin-right: 5%; 
+}
+
+.navLinkSpotify {
+    margin-left: -5% !important; 
+}
+
+.fontAwesomeIcon {
+    size: 50px;
+}
+
+  
 .bg-dark {
     z-index: 10;
     background-color: var(--color-nav) !important;
@@ -110,4 +127,5 @@ transform: scale(1.1); /* Optionally add a slight scaling effect */
         display: flex;
         z-index: 1;
     }
+    
 }

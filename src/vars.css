@@ -2,14 +2,17 @@
     /* Colors */
     --color-text: #F5F5F5;
     --color-text-secondary: #0A0A0A;
-    --color-primary: #1A2F35;
+    --color-primary: #3eb4d4;
+
     --color-secondary: #FFA030;
     --color-tertiary: #FFD700;
     --color-dark: #4f75aa;
-    --color-bg: #000000;
-    --color-nav: #404B55;
+    --color-bg: #0A0A0A;
+    --color-contact: #F5F5F5;
+    --color-nav: #0A0A0A;
 
     /* Fonts */
     --font-roboto: 'Roboto';
     --font-default: Outfit;
 }
+

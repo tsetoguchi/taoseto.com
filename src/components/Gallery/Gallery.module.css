@@ -1,0 +1,44 @@
+@import '../../vars.css';
+
+.img-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 200px; 
+    height: 200px; 
+    overflow: hidden; 
+    background-color: #f0f0f0; 
+    margin-bottom: 5%;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-position: center center;
+    object-fit: cover;
+    width: 600px;
+    height: 300px;
+    margin: auto; 
+}
+
+.content-wrapper {
+    padding-top: 2vh;
+}
+
+.gallery-reel {
+    height: 50vh;
+}
+
+.gallery .gallery-section-wrapper {
+    min-height: 100px; 
+}
+
+.gallery-reel-item-src,
+.gallery-reel-item-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}

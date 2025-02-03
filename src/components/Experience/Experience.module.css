@@ -1,31 +1,69 @@
 @import "../../vars.css";
 
+
+.Gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Adjust to inherit parent's height */
+    padding: 60px; /* Adjust as needed */
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
 .container {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 100vh; /* Full viewport height */
-    padding-top: 60px; /* Adjust to prevent content from being hidden under the navbar */
-    box-sizing: border-box; /* Ensure padding doesn't affect overall height */
-    gap: 30px; /* Add gap between the cards */
-    flex-wrap: wrap; /* Allow cards to wrap in case of small screen size */
+    position: relative;
+    height: 100vh;
+    min-height: 100vh;
+    background-color: var(--color-bg, rgba(0, 0, 0, 0.6));
+    border-radius: 15px;
+    padding-top: 8% !important;
+    padding: 100px; 
+    margin: 0; 
+    z-index: 1; 
+    user-select: none;
+    
 }
 
-.card {
-    width: 18rem; /* Set the card width */
-    height: 350px; /* Set a consistent height for all cards */
-    display: flex;
-    flex-direction: column; /* Ensure that the content stays within the set height */
+.header, .description {
+    user-select: none;
 }
 
-.card img {
-    height: 200px; /* Set the height of the image */
-    object-fit: cover; /* Ensure the image covers the designated area without distortion */
-    width: 100%; /* Ensure the image fills the card's width */
+.experience {
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 22px;
+    color: var(--color-text); /* Ensure this color is applied */
+    font-family: var(--font-default);
+    transition: color 0.3s ease, transform 1s ease !important;
 }
 
-.card-body {
+.experience:hover {
+    color: var(--color-secondary) !important;
+    transform: scale(1); /* Slightly enlarge on hover */
+}
+
+.link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent (.experience) */
+    transition: color 0.3s ease, transform 1s ease !important;
+}
+
+.link:hover {
+    color: var(--color-secondary) !important; /* Apply hover color */
+}
+
+.description {
+    font-size: 24px;
+    font-family: var(--font-roboto);
+    margin-bottom: 52px;
+}
+
+.content {
     display: flex;
-    flex-direction: column; /* Align the card content in a vertical column */
-    justify-content: space-between; /* Add space between title, text, and button */
+    flex-direction: column;
+    align-items: flex-start;
+    color: var(--color-text);
+    z-index: 1;
+  
 }

@@ -1,0 +1,14 @@
+@import "../../vars.css";
+
+.container {
+    height: 10vh;
+    background-color: rgba(var(--color-contact), 0.6);
+    color: var(--color-text);
+    justify-content: space-evenly;
+    width: 100%;
+    z-index: 1;
+  }
+
+.text {
+    color: var(--color-text);
+}
