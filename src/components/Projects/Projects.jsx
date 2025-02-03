@@ -16,13 +16,13 @@ export const Projects = () => {
 
       <Carousel.Item className={styles.carouselItem}>
           <div className={styles.imageContainer}>
-            <a href="https://github.com/tsetoguchi/airy" target="_blank" rel="noopener noreferrer">
+
               <img 
                 src={airy} 
                 alt="Second slide" 
                 className="d-block w-100" 
               />
-            </a>
+
           </div>
           <div className={styles.carouselContent}>
             <div className={styles.carouselIndicators}></div>

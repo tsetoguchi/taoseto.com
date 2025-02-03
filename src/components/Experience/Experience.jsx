@@ -50,6 +50,16 @@ export const Experience = () => {
               Supervised and conducted recording sessions with a guitarist, achieving high-quality recordings under tight deadlines, showcasing strong project management skills.
             </p>
           </div>
+
+          {/* <div className={styles.skills}>
+            <h1>Skills</h1>
+            <p className={styles.description}>
+            Programming Languages: Python, Java, C++, C, HTML, CSS, JavaScript, SQL, MATLAB<br />
+            Frameworks: JUCE, Django, Flask, Bootstrap, SQLite, PostgreSQL<br />
+            Tools & Technologies: Git, Microsoft Visual Studio, Heroku, Jira, Microsoft Azure, Snowflake, Figma, Maven,
+            pgAdmin, VirtualBox, Ableton, Max/MSP, Pro Tools
+            </p>
+          </div> */}
           
       </section>
     )

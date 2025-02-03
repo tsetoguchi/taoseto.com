@@ -67,3 +67,14 @@
     z-index: 1;
   
 }
+
+.skills {
+    font-family: var(--font-default);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    color: var(--color-text);
+    z-index: 1;
+}
