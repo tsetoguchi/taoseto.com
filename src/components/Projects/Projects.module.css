@@ -1,8 +1,8 @@
 .container {
   background-color: var(--color-bg) !important;
-  height: 100vh;
-  padding-top: 6% !important;
-  user-select: none;
+  padding-top: 0 !important;
+  /* user-select: none; */
+
 }
 
 .carousel {
@@ -42,7 +42,10 @@
 
 .carouselIndicators {
   margin-bottom: 1rem;
+}
 
+.carousel .carousel-indicators button {
+  margin-top: 100px !important;
 }
 
 .carouselControls {

@@ -1,5 +1,9 @@
 @import "../../vars.css";
 
+html {
+    scroll-behavior: smooth !important;
+}
+
 .container {
     position: relative;
     display: flex;
@@ -9,8 +13,8 @@
     z-index: 1;
     margin-left: 10%;
     margin-right: 10%;
-    height: 100vh;
-    user-select: none;
+    /* user-select: none; */
+    overflow: hidden;
 }
 
 .content {
@@ -19,11 +23,10 @@
     align-items: flex-start;
     color: var(--color-text);
     z-index: 1;
-  
 }
 
 .header, .description {
-    user-select: none;
+    /* user-select: none; */
 }
 
 .header {
@@ -58,14 +61,70 @@
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
 }
 
+
 .heroImg {
     width: 40%;
+    height: auto;
     z-index: 1;
-
+    scale: 1.8;
+    padding-bottom: 3%;
     animation-name: floating;
     animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
+    
+}
+
+.myWork {
+    font-size: 48px;
+    font-weight: 900;
+    font-family: var(--font-default);
+    background: linear-gradient(
+        90deg, 
+        rgba(255, 255, 255, 1) 70%, 
+        rgba(255, 255, 255, 0) 120%
+    );
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: var(--color-text);
+    z-index: 1;
+    align-items: center;
+    padding-top: 5%;
+
+}
+
+.scrollIcon {
+    padding-top: 3%;
+    font-size: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-decoration: none;
+    color: white;
+    padding-bottom: 16%;
+}
+
+.downIcon {
+
+}
+
+.projectContainer {
+    padding-top: 2%;
+    padding-bottom: 7%;
+    
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    width: 70%;
+    margin: auto;
+    border: 2px solid #ffffff;
 }
 
 @keyframes floating {
@@ -110,7 +169,38 @@
     z-index: 0;
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 852px) {
+
+    .heroImg {
+        width: 110%;
+    }
+
+    @keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(3px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+    .container {
+        margin-top: 30%;
+    }
+
+    .header {
+        font-size: 36px;
+        margin-bottom: 22px;
+        font-weight: bold !important;
+    }
+
+    .description {
+        font-size: 18px;
+        margin-bottom: 32px;
+    }
 
     .topBlur {
         width: 80vw;

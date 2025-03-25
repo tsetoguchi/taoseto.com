@@ -6,10 +6,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 61px;
+    width: 100%;
     z-index: 2;
     background-color: var(--color-nav) !important;
+    flex-direction: row; 
+    align-items: center; 
 }
+
 
 .navLink {
     font-size: 25px !important;
@@ -22,11 +25,9 @@
 
 
 .navLink:hover {
-color: var(--color-secondary) !important; /* Change to desired hover color */
-transform: scale(1.1); /* Optionally add a slight scaling effect */
+    color: var(--color-secondary) !important;
+    transform: scale(1.1); 
 }
-
-
 
 .navLinkExperience {
     margin-right: 5%; 
@@ -34,10 +35,9 @@ transform: scale(1.1); /* Optionally add a slight scaling effect */
 
 .navLinkProjects {
     margin-right: 5%; 
-
 }
 
-.navLinkGitHub {
+/* .navLinkGitHub {
     margin-left: 65%; 
 }
 
@@ -47,7 +47,7 @@ transform: scale(1.1); /* Optionally add a slight scaling effect */
 
 .navLinkSpotify {
     margin-left: -5% !important; 
-}
+} */
 
 .fontAwesomeIcon {
     size: 50px;
@@ -65,10 +65,16 @@ transform: scale(1.1); /* Optionally add a slight scaling effect */
     text-decoration: none;
     color: var(--color-text) !important;
     pointer-events: auto;
-    margin-left: -20%;
+    text-align: left; /* Align text to the left */
+    margin-left: 2.3%; /* Reset any negative margin */
+    margin-right: auto; /* Ensure it's left-aligned */
+    white-space: nowrap; /* Prevent line breaks */
     transition: color 0.3s ease, transform 1s ease !important;
+    display: flex;
+    justify-content: flex-start; /* Align the title to the left horizontally */
+    align-items: center;
+    flex-grow: 0; /* Prevent title from growing */
 }
-
 .title:hover {
     /* Nothing as of now. */
 }
@@ -81,6 +87,7 @@ transform: scale(1.1); /* Optionally add a slight scaling effect */
     display: flex;
     gap: 47px;
     list-style: none;
+    padding-left: 60%;
 }
 
 .menuItems a {
@@ -89,11 +96,19 @@ transform: scale(1.1); /* Optionally add a slight scaling effect */
     text-decoration: none;
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 852px) {
+
+    .title {
+        scale: 0.6;
+    
+    }
+
     .navbar {
         flex-direction: column;
         align-items: flex-start;
     }
+
+
 
     .menu {
         position: absolute;

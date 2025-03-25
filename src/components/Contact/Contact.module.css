@@ -6,9 +6,33 @@
     color: var(--color-text);
     justify-content: space-evenly;
     width: 100%;
+    
     z-index: 1;
-  }
+    margin-left: 2.3%;
+}
 
 .text {
     color: var(--color-text);
+}
+
+.contactHeader {
+  /* user-select: none; */
+}
+
+.emailLink {
+  color: inherit; 
+  text-decoration: none;
+  margin-right: 0.3%; 
+  transition: color 0.3s ease, transform 1s ease !important;
+}
+
+.emailLink:hover {
+  color: var(--color-secondary);
+}
+
+@media screen and (max-width: 852px) {
+    .container {
+        font-size: 21px;
+    }
+
 }

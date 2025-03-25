@@ -1,32 +1,18 @@
 @import "../../vars.css";
 
-
-.Gallery {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%; /* Adjust to inherit parent's height */
-    padding: 60px; /* Adjust as needed */
-    box-sizing: border-box;
-    flex-wrap: wrap;
-}
-
 .container {
     position: relative;
-    height: 100vh;
-    min-height: 100vh;
     background-color: var(--color-bg, rgba(0, 0, 0, 0.6));
     border-radius: 15px;
-    padding-top: 8% !important;
+    padding-top: 0 !important;
     padding: 100px; 
     margin: 0; 
     z-index: 1; 
-    user-select: none;
-    
+    /* user-select: none;  */
 }
 
 .header, .description {
-    user-select: none;
+    /* user-select: none; */
 }
 
 .experience {
@@ -59,13 +45,13 @@
     margin-bottom: 52px;
 }
 
+
 .content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     color: var(--color-text);
     z-index: 1;
-  
 }
 
 .skills {
