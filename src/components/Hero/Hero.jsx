@@ -22,28 +22,32 @@ export const Hero = () => {
     <section>
       <div className={styles.container}>
         <div className={styles.content}>
-          <h1 className={styles.header}>Hi, I'm Tao Seto</h1>
+          <h1 className={styles.header}>Hello ☻</h1>
 
           <p className={styles.description}>
             I’m a Computer Science and Music Technology graduate with 12+ years
-            of experience in music production and tech through personal projects
-            and independent work. I would love to innovate, improve, and push 
-            boundaries to create something meaningful.
+            of experience in music production and 7+ years in tech through
+            school, personal projects, and independent work.
           </p>
         </div>
 
-        {/* <a href="https://fanlink.tv/konac"> */}
-        <img src={heroImage} alt="Konac" className={styles.heroImg} />
-        {/* </a> */}
+        <a
+          href="https://linktr.ee/konac1"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.linkWrapper}
+        >
+          <img src={heroImage} alt="Konac" className={styles.heroImg} />
+        </a>
       </div>
 
-      <h1 className={styles.myWork}>MY WORK</h1>
+      {/* <h1 className={styles.myWork}>MY WORK</h1>
 
       <a href="#section" onClick={handleScroll} className={styles.scrollIcon}>
         <FontAwesomeIcon className={styles.downIcon} icon={faAngleDown} />
-      </a>
+      </a> */}
 
-      <div id="section" className={styles.projects}>
+      {/* <div id="section" className={styles.projects}>
         <div id="scroll" className={styles.projectContainer}>
           <div>
             <a
@@ -67,7 +71,7 @@ export const Hero = () => {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

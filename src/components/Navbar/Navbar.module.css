@@ -9,9 +9,12 @@
     width: 100%;
     z-index: 2;
     background-color: var(--color-nav) !important;
-    flex-direction: row; 
-    align-items: center; 
+    flex-direction: row;  
+    
+
+    
 }
+
 
 
 .navLink {
@@ -29,13 +32,13 @@
     transform: scale(1.1); 
 }
 
-.navLinkExperience {
-    margin-right: 5%; 
+.navLinkCommissions,
+.navLinkExperience,
+.navLinkProjects {
+    margin-right: 5%;
 }
 
-.navLinkProjects {
-    margin-right: 5%; 
-}
+
 
 /* .navLinkGitHub {
     margin-left: 65%; 
@@ -100,16 +103,40 @@
 
     .title {
         scale: 0.6;
-    
     }
 
     .navbar {
         flex-direction: column;
         align-items: flex-start;
+        
     }
 
+    .navbar-toggler {
+        /* display: none !important; */
+        margin-left: 2.3%;
+        margin-right: auto;
+    }
 
+    /* .custom-toggler {
+        display: none !important;
+    }
 
+    .navbar-toggler-icon {
+        display: none !important;
+    } */
+
+    .customNavbar {
+        position: fixed;
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        z-index: 2;
+        background-color: var(--color-nav) !important;
+        flex-direction: row; 
+        
+    }
+    
     .menu {
         position: absolute;
         right: 0;
@@ -126,14 +153,13 @@
     }
 
     .menuItems {
-        display: none;
+
         flex-direction: column;
         align-items: center;
         gap: 13px;
         border-radius: 10px;
-        background: rgb(25,55,109);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, 
-        rgba(25,55,109,1) 100%);
+        background: var(--color-secondary) ;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
         padding: 24px 33px;
         box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
     }
@@ -141,6 +167,10 @@
     .menuOpen {
         display: flex;
         z-index: 1;
+    }
+
+    .navLink.navLinkProjects {
+        display: none;
     }
     
 }

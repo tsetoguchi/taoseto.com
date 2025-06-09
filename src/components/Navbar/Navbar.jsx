@@ -18,10 +18,22 @@ export const MyNavbar = () => {
         tao seto
       </Navbar.Brand>
 
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        className="custom-toggler"
+      />
+      
       <Navbar.Collapse id="basic-navbar-nav">
         <div className={styles.menuItems}>
           <Nav className="ms-auto">
+            <Nav.Link
+              className={`${styles.navLink} ${styles.navLinkCommissions}`}
+              as={Link}
+              to="/Commissions"
+            >
+              Commissions
+            </Nav.Link>
+
             <Nav.Link
               className={`${styles.navLink} ${styles.navLinkExperience}`}
               as={Link}
@@ -30,7 +42,13 @@ export const MyNavbar = () => {
               Experience
             </Nav.Link>
 
-            {/* <Nav.Link className={`${styles.navLink} ${styles.navLinkProjects}`} as={Link} to="/Projects">Projects</Nav.Link> */}
+            <Nav.Link
+              className={`${styles.navLink} ${styles.navLinkProjects}`}
+              as={Link}
+              to="/Projects"
+            >
+              Projects
+            </Nav.Link>
 
             <Nav.Link
               className={`${styles.navLink} ${styles.navLinkGitHub}`}

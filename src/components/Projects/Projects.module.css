@@ -84,3 +84,65 @@
   align-items: center;
   color: var(--color-text);
 }
+
+@media screen and (max-width: 852px) {
+
+  .container {
+    padding-top: 40% !important;
+  }
+
+  .carousel {
+    max-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .imageContainer img {
+    max-height: 50vh;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .carouselContent {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .carouselIndicators {
+    margin-bottom: 0.5rem;
+  }
+
+  .carousel .carousel-indicators button {
+    margin-top: 40px !important;
+    width: 10px;
+    height: 10px;
+  }
+
+  .carouselControls {
+    max-width: 150px;
+    margin-bottom: 0.5rem;
+  }
+
+  .carouselCaption {
+    padding: 8px;
+    font-size: 0.9rem;
+    max-width: 90%;
+  }
+
+  .carouselCaption h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .carouselCaption p {
+    font-size: 0.9rem;
+  }
+
+  .captionWrapper {
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .container {
+    padding: 0 !important;
+  }
+}

@@ -9,6 +9,7 @@
     margin: 0; 
     z-index: 1; 
     /* user-select: none;  */
+    
 }
 
 .header, .description {
@@ -63,4 +64,31 @@
     margin-top: 20px;
     color: var(--color-text);
     z-index: 1;
+}
+
+@media screen and (max-width: 852px) {
+    .container {
+        padding: 50px; /* Adjust padding for smaller screens */
+        padding-top: 30% !important;
+        font-size: 18px; /* Adjust font size for smaller screens */
+    }
+
+    .experience {
+        font-size: 36px; /* Smaller font size for experience header */
+    }
+
+    .description {
+        font-size: 20px; /* Smaller font size for description */
+        text-align: left;
+    }
+    
+    .listItem {
+        font-size: 18px; /* Adjust list item font size for smaller screens */
+        margin-bottom: 10px; /* Add some spacing between list items */
+    }
+
+    .skills {
+        flex-direction: column; /* Stack skills vertically on smaller screens */
+        align-items: center; /* Center align skills */
+    }
 }
