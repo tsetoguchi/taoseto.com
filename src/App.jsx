@@ -7,8 +7,42 @@ import { Experience } from './components/Experience/Experience';
 import { Projects } from './components/Projects/Projects';
 import { Contact } from './components/Contact/Contact';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect } from "react";
 
 function App() {
+
+useEffect(() => {
+  const footer = document.getElementById("contact");
+  const content = document.getElementById("content");
+
+  if (footer && content) {
+    const handleScroll = () => {
+      const footerRect = footer.getBoundingClientRect();
+      const contentRect = content.getBoundingClientRect();
+
+      const isOverlapping =
+        footerRect.top < contentRect.bottom &&
+        footerRect.bottom > contentRect.top;
+
+      if (isOverlapping) {
+        footer.classList.add("is-faded");
+      } else {
+        footer.classList.remove("is-faded");
+      }
+    };
+
+    // Check initial state when page loads
+    handleScroll();
+
+    // Add scroll listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }
+}, []);
 
   return (
     <Router>

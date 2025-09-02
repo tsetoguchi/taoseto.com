@@ -5,7 +5,7 @@ export const Experience = () => {
 
     return (
       <section className={styles.container}>
-        <div className={styles.content}>
+        <div className={styles.content} id="content">
           {/* <h1 className={styles.experience}>
           <a 
                 href={Resume} 
