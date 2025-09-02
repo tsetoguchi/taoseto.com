@@ -1,1 +1,2 @@
 *.gif filter=lfs diff=lfs merge=lfs -text
+assets/projects/airy.gif filter=lfs diff=lfs merge=lfs -text
