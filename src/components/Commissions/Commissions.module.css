@@ -6,10 +6,13 @@
     border-radius: 15px;
     padding-top: 0 !important;
     padding: 100px; 
-    margin: 0; 
     z-index: 1; 
     text-color: var(--color-text);
-
+    display: flex;
+    align-items: flex-start; 
+    min-height: 100vh;
+    justify-content: center;
+    font-family: var(--font-default) !important;
 }
 
 .content {
@@ -18,4 +21,180 @@
     align-items: flex-start;
     color: var(--color-text);
     z-index: 1;
+    padding-top: 2%;
+    max-width: 800px;
+   
+}
+
+.formContainer {
+    
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* This right-aligns the inputs */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.label {
+    align-self: flex-start; /* This keeps labels left-aligned */
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input, .nameInput, .select, .textarea {
+    width: 500px; /* Set a specific width instead of 100% */
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.textarea {
+    min-height: 150px; /* or 200px, 250px, etc. */
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical; /* Allows user to resize vertically only */
+}
+
+.submitBtn {
+    width: 200px;
+    height: 50px;
+    margin: 2rem auto 0;
+    display: block;
+  
+
+    color: black;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+  
+  .submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  }
+  
+  .submitBtn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+.messageContainer {
+    min-height: 80px; /* Reserve space for messages */
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.successMessage {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+    font-weight: 500;
+    width: 100%;
+    max-width: 500px; /* Match form width */
+}
+
+.errorMessage {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+    text-align: center;
+    font-weight: 500;
+    width: 100%;
+    max-width: 500px; /* Match form width */
+}
+
+@media screen and (max-width: 852px) {
+
+
+
+    .container {
+
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .content {
+        scale: 0.7;
+        align-items: center;
+    } 
+
+    .mainText {
+        font-size: 30px;
+        text-align: center;
+        padding-bottom: 10%;
+    }
+
+    .formGroup {
+        margin-bottom: 2rem; 
+    }
+
+    .serviceOption {
+        font-size: 10px;
+    }
+
+    .submitBtn { 
+        background-color: white !important;
+        color: black !important;
+        border: 2px solid #ccc !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+    }
+
+    .select {
+        height: 50px !important;
+        padding: 12px 40px 12px 12px !important;
+        font-size: 16px !important;
+        color: black !important;
+        line-height: 1.2 !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat !important;
+        background-position: right 12px center !important;
+        background-size: 16px !important;
+        box-sizing: border-box !important;
+    }
+
+    .select option {
+        color: black !important;
+        background-color: white !important;
+    }
+
+    .select option:first-child {
+        color: black !important;
+    }
+
+    .footer {
+        display: none !important;
+    }
+
 }

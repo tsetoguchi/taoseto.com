@@ -50,6 +50,12 @@ html {
     margin-bottom: 52px;
 }
 
+.description2 {
+    font-size: 15px;
+    font-family: var(--font-roboto);
+    margin-bottom: 52px;
+}
+
 .contactBtn {
     text-decoration: none;
     background-color: var(--color-primary);
@@ -73,13 +79,23 @@ html {
     height: auto;
     z-index: 1;
     scale: 1.8;
+    padding-top: 4%;;
+    padding-left: 2%;
     padding-bottom: 3%;
     animation-name: floating;
     animation-duration: 3s;
+    opacity: 0.7;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
+    transition: opacity 0.3s ease;
     
 }
+
+.linkWrapper:hover .heroImg {
+    opacity: 1.0;
+}
+
+
 
 .myWork {
     font-size: 48px;
@@ -179,6 +195,7 @@ html {
 
     .heroImg {
         width: 110%;
+        opacity: 1.0;
     }
 
     @keyframes floating {
@@ -206,6 +223,13 @@ html {
 
     .description {
         font-size: 18px;
+        margin-top: 40px;
+        margin-bottom: 32px;
+    }
+
+    .description2 {
+        padding-top: 5%;
+        font-size: 12px;
         margin-bottom: 32px;
     }
 
@@ -231,6 +255,8 @@ html {
     .content {
         align-items: center;
     }
+
+
 
 }
 

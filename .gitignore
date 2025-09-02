@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# AWS deployment
+aws-deployment/*.zip
+aws-deployment/temp/
+aws-deployment/config.env
+.env
+.env.local
+.env.production

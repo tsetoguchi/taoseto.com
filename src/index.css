@@ -4,6 +4,102 @@
   scroll-behavior: smooth !important;
 }
 
+/* Mobile-specific improvements */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Prevent zoom on input focus on iOS */
+input, textarea, select {
+  font-size: 16px !important;
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+  .App {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Ensure fixed positioning works properly on mobile */
+@media screen and (max-width: 852px) {
+  html, body {
+    position: relative !important;
+    overflow-x: hidden !important;
+  }
+  
+  body {
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+  }
+  
+  #root {
+    position: relative !important;
+  }
+  
+  .App {
+    position: relative !important;
+    overflow: visible !important;
+  }
+  
+  .contentWrapper {
+    position: relative !important;
+    overflow: visible !important;
+  }
+  
+  /* Override any conflicting footer styles */
+  footer {
+    position: static !important;
+    bottom: auto !important;
+  }
+  
+    /* Force white hamburger menu stripes - Global override */
+  .navbar-toggler {
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    filter: brightness(0) invert(1) !important;
+    -webkit-filter: brightness(0) invert(1) !important;
+  }
+
+  /* Target all possible Bootstrap hamburger selectors globally */
+  .navbar-toggler-icon,
+  .navbar .navbar-toggler .navbar-toggler-icon,
+  .navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    filter: brightness(0) invert(1) !important;
+    -webkit-filter: brightness(0) invert(1) !important;
+  }
+
+  /* Scale the navbar collapse menu */
+  .basic-navbar-nav {
+    scale: 0.2 !important;
+  }
+}
+
+
+
+
+
 html {
   scroll-behavior: smooth !important;
 }

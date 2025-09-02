@@ -3,6 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 
 import airy from "../../../assets/projects/airy.gif";
 import YouTubeAudioTranscriber from "../../../assets/projects/youtube_audio_transcriber.png";
+import CurrentlyVST from "../../../assets/projects/currentlyvst.png";
 import ValStatsAnalyzer from "../../../assets/projects/valorant_stats_analyzer.png";
 import TheSlushieMachine from "../../../assets/projects/the_slushie_machine.png";
 import Labyrinth from "../../../assets/projects/labyrinth.png";
@@ -15,7 +16,7 @@ export const Projects = () => {
       <Carousel fade className={styles.carousel}>
         <Carousel.Item className={styles.carouselItem}>
           <div className={styles.imageContainer}>
-            <img src={airy} alt="Second slide" className="d-block w-100" />
+            <img src={airy} alt="First slide" className="d-block w-100" />
           </div>
           <div className={styles.carouselContent}>
             <div className={styles.carouselIndicators}></div>
@@ -33,13 +34,41 @@ export const Projects = () => {
         <Carousel.Item className={styles.carouselItem}>
           <div className={styles.imageContainer}>
             <a
+              href="https://github.com/tsetoguchi/CurrentlyVST"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={CurrentlyVST}
+                alt="Second slide"
+                className="d-block w-100"
+              />
+            </a>
+          </div>
+          <div className={styles.carouselContent}>
+            <div className={styles.carouselIndicators}></div>
+            <div className={styles.carouselControls}></div>
+            <div className={styles.captionWrapper}>
+              <h3>Currently VST</h3>
+              <p>
+                JUCE-based audio plugin that provides the current timecode of the playhead. 
+                It is designed to help producers and engineers who work with DAWs that lack a clear time display.
+              </p>
+            </div>
+          </div>
+        </Carousel.Item>
+        
+
+        <Carousel.Item className={styles.carouselItem}>
+          <div className={styles.imageContainer}>
+            <a
               href="https://github.com/tsetoguchi/Youtube-Audio-Transcriber"
               target="_blank"
               rel="noopener noreferrer"
             >
               <img
                 src={YouTubeAudioTranscriber}
-                alt="Second slide"
+                alt="Third slide"
                 className="d-block w-100"
               />
             </a>
@@ -65,7 +94,7 @@ export const Projects = () => {
             >
               <img
                 src={ValStatsAnalyzer}
-                alt="First slide"
+                alt="Fourth slide"
                 className="d-block w-100"
               />
             </a>
@@ -94,7 +123,7 @@ export const Projects = () => {
             >
               <img
                 src={TheSlushieMachine}
-                alt="Second slide"
+                alt="Fifth slide"
                 className="d-block w-100"
               />
             </a>
@@ -121,7 +150,7 @@ export const Projects = () => {
             >
               <img
                 src={Genicloud}
-                alt="Third slide"
+                alt="Sixth slide"
                 className="d-block w-100"
               />
             </a>
@@ -148,7 +177,7 @@ export const Projects = () => {
             >
               <img
                 src={Labyrinth}
-                alt="Fourth slide"
+                alt="Seventh slide"
                 className="d-block w-100"
               />
             </a>

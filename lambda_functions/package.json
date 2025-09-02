@@ -1,0 +1,14 @@
+{
+  "name": "resend-lambda-functions",
+  "version": "1.0.0",
+  "description": "Lambda functions for contact form with Resend",
+  "main": "lambda-contact.js",
+  "dependencies": {
+    "resend": "^3.2.0"
+  },
+  "scripts": {
+    "deploy-contact": "zip -r contact-lambda.zip lambda-contact.js package.json node_modules/",
+    "deploy-health": "zip -r health-lambda.zip lambda-health.js package.json node_modules/",
+    "deploy-test": "zip -r test-lambda.zip lambda-test-email.js package.json node_modules/"
+  }
+}

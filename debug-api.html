@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Debug</title>
+</head>
+<body>
+    <h1>API Configuration Debug</h1>
+    <div id="debug-info"></div>
+    
+    <script src="/api-config.js"></script>
+    <script>
+        const debugDiv = document.getElementById('debug-info');
+        
+        // Check if API_CONFIG is loaded
+        if (window.API_CONFIG) {
+            debugDiv.innerHTML += '<p>✅ API_CONFIG loaded successfully</p>';
+            debugDiv.innerHTML += '<p>Contact endpoint: ' + window.API_CONFIG.endpoints.contact + '</p>';
+        } else {
+            debugDiv.innerHTML += '<p>❌ API_CONFIG not loaded</p>';
+        }
+        
+        // Test the API call with detailed error reporting
+        async function testAPI() {
+            try {
+                debugDiv.innerHTML += '<p>🔄 Testing API call...</p>';
+                
+                const response = await fetch('https://828q8nkk65.execute-api.us-east-1.amazonaws.com/prod/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: 'Test User',
+                        email: 'test@example.com',
+                        service: 'Test Service',
+                        message: 'This is a test message'
+                    })
+                });
+                
+                debugDiv.innerHTML += '<p>📡 Response status: ' + response.status + '</p>';
+                debugDiv.innerHTML += '<p>📡 Response headers:</p>';
+                
+                // Log all response headers
+                for (const [key, value] of response.headers.entries()) {
+                    debugDiv.innerHTML += '<p style="margin-left: 20px;">' + key + ': ' + value + '</p>';
+                }
+                
+                const data = await response.json();
+                debugDiv.innerHTML += '<p>✅ API call successful: ' + JSON.stringify(data) + '</p>';
+            } catch (error) {
+                debugDiv.innerHTML += '<p>❌ API call failed: ' + error.message + '</p>';
+                debugDiv.innerHTML += '<p>Error type: ' + error.constructor.name + '</p>';
+                console.error('Full error:', error);
+            }
+        }
+        
+        // Run the test
+        testAPI();
+    </script>
+</body>
+</html>

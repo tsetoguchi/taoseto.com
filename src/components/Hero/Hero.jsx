@@ -22,17 +22,22 @@ export const Hero = () => {
     <section>
       <div className={styles.container}>
         <div className={styles.content}>
-          <h1 className={styles.header}>Hello ☻</h1>
+          <h1 className={styles.header}>Who Am I?</h1>
 
           <p className={styles.description}>
             I’m a Computer Science and Music Technology graduate with 12+ years
             of experience in music production and 7+ years in tech through
-            school, personal projects, and independent work.
+            school, personal projects, and independent work. I’m currently based in Tokyo, and English is my native language.
+          </p>
+
+          <p className={styles.description2}>
+            This site was made using AWS S3, AWS CloudFront, AWS Lambda, React JavaScript, HTML/CSS, Vite, Bootstrap, Adobe Photoshop, and Resend.
           </p>
         </div>
 
+        
         <a
-          href="https://linktr.ee/konac1"
+          href="https://kon.ac"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.linkWrapper}
@@ -73,6 +78,7 @@ export const Hero = () => {
         </div>
       </div> */}
     </section>
+    
   );
 };
 

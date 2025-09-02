@@ -23,13 +23,28 @@
     color: var(--color-text) !important;
     text-decoration: none;
     margin-left: auto !important;
-    transition: color 0.3s ease, transform 1s ease !important;
+    opacity: 0.8;
+    transition: opacity 0.4s ease, transform 1s ease !important;
 }
 
 
 .navLink:hover {
-    color: var(--color-secondary) !important;
+    /* color: var(--color-secondary) !important; */
+    opacity: 1;
     transform: scale(1.1); 
+}
+
+.headphonesIcon {
+  
+    scale: 0.8;
+    padding-bottom: 3px;
+}
+
+
+.navLinkCommissions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px; /* Space between icon and text */
 }
 
 .navLinkCommissions,
@@ -111,10 +126,54 @@
         
     }
 
+    .basic-navbar-nav{
+
+    }
+
     .navbar-toggler {
         /* display: none !important; */
         margin-left: 2.3%;
         margin-right: auto;
+    }
+
+    /* Make hamburger menu stripes white - Multiple approaches */
+    .navbar-toggler {
+        border: none !important;
+        padding: 0 !important;
+        background: transparent !important;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    /* Approach 1: Direct SVG with white color */
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+
+    /* Approach 2: CSS filter to force white */
+    .navbar-toggler-icon {
+        filter: brightness(0) invert(1) !important;
+        -webkit-filter: brightness(0) invert(1) !important;
+    }
+
+    /* Approach 3: Override with higher specificity */
+    .customNavbar .navbar-toggler .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        filter: brightness(0) invert(1) !important;
+        -webkit-filter: brightness(0) invert(1) !important;
+    }
+
+    /* Approach 4: Target all possible Bootstrap hamburger selectors */
+    .navbar-toggler-icon,
+    .navbar-toggler .navbar-toggler-icon,
+    .navbar .navbar-toggler .navbar-toggler-icon,
+    .customNavbar .navbar-toggler .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        filter: brightness(0) invert(1) !important;
+        -webkit-filter: brightness(0) invert(1) !important;
     }
 
     /* .custom-toggler {
@@ -171,6 +230,16 @@
 
     .navLink.navLinkProjects {
         display: none;
+    }
+
+    .navLink.navLinkCommissions {
+        position: relative;
+        right: 1px;
+    }
+
+    .navLink.navLinkExperience {
+        position: relative;
+        left: 7px;
     }
     
 }
