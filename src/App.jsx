@@ -36,16 +36,12 @@ function AppContent() {
         const contentBottomThreshold = contentRect.bottom - FADE_DISTANCE;
         const isOverlapping = footerRect.top < contentBottomThreshold;
 
-        console.log("Footer position:", footerRect);
-        console.log("Content position:", contentRect);
-        console.log("Is overlapping:", isOverlapping);
-
         if (isOverlapping) {
           footer.classList.add("is-faded");
-          console.log("Added is-faded class");
+
         } else {
           footer.classList.remove("is-faded");
-          console.log("Removed is-faded class");
+
         }
       };
 
@@ -59,8 +55,6 @@ function AppContent() {
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
-    } else {
-      console.log("Footer or content element not found:", { footer: !!footer, content: !!content });
     }
   }, [location.pathname]);
 

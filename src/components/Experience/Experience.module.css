@@ -22,22 +22,24 @@
     margin-bottom: 22px;
     color: var(--color-text); /* Ensure this color is applied */
     font-family: var(--font-default);
-    transition: color 0.3s ease, transform 1s ease !important;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 1s ease !important;
 }
 
 .experience:hover {
-    color: var(--color-secondary) !important;
+    opacity: 1 !important;
     transform: scale(1); /* Slightly enlarge on hover */
 }
 
 .link {
     text-decoration: none; /* Remove underline */
     color: inherit; /* Inherit color from parent (.experience) */
-    transition: color 0.3s ease, transform 1s ease !important;
+    opacity: 0.95;
+    transition: opacity 0.3s ease, transform 1s ease !important;
 }
 
 .link:hover {
-    color: var(--color-secondary) !important; /* Apply hover color */
+    opacity: 1 !important; /* Apply hover color */
 }
 
 .description {

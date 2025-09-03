@@ -30,9 +30,7 @@ export const Hero = () => {
             school, personal projects, and independent work. I’m currently based in Tokyo, and English is my native language.
           </p>
 
-          <p className={styles.description2}>
-            This site was made using AWS S3, AWS CloudFront, AWS Lambda, React JavaScript, HTML/CSS, Vite, Bootstrap, Adobe Photoshop, and Resend.
-          </p>
+
         </div>
 
         
