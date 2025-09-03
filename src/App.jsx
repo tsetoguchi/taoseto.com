@@ -1,5 +1,5 @@
 import styles from './App.module.css';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { MyNavbar } from './components/Navbar/Navbar';
 import { Hero } from './components/Hero/Hero';
 import { Commissions } from './components/Commissions/Commissions';
@@ -28,6 +28,9 @@ function AppContent() {
     const content = document.getElementById("content");
 
     if (footer && content) {
+      // Ensure footer starts un-faded on route change
+      footer.classList.remove("is-faded");
+
       const handleScroll = () => {
         const footerRect = footer.getBoundingClientRect();
         const contentRect = content.getBoundingClientRect();
@@ -54,6 +57,8 @@ function AppContent() {
       // Cleanup function
       return () => {
         window.removeEventListener("scroll", handleScroll);
+        // Reset fade state on unmount/navigation
+        footer.classList.remove("is-faded");
       };
     }
   }, [location.pathname]);

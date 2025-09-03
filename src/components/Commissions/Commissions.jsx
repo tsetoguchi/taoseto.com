@@ -109,10 +109,10 @@ export const Commissions = () => {
     <section className={styles.container}>
       <div className={styles.content}>
 
-        <div className={styles.servicesContainer}>
+        {/* <div className={styles.servicesContainer}>
 
 
-        </div>
+        </div> */}
 
         <div className={styles.formContainer}>
           <h1 className={styles.mainText}>Get in touch</h1>
