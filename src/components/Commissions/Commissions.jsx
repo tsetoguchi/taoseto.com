@@ -108,6 +108,12 @@ export const Commissions = () => {
   return (
     <section className={styles.container}>
       <div className={styles.content}>
+
+        <div className={styles.servicesContainer}>
+
+
+        </div>
+
         <div className={styles.formContainer}>
           <h1 className={styles.mainText}>Get in touch</h1>
           <p className={styles.description}></p>
