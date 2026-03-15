@@ -41,7 +41,7 @@ export const MyNavbar = () => {
             <Nav.Link
               className={`${styles.navLink} ${styles.navLinkCommissions}`}
               as={Link}
-              to="/Commissions"
+              to="/commissions"
               onClick={handleNavClick}
             >
               <FontAwesomeIcon icon={faHeadphones} className={styles.headphonesIcon} />
@@ -51,7 +51,7 @@ export const MyNavbar = () => {
             <Nav.Link
               className={`${styles.navLink} ${styles.navLinkExperience}`}
               as={Link}
-              to="/Experience"
+              to="/experience"
               onClick={handleNavClick}
             >
               Experience
@@ -60,7 +60,7 @@ export const MyNavbar = () => {
             <Nav.Link
               className={`${styles.navLink} ${styles.navLinkProjects}`}
               as={Link}
-              to="/Projects"
+              to="/projects"
               onClick={handleNavClick}
             >
               Projects

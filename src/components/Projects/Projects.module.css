@@ -1,6 +1,9 @@
+@import "../../vars.css";
+
 .container {
   background-color: var(--color-bg) !important;
   padding-top: 0 !important;
+  font-family: var(--font-default);
   /* user-select: none; */
 
 }
@@ -20,24 +23,35 @@
 }
 
 .imageContainer {
-  width: 100%;
+  width: 75%;
+  margin: 0 auto;
   position: relative;
+  aspect-ratio: 16 / 9;
+  max-height: 50vh;
+  background-color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .imageContainer img {
-  max-height: 70vh;
+  max-height: 100%;
+  max-width: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
 }
 
 .carouselContent {
   background-color: var(--color-bg);
   padding: 1rem;
-  margin-top: -1px;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .carouselIndicators {
@@ -47,6 +61,16 @@
 .carousel .carousel-indicators button {
   margin-top: 100px !important;
 }
+
+.carousel :global(.carousel-control-prev),
+.carousel :global(.carousel-control-next) {
+  height: 50vh;
+  top: 20vh;
+  bottom: auto;
+  align-items: flex-end;
+  padding-bottom: 1rem;
+}
+
 
 .carouselControls {
   display: flex;
@@ -83,13 +107,16 @@
   flex-direction: column;
   align-items: center;
   color: var(--color-text);
+  font-family: var(--font-default);
+}
+
+.captionWrapper *,
+.captionWrapper h3,
+.captionWrapper p {
+  font-family: 'Outfit', sans-serif !important;
 }
 
 @media screen and (max-width: 852px) {
-
-  .container {
-    padding-top: 40% !important;
-  }
 
   .carousel {
     max-height: 100vh;
@@ -97,8 +124,10 @@
   }
 
   .imageContainer img {
-    max-height: 50vh;
-    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
   }
 

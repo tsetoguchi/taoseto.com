@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node resend_backend.cjs",
+    "start": "node server.cjs",
     "deploy": "chmod +x aws-deployment/deploy.sh && ./aws-deployment/deploy.sh",
     "deploy:setup": "chmod +x aws-deployment/deploy.sh",
     "aws:setup": "chmod +x aws-deployment/setup.sh && ./aws-deployment/setup.sh"

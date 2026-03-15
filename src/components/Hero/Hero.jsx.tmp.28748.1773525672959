@@ -1,0 +1,36 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./Hero.module.css";
+import heroImage from "../../../assets/hero/heroImage.png";
+
+export const Hero = () => {
+  return (
+    <section className={styles.section}>
+      <div className={styles.container}>
+        <div className={styles.content}>
+
+          <p className={styles.eyebrow}>Tokyo — Music & Technology</p>
+          <h1 className={styles.name}>tao seto</h1>
+          <p className={styles.description}>
+            I'm a Computer Science and Music Technology graduate with 12+ years
+            of experience in music production and 7+ years in tech through
+            school, personal projects, and independent work. I'm currently based in Tokyo, and English is my native language.
+          </p>
+
+
+        </div>
+
+        <a
+          href="https://kon.ac"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.linkWrapper}
+        >
+          <img src={heroImage} alt="Konac" className={styles.heroImg} />
+        </a>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;

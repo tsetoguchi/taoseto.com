@@ -2,207 +2,347 @@
 
 .container {
     position: relative;
-    background-color: var(--color-bg, rgba(0, 0, 0, 0.6));
-    border-radius: 15px;
-    padding-top: 0 !important;
-    padding: 100px; 
-    z-index: 1; 
-    text-color: var(--color-text);
-    display: flex;
-    align-items: flex-start; 
+    background-color: var(--color-bg);
     min-height: 100vh;
-    justify-content: center;
-    font-family: var(--font-default) !important;
-}
-
-.content {
+    padding: 100px;
+    padding-top: 0 !important;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    font-family: var(--font-default);
+}
+
+/* ── Page header ── */
+.pageHeader {
+    margin-bottom: 56px;
+    border-bottom: 1px solid rgba(245, 245, 245, 0.1);
+    padding-bottom: 24px;
+}
+
+.pageTitle {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.4);
+    margin: 0 0 10px;
+}
+
+.pageSubtitle {
+    font-size: 2.4rem;
+    font-weight: 300;
     color: var(--color-text);
-    z-index: 1;
-    padding-top: 2%;
-    max-width: 800px;
-   
+    margin: 0;
+    line-height: 1.15;
 }
 
-.servicesContainer {
-
-    width: 500px;
-    height: 800px;
-    color: aquamarine;
-    border: 2px solid aquamarine; 
+/* ── Two-column layout ── */
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
 }
 
-.formContainer {
-    /* padding-top: 40%; */
-}
-
-.formGroup {
+/* ── Tiers ── */
+.tiersSection {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* This right-aligns the inputs */
+    gap: 2px;
+}
+
+.tiersLabel {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.35);
+    margin-bottom: 20px;
+}
+
+.tierCard {
+    border: 1px solid rgba(245, 245, 245, 0.08);
+    border-radius: 4px;
+    padding: 28px 32px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.tierCard::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+}
+
+.tierCard:hover {
+    border-color: rgba(245, 245, 245, 0.2);
+    background-color: rgba(245, 245, 245, 0.02);
+}
+
+.tierCard:hover::before {
+    background-color: rgba(245, 245, 245, 0.2);
+}
+
+.tierCard.selected {
+    border-color: rgba(245, 245, 245, 0.35);
+    background-color: rgba(245, 245, 245, 0.03);
+}
+
+.tierCard.selected::before {
+    background-color: rgba(245, 245, 245, 0.7);
+}
+
+.tierCard.featured {
+    border-color: rgba(245, 245, 245, 0.15);
+}
+
+.tierCard.featured.selected {
+    border-color: rgba(245, 245, 245, 0.4);
+    background-color: rgba(245, 245, 245, 0.04);
+}
+
+.tierHeader {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.tierName {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    letter-spacing: 0.01em;
+}
+
+.tierBadge {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.5);
+    border: 1px solid rgba(245, 245, 245, 0.2);
+    padding: 2px 8px;
+    border-radius: 2px;
+}
+
+.tierPrice {
+    font-size: 0.8rem;
+    color: rgba(245, 245, 245, 0.55);
+    margin-bottom: 16px;
+}
+
+.tierDivider {
+    height: 1px;
+    background-color: rgba(245, 245, 245, 0.07);
+    margin-bottom: 16px;
+}
+
+.tierFeatures {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tierFeature {
+    font-size: 1rem;
+    color: rgba(245, 245, 245, 0.88);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.4;
+}
+
+.tierFeature::before {
+    content: '';
+    width: 12px;
+    height: 1px;
+    background-color: rgba(245, 245, 245, 0.25);
+    flex-shrink: 0;
+}
+
+.tierCard.selected .tierFeature {
+    color: rgba(245, 245, 245, 0.75);
+}
+
+/* ── Form section ── */
+.formSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.formLabel {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.35);
+    margin-bottom: 20px;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 0;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(245, 245, 245, 0.08);
+    padding: 20px 0;
+    transition: border-color 0.2s ease;
+}
+
+.formGroup:first-child {
+    border-top: 1px solid rgba(245, 245, 245, 0.08);
+}
+
+.formGroup:focus-within {
+    border-bottom-color: rgba(245, 245, 245, 0.4);
 }
 
 .label {
-    align-self: flex-start; /* This keeps labels left-aligned */
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.35);
     margin-bottom: 8px;
-    display: block;
+    transition: color 0.2s ease;
 }
 
-.input, .nameInput, .select, .textarea {
-    width: 500px; /* Set a specific width instead of 100% */
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+.formGroup:focus-within .label {
+    color: rgba(245, 245, 245, 0.7);
+}
+
+.input,
+.nameInput,
+.select,
+.textarea {
+    width: 100%;
+    padding: 6px 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-text);
+    font-family: var(--font-default);
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+.input::placeholder,
+.nameInput::placeholder,
+.textarea::placeholder {
+    color: rgba(245, 245, 245, 0.18);
+}
+
+.select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    background-size: 14px;
+    padding-right: 24px;
+}
+
+.select option {
+    background-color: #1a1a1a;
+    color: var(--color-text);
 }
 
 .textarea {
-    min-height: 150px; /* or 200px, 250px, etc. */
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    resize: vertical; /* Allows user to resize vertically only */
+    min-height: 100px;
+    resize: none;
+    line-height: 1.6;
 }
 
 .submitBtn {
-    width: 200px;
-    height: 50px;
-    margin: 2rem auto 0;
-    display: block;
-  
-
-    color: black;
-    font-size: 20px;
-    font-weight: 300;
-    text-align: center;
-    border: none;
-    border-radius: 12px;
+    margin-top: 36px;
+    align-self: flex-start;
+    padding: 14px 40px;
+    background-color: transparent;
+    border: 1px solid rgba(245, 245, 245, 0.3);
+    color: rgba(245, 245, 245, 0.7);
+    font-family: var(--font-default);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     cursor: pointer;
-  
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-  }
-  
-  .submitBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-  }
-  
-  .submitBtn:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  .submitBtn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
+    border-radius: 2px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
 
+.submitBtn:hover {
+    background-color: rgba(245, 245, 245, 0.9);
+    color: var(--color-bg);
+    border-color: rgba(245, 245, 245, 0.9);
+}
+
+.submitBtn:active {
+    opacity: 0.8;
+}
+
+.submitBtn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ── Messages ── */
 .messageContainer {
-    min-height: 80px; /* Reserve space for messages */
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-height: 24px;
+    margin-top: 16px;
 }
 
 .successMessage {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #c3e6cb;
-    text-align: center;
-    font-weight: 500;
-    width: 100%;
-    max-width: 500px; /* Match form width */
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: rgba(245, 245, 245, 0.6);
+    padding: 12px 0;
+    border-top: 1px solid rgba(245, 245, 245, 0.15);
 }
 
 .errorMessage {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #f5c6cb;
-    text-align: center;
-    font-weight: 500;
-    width: 100%;
-    max-width: 500px; /* Match form width */
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: #e07070;
+    padding: 12px 0;
+    border-top: 1px solid rgba(224, 112, 112, 0.3);
 }
 
-@media screen and (max-width: 852px) {
-
-
-
+/* ── Mobile ── */
+@media screen and (max-width: 900px) {
     .container {
-
-        flex-direction: column-reverse;
-        align-items: center;
+        padding: 50px 24px;
+        padding-top: 30% !important;
     }
 
-    .content {
-        scale: 0.7;
-        align-items: center;
-    } 
+    .pageSubtitle {
+        font-size: 1.8rem;
+    }
 
-    .mainText {
-        font-size: 30px;
+    .layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .submitBtn {
+        width: 100%;
         text-align: center;
-        padding-bottom: 10%;
-    }
-
-    .formGroup {
-        margin-bottom: 2rem; 
-    }
-
-    .serviceOption {
-        font-size: 10px;
-    }
-
-    .submitBtn { 
-        background-color: white !important;
-        color: black !important;
-        border: 2px solid #ccc !important;
-        -webkit-appearance: none !important;
-        -moz-appearance: none !important;
-        appearance: none !important;
     }
 
     .select {
-        height: 50px !important;
-        padding: 12px 40px 12px 12px !important;
+        color: var(--color-text);
         font-size: 16px !important;
-        color: black !important;
-        line-height: 1.2 !important;
-        -webkit-appearance: none !important;
-        -moz-appearance: none !important;
-        appearance: none !important;
-        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
-        background-repeat: no-repeat !important;
-        background-position: right 12px center !important;
-        background-size: 16px !important;
-        box-sizing: border-box !important;
+        background-color: transparent;
     }
-
-    .select option {
-        color: black !important;
-        background-color: white !important;
-    }
-
-    .select option:first-child {
-        color: black !important;
-    }
-
-    .footer {
-        display: none !important;
-    }
-
 }

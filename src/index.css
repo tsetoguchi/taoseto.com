@@ -2,6 +2,11 @@
   box-sizing: border-box;
   font-family: 'Outfit', Arial, Helvetica, sans-serif;
   scroll-behavior: smooth !important;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 /* Mobile-specific improvements */
@@ -33,6 +38,15 @@ input, textarea, select {
 
 /* Ensure fixed positioning works properly on mobile */
 @media screen and (max-width: 852px) {
+  .navbar-toggler {
+    margin-right: 8% !important;
+  }
+
+  .navbar-collapse .nav {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
   html, body {
     position: relative !important;
     overflow-x: hidden !important;
@@ -119,6 +133,18 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 3rem !important;
+  height: 5rem !important;
+  background-size: 100% 100% !important;
+}
+
+.carousel h3,
+.carousel p {
+  font-family: 'Outfit', sans-serif !important;
 }
 
 #contact * {

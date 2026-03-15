@@ -7,6 +7,11 @@
     min-height: 100vh;
 }
 
+.homeLayout {
+    height: 100vh;
+    overflow: hidden;
+}
+
 .contentWrapper {
     padding-top: 10%;
     height: 100%;

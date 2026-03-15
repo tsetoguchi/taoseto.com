@@ -171,23 +171,24 @@ get_stack_outputs() {
 # Upload website files to S3
 upload_to_s3() {
     print_status "Uploading website files to S3..."
-    
-    # Sync dist folder to S3
+
+    # Sync all non-HTML assets with long-term cache, excluding api-config.js from deletion
     aws s3 sync dist/ s3://$S3_BUCKET/ \
         --delete \
         --cache-control "max-age=31536000,public" \
         --exclude "*.html" \
+        --exclude "api-config.js" \
         --region $REGION
-    
-    # Upload HTML files with no-cache
+
+    # Upload HTML files with no-cache (must exclude everything else first, then include *.html)
     aws s3 sync dist/ s3://$S3_BUCKET/ \
-        --delete \
         --cache-control "no-cache,no-store,must-revalidate" \
+        --exclude "*" \
         --include "*.html" \
         --region $REGION
-    
-        print_success "Website files uploaded to S3"
-  }
+
+    print_success "Website files uploaded to S3"
+}
 
   # Apply S3 bucket policy manually
   apply_bucket_policy() {

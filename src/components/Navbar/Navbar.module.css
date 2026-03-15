@@ -214,7 +214,7 @@
     .menuItems {
 
         flex-direction: column;
-        align-items: center;
+        align-items: flex-end;
         gap: 13px;
         border-radius: 10px;
         background: var(--color-secondary) ;
@@ -240,6 +240,11 @@
     .navLink.navLinkExperience {
         position: relative;
         left: 7px;
+    }
+
+    .navLink.navLinkSpotify {
+        position: relative;
+        left: 1px;
     }
     
 }
