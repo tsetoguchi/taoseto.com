@@ -194,30 +194,11 @@ upload_to_s3() {
   apply_bucket_policy() {
     print_status "Applying S3 bucket policy..."
     
-    # Create bucket policy JSON
-    cat > /tmp/bucket-policy.json << EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "PublicReadGetObject",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::$S3_BUCKET/*"
-    }
-  ]
-}
-EOF
-    
-    # Apply the policy
+    # Apply the policy inline (avoids Windows /tmp path issues with AWS CLI)
     aws s3api put-bucket-policy \
         --bucket $S3_BUCKET \
-        --policy file:///tmp/bucket-policy.json \
+        --policy "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"PublicReadGetObject\",\"Effect\":\"Allow\",\"Principal\":\"*\",\"Action\":\"s3:GetObject\",\"Resource\":\"arn:aws:s3:::${S3_BUCKET}/*\"}]}" \
         --region $REGION
-    
-    # Clean up
-    rm /tmp/bucket-policy.json
     
     print_success "S3 bucket policy applied"
   }
@@ -237,38 +218,43 @@ invalidate_cloudfront() {
 # Update Lambda functions with actual code
 update_lambda_functions() {
     print_status "Updating Lambda functions with actual code..."
-    
-    # Create temporary directory for Lambda deployment
-    TEMP_DIR=$(mktemp -d)
-    
+
+    # Use a local dir (avoid /tmp — AWS CLI on Windows can't resolve Git Bash /tmp paths)
+    TEMP_DIR="./lambda-deploy-tmp"
+    rm -rf "$TEMP_DIR"
+    mkdir -p "$TEMP_DIR"
+
     # Copy Lambda functions
-    cp lambda_functions/resend_backend_lambda.js $TEMP_DIR/
-    cp lambda_functions/lambda_health.js $TEMP_DIR/
-    cp lambda_functions/package.json $TEMP_DIR/
-    
+    cp lambda_functions/resend_backend_lambda.js "$TEMP_DIR/"
+    cp lambda_functions/lambda_health.js "$TEMP_DIR/"
+    cp lambda_functions/package.json "$TEMP_DIR/"
+
     # Install dependencies
-    cd $TEMP_DIR
+    cd "$TEMP_DIR"
     npm install --production
-    
-    # Create deployment packages
-    zip -r contact-lambda.zip resend_backend_lambda.js package.json node_modules/
-    zip -r health-lambda.zip lambda_health.js package.json node_modules/
-    
+
+    # Get Windows-style absolute path (forward slashes) for PowerShell and AWS CLI
+    TEMP_WIN=$(cygpath -m "$(pwd)")
+
+    # Create deployment packages via PowerShell (zip not available in Git Bash on Windows)
+    powershell -Command "Compress-Archive -Path '${TEMP_WIN}/resend_backend_lambda.js','${TEMP_WIN}/package.json','${TEMP_WIN}/node_modules' -DestinationPath '${TEMP_WIN}/contact-lambda.zip' -Force"
+    powershell -Command "Compress-Archive -Path '${TEMP_WIN}/lambda_health.js','${TEMP_WIN}/package.json','${TEMP_WIN}/node_modules' -DestinationPath '${TEMP_WIN}/health-lambda.zip' -Force"
+
     # Update Lambda functions
     aws lambda update-function-code \
         --function-name "${STACK_NAME}-contact" \
-        --zip-file fileb://contact-lambda.zip \
+        --zip-file "fileb://${TEMP_WIN}/contact-lambda.zip" \
         --region $REGION
-    
+
     aws lambda update-function-code \
         --function-name "${STACK_NAME}-health" \
-        --zip-file fileb://health-lambda.zip \
+        --zip-file "fileb://${TEMP_WIN}/health-lambda.zip" \
         --region $REGION
-    
+
     # Clean up
     cd -
-    rm -rf $TEMP_DIR
-    
+    rm -rf "$TEMP_DIR"
+
     print_success "Lambda functions updated"
 }
 
