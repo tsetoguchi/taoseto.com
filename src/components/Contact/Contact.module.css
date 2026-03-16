@@ -45,16 +45,10 @@
       z-index: 99999 !important;
       width: 100vw !important;
       height: auto !important;
-      transform: none !important;
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
       background-color: rgba(var(--color-contact), 0.9) !important;
       box-sizing: border-box !important;
-      will-change: auto !important;
-      backface-visibility: hidden !important;
-      -webkit-transform: translateZ(0) !important;
-      transform: translateZ(0) !important;
-      position: fixed !important;
-      position: -webkit-sticky !important;
-      position: sticky !important;
       overflow: visible !important;
       pointer-events: auto !important;
     }
