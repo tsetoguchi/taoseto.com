@@ -67,7 +67,7 @@ function AppContent() {
   return (
     <div className={`${styles.App}${isHome ? ` ${styles.homeLayout}` : ''}`}>
       <MyNavbar />
-      <div className={styles.contentWrapper}>
+      <div key={location.pathname} className={styles.contentWrapper}>
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/commissions" element={<Commissions />} />
