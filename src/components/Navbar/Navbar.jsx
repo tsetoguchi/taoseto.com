@@ -66,32 +66,35 @@ export const MyNavbar = () => {
               Projects
             </Nav.Link>
 
-            <Nav.Link
-              className={`${styles.navLink} ${styles.navLinkGitHub}`}
-              as={Link}
-              to="https://github.com/tsetoguchi"
+            <a
+              className={`nav-link ${styles.navLink} ${styles.navLinkGitHub}`}
+              href="https://github.com/tsetoguchi"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={handleNavClick}
             >
               <FontAwesomeIcon icon={faGithub} />
-            </Nav.Link>
+            </a>
 
-            <Nav.Link
-              className={`${styles.navLink} ${styles.navLinkLinkedin}`}
-              as={Link}
-              to="https://www.linkedin.com/in/taoseto/"
+            <a
+              className={`nav-link ${styles.navLink} ${styles.navLinkLinkedin}`}
+              href="https://www.linkedin.com/in/taoseto/"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={handleNavClick}
             >
               <FontAwesomeIcon icon={faLinkedin} />
-            </Nav.Link>
+            </a>
 
-            <Nav.Link
-              className={`${styles.navLink} ${styles.navLinkSpotify}`}
-              as={Link}
-              to="https://spotify.taoseto.com"
+            <a
+              className={`nav-link ${styles.navLink} ${styles.navLinkSpotify}`}
+              href="https://spotify.taoseto.com"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={handleNavClick}
             >
               <FontAwesomeIcon icon={faSpotify} />
-            </Nav.Link>
+            </a>
           </Nav>
         </div>
       </Navbar.Collapse>

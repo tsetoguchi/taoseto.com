@@ -14,7 +14,7 @@
 /* ── Page header ── */
 .pageHeader {
     margin-bottom: 56px;
-    border-bottom: 1px solid rgba(245, 245, 245, 0.1);
+    border-bottom: 1px solid rgba(var(--color-text-rgb),0.1);
     padding-bottom: 24px;
 }
 
@@ -23,7 +23,7 @@
     font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(245, 245, 245, 0.4);
+    color: rgba(var(--color-text-rgb),0.4);
     margin: 0 0 10px;
 }
 
@@ -54,12 +54,12 @@
     font-size: 0.7rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(245, 245, 245, 0.35);
+    color: rgba(var(--color-text-rgb),0.35);
     margin-bottom: 20px;
 }
 
 .tierCard {
-    border: 1px solid rgba(245, 245, 245, 0.08);
+    border: 1px solid rgba(var(--color-text-rgb),0.08);
     border-radius: 4px;
     padding: 28px 32px;
     cursor: pointer;
@@ -81,30 +81,30 @@
 }
 
 .tierCard:hover {
-    border-color: rgba(245, 245, 245, 0.2);
-    background-color: rgba(245, 245, 245, 0.02);
+    border-color: rgba(var(--color-text-rgb),0.2);
+    background-color: rgba(var(--color-text-rgb),0.02);
 }
 
 .tierCard:hover::before {
-    background-color: rgba(245, 245, 245, 0.2);
+    background-color: rgba(var(--color-text-rgb),0.2);
 }
 
 .tierCard.selected {
-    border-color: rgba(245, 245, 245, 0.35);
-    background-color: rgba(245, 245, 245, 0.03);
+    border-color: rgba(var(--color-text-rgb),0.35);
+    background-color: rgba(var(--color-text-rgb),0.03);
 }
 
 .tierCard.selected::before {
-    background-color: rgba(245, 245, 245, 0.7);
+    background-color: rgba(var(--color-text-rgb),0.7);
 }
 
 .tierCard.featured {
-    border-color: rgba(245, 245, 245, 0.15);
+    border-color: rgba(var(--color-text-rgb),0.15);
 }
 
 .tierCard.featured.selected {
-    border-color: rgba(245, 245, 245, 0.4);
-    background-color: rgba(245, 245, 245, 0.04);
+    border-color: rgba(var(--color-text-rgb),0.4);
+    background-color: rgba(var(--color-text-rgb),0.04);
 }
 
 .tierHeader {
@@ -125,21 +125,21 @@
     font-size: 0.6rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(245, 245, 245, 0.5);
-    border: 1px solid rgba(245, 245, 245, 0.2);
+    color: rgba(var(--color-text-rgb),0.5);
+    border: 1px solid rgba(var(--color-text-rgb),0.2);
     padding: 2px 8px;
     border-radius: 2px;
 }
 
 .tierPrice {
     font-size: 0.8rem;
-    color: rgba(245, 245, 245, 0.55);
+    color: rgba(var(--color-text-rgb),0.55);
     margin-bottom: 16px;
 }
 
 .tierDivider {
     height: 1px;
-    background-color: rgba(245, 245, 245, 0.07);
+    background-color: rgba(var(--color-text-rgb),0.07);
     margin-bottom: 16px;
 }
 
@@ -154,7 +154,7 @@
 
 .tierFeature {
     font-size: 1rem;
-    color: rgba(245, 245, 245, 0.88);
+    color: rgba(var(--color-text-rgb),0.88);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -165,12 +165,12 @@
     content: '';
     width: 12px;
     height: 1px;
-    background-color: rgba(245, 245, 245, 0.25);
+    background-color: rgba(var(--color-text-rgb),0.25);
     flex-shrink: 0;
 }
 
 .tierCard.selected .tierFeature {
-    color: rgba(245, 245, 245, 0.75);
+    color: rgba(var(--color-text-rgb),0.75);
 }
 
 /* ── Form section ── */
@@ -183,7 +183,7 @@
     font-size: 0.7rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(245, 245, 245, 0.35);
+    color: rgba(var(--color-text-rgb),0.35);
     margin-bottom: 20px;
 }
 
@@ -196,30 +196,30 @@
 .formGroup {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid rgba(245, 245, 245, 0.08);
+    border-bottom: 1px solid rgba(var(--color-text-rgb),0.08);
     padding: 20px 0;
     transition: border-color 0.2s ease;
 }
 
 .formGroup:first-child {
-    border-top: 1px solid rgba(245, 245, 245, 0.08);
+    border-top: 1px solid rgba(var(--color-text-rgb),0.08);
 }
 
 .formGroup:focus-within {
-    border-bottom-color: rgba(245, 245, 245, 0.4);
+    border-bottom-color: rgba(var(--color-text-rgb),0.4);
 }
 
 .label {
     font-size: 0.68rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(245, 245, 245, 0.35);
+    color: rgba(var(--color-text-rgb),0.35);
     margin-bottom: 8px;
     transition: color 0.2s ease;
 }
 
 .formGroup:focus-within .label {
-    color: rgba(245, 245, 245, 0.7);
+    color: rgba(var(--color-text-rgb),0.7);
 }
 
 .input,
@@ -240,7 +240,7 @@
 .input::placeholder,
 .nameInput::placeholder,
 .textarea::placeholder {
-    color: rgba(245, 245, 245, 0.18);
+    color: rgba(var(--color-text-rgb),0.18);
 }
 
 .select {
@@ -270,8 +270,8 @@
     align-self: flex-start;
     padding: 14px 40px;
     background-color: transparent;
-    border: 1px solid rgba(245, 245, 245, 0.3);
-    color: rgba(245, 245, 245, 0.7);
+    border: 1px solid rgba(var(--color-text-rgb),0.3);
+    color: rgba(var(--color-text-rgb),0.7);
     font-family: var(--font-default);
     font-size: 0.75rem;
     font-weight: 400;
@@ -283,9 +283,9 @@
 }
 
 .submitBtn:hover {
-    background-color: rgba(245, 245, 245, 0.9);
+    background-color: rgba(var(--color-text-rgb),0.9);
     color: var(--color-bg);
-    border-color: rgba(245, 245, 245, 0.9);
+    border-color: rgba(var(--color-text-rgb),0.9);
 }
 
 .submitBtn:active {
@@ -306,9 +306,9 @@
 .successMessage {
     font-size: 0.8rem;
     letter-spacing: 0.05em;
-    color: rgba(245, 245, 245, 0.6);
+    color: rgba(var(--color-text-rgb),0.6);
     padding: 12px 0;
-    border-top: 1px solid rgba(245, 245, 245, 0.15);
+    border-top: 1px solid rgba(var(--color-text-rgb),0.15);
 }
 
 .errorMessage {

@@ -2,7 +2,7 @@
 
 .container {
     height: 10vh;
-    background-color: rgba(var(--color-contact), 0.6);
+    background-color: rgba(var(--color-bg), 1);
     color: var(--color-text);
     justify-content: space-evenly;
     width: 100%;
@@ -47,7 +47,7 @@
       height: auto !important;
       transform: translateZ(0) !important;
       -webkit-transform: translateZ(0) !important;
-      background-color: rgba(var(--color-contact), 0.9) !important;
+      /* background-color: rgba(var(--color-text-rgb), 0.9) !important; */
       box-sizing: border-box !important;
       overflow: visible !important;
       pointer-events: auto !important;
