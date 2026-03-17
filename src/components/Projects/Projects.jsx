@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import Carousel from "react-bootstrap/Carousel";
 
 import airy from "../../../assets/projects/airy.gif";
@@ -13,6 +14,12 @@ import styles from "./Projects.module.css";
 export const Projects = () => {
   return (
     <div className={styles.container}>
+      <Helmet>
+        <title>Projects — tao seto</title>
+        <meta name="description" content="Software and audio projects by Tao Seto — JUCE audio plugins, web apps, tools, and games." />
+        <meta property="og:title" content="Projects — tao seto" />
+        <meta property="og:url" content="https://taoseto.com/projects" />
+      </Helmet>
       <Carousel fade className={styles.carousel}>
         <Carousel.Item className={styles.carouselItem}>
           <div className={styles.imageContainer}>

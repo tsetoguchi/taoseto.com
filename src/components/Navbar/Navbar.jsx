@@ -71,6 +71,7 @@ export const MyNavbar = () => {
               href="https://github.com/tsetoguchi"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub profile"
               onClick={handleNavClick}
             >
               <FontAwesomeIcon icon={faGithub} />
@@ -81,6 +82,7 @@ export const MyNavbar = () => {
               href="https://www.linkedin.com/in/taoseto/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
               onClick={handleNavClick}
             >
               <FontAwesomeIcon icon={faLinkedin} />
@@ -91,6 +93,7 @@ export const MyNavbar = () => {
               href="https://spotify.taoseto.com"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Spotify profile"
               onClick={handleNavClick}
             >
               <FontAwesomeIcon icon={faSpotify} />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./Commissions.module.css";
 import { getApiEndpoint } from "../../config";
 
@@ -106,6 +107,12 @@ export const Commissions = () => {
 
   return (
     <section className={styles.container}>
+      <Helmet>
+        <title>Commissions — tao seto</title>
+        <meta name="description" content="Mixing, mastering, and music technology services by Tao Seto. Radio-ready mixdowns, commercial-grade masters, and priority turnaround." />
+        <meta property="og:title" content="Commissions — tao seto" />
+        <meta property="og:url" content="https://taoseto.com/commissions" />
+      </Helmet>
       <div className={styles.pageHeader}>
         <p className={styles.pageTitle}>Services</p>
         <h1 className={styles.pageSubtitle}>Get in touch</h1>
@@ -143,7 +150,7 @@ export const Commissions = () => {
 
         {/* Form */}
         <div className={styles.formSection}>
-          <p className={styles.formLabel}>Enquiry</p>
+          <p className={styles.formLabel}>Inquiry</p>
           <form onSubmit={handleSubmit} className={styles.form}>
 
             <div className={styles.formGroup}>
@@ -192,7 +199,7 @@ export const Commissions = () => {
             </div>
 
             <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
-              {isSubmitting ? "Sending..." : "Send enquiry"}
+              {isSubmitting ? "Sending..." : "Send inquiry"}
             </button>
           </form>
 

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import styles from './Experience.module.css';
 import Resume from '../../../assets/experience/tao_seto_resume.pdf';
 
@@ -52,6 +53,12 @@ const EXPERIENCE = [
 export const Experience = () => {
   return (
     <section className={styles.container}>
+      <Helmet>
+        <title>Experience — tao seto</title>
+        <meta name="description" content="Tao Seto's professional experience in music production, audio engineering, and software engineering. Konac, Rhythmedia, State Street, and more." />
+        <meta property="og:title" content="Experience — tao seto" />
+        <meta property="og:url" content="https://taoseto.com/experience" />
+      </Helmet>
       <div className={styles.content} id="content">
 
         <div className={styles.pageHeader}>
