@@ -23,6 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+# Claude Code
+.claude/
+CLAUDE.md
+
 # AWS deployment
 aws-deployment/*.zip
 aws-deployment/temp/
