@@ -53,11 +53,13 @@
 
 .tiersLabel {
     grid-column: 1 / -1;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(var(--color-text-rgb),0.35);
+    color: rgba(var(--color-text-rgb),0.55);
     margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(var(--color-text-rgb),0.08);
 }
 
 .tierCard {
@@ -182,11 +184,13 @@
 }
 
 .formLabel {
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(var(--color-text-rgb),0.35);
+    color: rgba(var(--color-text-rgb),0.55);
     margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(var(--color-text-rgb),0.08);
 }
 
 .form {
