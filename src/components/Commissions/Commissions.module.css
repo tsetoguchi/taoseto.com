@@ -45,12 +45,14 @@
 
 /* ── Tiers ── */
 .tiersSection {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 25px;
 }
 
 .tiersLabel {
+    grid-column: 1 / -1;
     font-size: 0.7rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;

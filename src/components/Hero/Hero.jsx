@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import styles from "./Hero.module.css";
 import heroImage from "../../../assets/hero/heroImage.png";
 
@@ -22,6 +23,10 @@ export const Hero = () => {
             and 7+ years in tech. English native.
           </p>
 
+          <div className={styles.ctas}>
+            <Link to="/commissions" className={styles.ctaPrimary}>Commissions</Link>
+            <Link to="/experience" className={styles.ctaSecondary}>Experience</Link>
+          </div>
 
         </div>
 

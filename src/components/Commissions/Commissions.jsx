@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import styles from "./Commissions.module.css";
 import { getApiEndpoint } from "../../config";
+import { CommissionsPortfolio2 as CommissionsPortfolio } from "./CommissionsPortfolio2";
 
 const TIERS = [
   {
     id: "Mixing",
     name: "Mixing",
-    price: "Starting at $1000",
+    price: "",
     featured: false,
     features: [
       "Radio ready mixdown",
@@ -18,7 +19,7 @@ const TIERS = [
   {
     id: "Mastering",
     name: "Mastering",
-    price: "$100",
+    price: "",
     featured: false,
     features: [
       "3 rounds of revisions",
@@ -29,13 +30,24 @@ const TIERS = [
   {
     id: "Mixing & Mastering",
     name: "Mixing & Mastering",
-    price: "Starting at $1000",
+    price: "",
     featured: true,
     badge: "Full service",
     features: [
       "All mixing services",
       "All mastering services free of charge",
       "Priority turnaround",
+    ],
+  },
+  {
+    id: "Other",
+    name: "Other",
+    price: "",
+    featured: false,
+    features: [
+      "Beat & track production",
+      "Pre-production arrangement",
+      "Post-production editing & cleanup",
     ],
   },
 ];
@@ -117,6 +129,8 @@ export const Commissions = () => {
         <p className={styles.pageTitle}>Services</p>
         <h1 className={styles.pageSubtitle}>Get in touch</h1>
       </div>
+
+      <CommissionsPortfolio />
 
       <div className={styles.layout}>
 
@@ -206,7 +220,7 @@ export const Commissions = () => {
           <div className={styles.messageContainer}>
             {showSuccess && (
               <div className={styles.successMessage}>
-                Received — I'll be in touch soon.
+                Thank you for your inquiry.
               </div>
             )}
             {showError && (
