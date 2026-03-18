@@ -114,6 +114,16 @@
     text-decoration: none;
 }
 
+/* ── Smooth collapse ── */
+:global(.collapsing) {
+    transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: height;
+}
+
+:global(.navbar-collapse) {
+    will-change: height;
+}
+
 @media screen and (max-width: 852px) {
 
     .title {

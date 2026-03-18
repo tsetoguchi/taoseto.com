@@ -13,7 +13,7 @@ const TIERS = [
     features: [
       "Radio ready mixdown",
       "Instrumental + Stems",
-      "Guaranteed Satisfaction Policy",
+      "5 rounds of revisions",
     ],
   },
   {
@@ -22,9 +22,9 @@ const TIERS = [
     price: "",
     featured: false,
     features: [
-      "3 rounds of revisions",
-      "Commercial grade loudness",
       "Platform-ready master",
+      "Commercial grade loudness",
+      "3 rounds of revisions",
     ],
   },
   {

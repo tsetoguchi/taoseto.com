@@ -324,8 +324,12 @@
 /* ── Mobile ── */
 @media screen and (max-width: 900px) {
     .container {
-        padding: 50px 24px;
-        padding-top: 30% !important;
+        padding: 24px;
+        padding-top: 90px !important;
+    }
+
+    .pageHeader {
+        margin-bottom: 36px;
     }
 
     .pageSubtitle {
@@ -335,6 +339,18 @@
     .layout {
         grid-template-columns: 1fr;
         gap: 48px;
+    }
+
+    .tiersSection {
+        grid-template-columns: 1fr;
+    }
+
+    .tiersLabel {
+        margin-bottom: 0;
+    }
+
+    .tierCard {
+        padding: 20px 24px;
     }
 
     .submitBtn {
