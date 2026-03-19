@@ -136,7 +136,7 @@ export const Commissions = () => {
 
         {/* Tiers */}
         <div className={styles.tiersSection}>
-          <p className={styles.tiersLabel}>Pricing</p>
+          <p className={styles.tiersLabel}>You're looking for</p>
           {TIERS.map((tier) => (
             <div
               key={tier.id}
