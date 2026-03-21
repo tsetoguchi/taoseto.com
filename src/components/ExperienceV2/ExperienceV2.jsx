@@ -14,6 +14,7 @@ const EXPERIENCE = [
     company: "Konac",
     url: "https://kon.ac",
     logo: getLogo('konac'),
+    gradient: ["#1a1a1a", "#8a8a8a"],
     role: "Founder & Producer",
     period: "2014 — Present",
     bullets: [
@@ -26,6 +27,7 @@ const EXPERIENCE = [
     company: "Rhythmedia",
     url: "https://www.rhythmedia.co.jp/",
     logo: getLogo('rhythmedia'),
+    gradient: ["#3d1510", "#e05a3a"],
     role: "Lead Audio Engineer & International Communications",
     period: "March 2025 - March 2026",
     bullets: [
@@ -38,6 +40,7 @@ const EXPERIENCE = [
     company: "State Street",
     url: "https://www.statestreet.com/",
     logo: getLogo('statestreet'),
+    gradient: ["#0a1540", "#2a5cdb"],
     role: "Site Reliability Engineer",
     period: "February 2022 - July 2022",
     bullets: [
@@ -51,6 +54,7 @@ const EXPERIENCE = [
     company: "Koh Gen Do",
     url: "https://www.kohgendo.com/",
     logo: getLogo('kohgendo'),
+    gradient: ["#1a0808", "#cc2020"],
     role: "Music Producer",
     period: "July 2019",
     bullets: [
@@ -96,6 +100,14 @@ export const ExperienceV2 = () => {
               rel="noopener noreferrer"
               className={styles.card}
             >
+              {entry.gradient && (
+                <div
+                  className={styles.cardGradient}
+                  style={{
+                    background: `linear-gradient(135deg, ${entry.gradient[0]}, ${entry.gradient[1]})`,
+                  }}
+                />
+              )}
               <div className={styles.cardLeft}>
                 <div className={styles.logoWrapper}>
                   {entry.logo ? (

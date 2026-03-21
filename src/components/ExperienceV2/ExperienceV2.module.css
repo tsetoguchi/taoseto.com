@@ -78,6 +78,7 @@
 }
 
 .card {
+  position: relative;
   display: flex;
   gap: 32px;
   padding: 32px;
@@ -87,6 +88,15 @@
   text-decoration: none;
   color: var(--color-text);
   transition: border-color 0.3s ease, background 0.3s ease;
+  overflow: hidden;
+}
+
+.cardGradient {
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 .card:hover {
