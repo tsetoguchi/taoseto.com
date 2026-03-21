@@ -31,11 +31,10 @@
 .navLink:hover {
     /* color: var(--color-secondary) !important; */
     opacity: 1;
-    transform: scale(1.1); 
 }
 
 .headphonesIcon {
-  
+
     scale: 0.8;
     padding-bottom: 3px;
 }
