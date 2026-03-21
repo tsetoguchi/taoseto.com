@@ -5,6 +5,7 @@ import { Hero } from './components/Hero/Hero';
 import { Commissions } from './components/Commissions/Commissions';
 import { Experience } from './components/Experience/Experience';
 import { Projects } from './components/Projects/Projects';
+import { ProjectsV2 } from './components/ProjectsV2/ProjectsV2';
 import { Contact } from './components/Contact/Contact';
 import { useEffect } from "react";
 import { useLocation } from 'react-router-dom';
@@ -74,7 +75,8 @@ function AppContent() {
           <Route path="/Commissions" element={<Navigate to="/commissions" replace />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/Experience" element={<Navigate to="/experience" replace />} />
-          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects" element={<ProjectsV2 />} />
+          <Route path="/projects/v1" element={<Projects />} />
           <Route path="/Projects" element={<Navigate to="/projects" replace />} />
         </Routes>
       </div>

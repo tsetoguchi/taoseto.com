@@ -238,7 +238,8 @@
     }
 
     .navLink.navLinkProjects {
-        display: none;
+        position: relative;
+        left: 4px;
     }
 
     .navLink.navLinkCommissions {
