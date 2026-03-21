@@ -4,6 +4,7 @@ import { MyNavbar } from './components/Navbar/Navbar';
 import { Hero } from './components/Hero/Hero';
 import { Commissions } from './components/Commissions/Commissions';
 import { Experience } from './components/Experience/Experience';
+import { ExperienceV2 } from './components/ExperienceV2/ExperienceV2';
 import { Projects } from './components/Projects/Projects';
 import { ProjectsV2 } from './components/ProjectsV2/ProjectsV2';
 import { Contact } from './components/Contact/Contact';
@@ -73,7 +74,8 @@ function AppContent() {
           <Route path="/" element={<Hero />} />
           <Route path="/commissions" element={<Commissions />} />
           <Route path="/Commissions" element={<Navigate to="/commissions" replace />} />
-          <Route path="/experience" element={<Experience />} />
+          <Route path="/experience" element={<ExperienceV2 />} />
+          <Route path="/experience/v1" element={<Experience />} />
           <Route path="/Experience" element={<Navigate to="/experience" replace />} />
           <Route path="/projects" element={<ProjectsV2 />} />
           <Route path="/projects/v1" element={<Projects />} />

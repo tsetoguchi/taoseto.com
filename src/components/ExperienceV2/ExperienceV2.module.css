@@ -1,0 +1,249 @@
+@import "../../vars.css";
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.container {
+  position: relative;
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  padding: 24px 80px 64px;
+  font-family: var(--font-default);
+  animation: fadeIn 0.4s ease-in;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text);
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Page header ── */
+.pageHeader {
+  margin-bottom: 56px;
+  border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
+  padding-bottom: 24px;
+}
+
+.pageTitle {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(var(--color-text-rgb), 0.4);
+  margin: 0 0 10px;
+}
+
+.headerRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.pageSubtitle {
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.15;
+}
+
+.resumeBtn {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--color-text-rgb), 0.4);
+  text-decoration: none;
+  border: 1px solid rgba(var(--color-text-rgb), 0.15);
+  padding: 8px 20px;
+  border-radius: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.resumeBtn:hover {
+  color: var(--color-text);
+  border-color: rgba(var(--color-text-rgb), 0.4);
+}
+
+/* ── Cards ── */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  gap: 32px;
+  padding: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(var(--color-text-rgb), 0.06);
+  background: rgba(var(--color-text-rgb), 0.02);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(var(--color-text-rgb), 0.15);
+  background: rgba(var(--color-text-rgb), 0.04);
+}
+
+/* ── Left column: logo + period ── */
+.cardLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  width: 100px;
+  padding-top: 4px;
+}
+
+.logoWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  background: rgba(var(--color-text-rgb), 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.companyLogo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.logoFallback {
+  font-size: 2rem;
+  font-weight: 300;
+  color: rgba(var(--color-text-rgb), 0.3);
+  line-height: 1;
+}
+
+.period {
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: rgba(var(--color-text-rgb), 0.4);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ── Right column: details ── */
+.cardRight {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardHeader {
+  margin-bottom: 16px;
+}
+
+.companyName {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0 0 4px;
+  letter-spacing: 0.01em;
+}
+
+.role {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(var(--color-text-rgb), 0.5);
+  margin: 0;
+}
+
+.bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bullet {
+  font-size: 0.95rem;
+  color: rgba(var(--color-text-rgb), 0.8);
+  line-height: 1.7;
+  padding-left: 16px;
+  position: relative;
+}
+
+.bullet::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(var(--color-text-rgb), 0.2);
+}
+
+/* ── Mobile ── */
+@media screen and (max-width: 852px) {
+  .container {
+    padding: 24px 24px 40px;
+  }
+
+  .card {
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .cardLeft {
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logoWrapper {
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+  }
+
+  .companyLogo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logoFallback {
+    font-size: 1.5rem;
+  }
+
+  .period {
+    font-size: 0.65rem;
+  }
+
+  .headerRow {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .resumeBtn {
+    align-self: flex-start;
+  }
+
+  .pageSubtitle {
+    font-size: 1.8rem;
+  }
+
+  .companyName {
+    font-size: 1.1rem;
+  }
+}

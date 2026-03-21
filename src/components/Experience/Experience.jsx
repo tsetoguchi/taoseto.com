@@ -2,10 +2,18 @@ import { Helmet } from 'react-helmet-async';
 import styles from './Experience.module.css';
 import Resume from '../../../assets/experience/tao_seto_resume.pdf';
 
+// Company logos — add image files to assets/experience/ to enable
+const logos = import.meta.glob('../../../assets/experience/*.{png,jpg,svg}', { eager: true });
+const getLogo = (name) => {
+  const match = Object.entries(logos).find(([path]) => path.includes(name));
+  return match ? match[1].default : null;
+};
+
 const EXPERIENCE = [
   {
     company: "Konac",
     url: "https://kon.ac",
+    logo: getLogo('konac'),
     role: "Founder & Producer",
     period: "2014 — Present",
     bullets: [
@@ -17,6 +25,7 @@ const EXPERIENCE = [
   {
     company: "Rhythmedia",
     url: "https://www.rhythmedia.co.jp/",
+    logo: getLogo('rhythmedia'),
     role: "Lead Audio Engineer & International Communications",
     period: "March 2025 - March 2026",
     bullets: [
@@ -28,6 +37,7 @@ const EXPERIENCE = [
   {
     company: "State Street",
     url: "https://www.statestreet.com/",
+    logo: getLogo('statestreet'),
     role: "Site Reliability Engineer",
     period: "February 2022 - July 2022",
     bullets: [
@@ -40,6 +50,7 @@ const EXPERIENCE = [
   {
     company: "Koh Gen Do",
     url: "https://www.kohgendo.com/",
+    logo: getLogo('kohgendo'),
     role: "Music Producer",
     period: "July 2019",
     bullets: [
@@ -84,6 +95,13 @@ export const Experience = () => {
                 {i < EXPERIENCE.length - 1 && <div className={styles.line} />}
               </div>
               <div className={styles.entryContent}>
+                {entry.logo && (
+                  <img
+                    src={entry.logo}
+                    alt={`${entry.company} logo`}
+                    className={styles.companyLogo}
+                  />
+                )}
                 <div className={styles.entryHeader}>
                   <a
                     href={entry.url}

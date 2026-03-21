@@ -107,6 +107,14 @@
     padding-bottom: 4px;
 }
 
+.companyLogo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
 .entryHeader {
     display: flex;
     align-items: baseline;
