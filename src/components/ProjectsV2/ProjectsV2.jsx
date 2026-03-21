@@ -1,12 +1,9 @@
 import { Helmet } from "react-helmet-async";
 
 import airy from "../../../assets/projects/airy.gif";
-import YouTubeAudioTranscriber from "../../../assets/projects/youtube_audio_transcriber.png";
 import CurrentlyVST from "../../../assets/projects/currentlyvst.png";
 import ValStatsAnalyzer from "../../../assets/projects/valorant_stats_analyzer.png";
 import TheSlushieMachine from "../../../assets/projects/the_slushie_machine.png";
-import Labyrinth from "../../../assets/projects/labyrinth.png";
-import Genicloud from "../../../assets/projects/Genicloud.png";
 import styles from "./ProjectsV2.module.css";
 
 const PROJECTS = [
@@ -25,12 +22,6 @@ const PROJECTS = [
       "JUCE-based audio plugin displaying DAW timecode to help producers and engineers stay in sync.",
   },
   {
-    title: "YouTube Audio Transcriber",
-    href: "https://github.com/tsetoguchi/Youtube-Audio-Transcriber",
-    image: YouTubeAudioTranscriber,
-    description: "Audio-to-text transcription tool for individual and batch YouTube videos.",
-  },
-  {
     title: "Valolytics",
     href: "https://github.com/tsetoguchi/Valolytics",
     image: ValStatsAnalyzer,
@@ -41,19 +32,6 @@ const PROJECTS = [
     href: "https://github.com/tsetoguchi/The-Slushie-Machine",
     image: TheSlushieMachine,
     description: "Audio processing app with a focus on low latency and simplistic UI workflows.",
-  },
-  {
-    title: "Genicloud",
-    href: "https://github.com/tsetoguchi/Genicloud",
-    image: Genicloud,
-    description:
-      "Lyrics downloader and word cloud generator built from Genius API data.",
-  },
-  {
-    title: "Labyrinth Game",
-    href: "https://github.com/tsetoguchi/Labyrinth",
-    image: Labyrinth,
-    description: "Java board game adaptation with AI pathfinding and maze navigation.",
   },
 ];
 
