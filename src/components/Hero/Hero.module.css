@@ -206,6 +206,7 @@
 
     .heroImg {
         width: 70%;
+        scale: 1;
         opacity: 1;
         margin-top: auto;
         margin-bottom: auto;
