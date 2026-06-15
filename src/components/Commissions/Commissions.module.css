@@ -4,8 +4,8 @@
     position: relative;
     background-color: var(--color-bg);
     min-height: 100vh;
-    padding: 100px;
-    padding-top: 0 !important;
+    padding: var(--space-6) var(--frame-pad) var(--space-16);
+    padding-top: 0;
     display: flex;
     flex-direction: column;
     font-family: var(--font-default);
@@ -13,23 +13,23 @@
 
 /* ── Page header ── */
 .pageHeader {
-    margin-bottom: 56px;
-    border-bottom: 1px solid rgba(var(--color-text-rgb),0.1);
-    padding-bottom: 24px;
+    margin-bottom: var(--space-16);
+    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.12);
+    padding-bottom: var(--space-6);
 }
 
 .pageTitle {
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
+    font-size: var(--text-label);
+    font-weight: var(--weight-regular);
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(var(--color-text-rgb),0.4);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
     margin: 0 0 10px;
 }
 
 .pageSubtitle {
-    font-size: 2.4rem;
-    font-weight: 300;
+    font-size: var(--text-h1);
+    font-weight: var(--weight-light);
     color: var(--color-text);
     margin: 0;
     line-height: 1.15;
@@ -39,7 +39,7 @@
 .layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: var(--space-16);
     align-items: start;
 }
 
@@ -48,24 +48,24 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
-    gap: 25px;
+    gap: var(--space-6);
 }
 
 .tiersLabel {
     grid-column: 1 / -1;
-    font-size: 0.85rem;
+    font-size: var(--text-small);
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(var(--color-text-rgb),0.55);
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(var(--color-text-rgb),0.08);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
 }
 
 .tierCard {
-    border: 1px solid rgba(var(--color-text-rgb),0.08);
-    border-radius: 4px;
-    padding: 28px 32px;
+    border: 1px solid rgba(var(--color-text-rgb), 0.08);
+    border-radius: var(--radius-sm);
+    padding: var(--space-8);
     cursor: pointer;
     transition: border-color 0.2s ease, background-color 0.2s ease;
     background-color: transparent;
@@ -85,66 +85,66 @@
 }
 
 .tierCard:hover {
-    border-color: rgba(var(--color-text-rgb),0.2);
-    background-color: rgba(var(--color-text-rgb),0.02);
+    border-color: rgba(var(--color-text-rgb), 0.2);
+    background-color: rgba(var(--color-text-rgb), 0.02);
 }
 
 .tierCard:hover::before {
-    background-color: rgba(var(--color-text-rgb),0.2);
+    background-color: rgba(var(--color-text-rgb), 0.2);
 }
 
 .tierCard.selected {
-    border-color: rgba(var(--color-text-rgb),0.35);
-    background-color: rgba(var(--color-text-rgb),0.03);
+    border-color: rgba(var(--color-text-rgb), 0.35);
+    background-color: rgba(var(--color-text-rgb), 0.03);
 }
 
 .tierCard.selected::before {
-    background-color: rgba(var(--color-text-rgb),0.7);
+    background-color: rgba(var(--color-text-rgb), 0.7);
 }
 
 .tierCard.featured {
-    border-color: rgba(var(--color-text-rgb),0.15);
+    border-color: rgba(var(--color-text-rgb), 0.15);
 }
 
 .tierCard.featured.selected {
-    border-color: rgba(var(--color-text-rgb),0.4);
-    background-color: rgba(var(--color-text-rgb),0.04);
+    border-color: rgba(var(--color-text-rgb), 0.4);
+    background-color: rgba(var(--color-text-rgb), 0.04);
 }
 
 .tierHeader {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 6px;
+    margin-bottom: var(--space-2);
 }
 
 .tierName {
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: var(--text-body);
+    font-weight: var(--weight-medium);
     color: var(--color-text);
     letter-spacing: 0.01em;
 }
 
 .tierBadge {
-    font-size: 0.6rem;
+    font-size: var(--text-label);
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(var(--color-text-rgb),0.5);
-    border: 1px solid rgba(var(--color-text-rgb),0.2);
-    padding: 2px 8px;
-    border-radius: 2px;
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    border: 1px solid rgba(var(--color-text-rgb), 0.2);
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-sm);
 }
 
 .tierPrice {
-    font-size: 0.8rem;
-    color: rgba(var(--color-text-rgb),0.55);
-    margin-bottom: 16px;
+    font-size: var(--text-small);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    margin-bottom: var(--space-4);
 }
 
 .tierDivider {
     height: 1px;
-    background-color: rgba(var(--color-text-rgb),0.07);
-    margin-bottom: 16px;
+    background-color: rgba(var(--color-text-rgb), 0.07);
+    margin-bottom: var(--space-4);
 }
 
 .tierFeatures {
@@ -153,12 +153,12 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: var(--space-3);
 }
 
 .tierFeature {
-    font-size: 1rem;
-    color: rgba(var(--color-text-rgb),0.88);
+    font-size: var(--text-body);
+    color: rgba(var(--color-text-rgb), var(--ink-1));
     display: flex;
     align-items: center;
     gap: 10px;
@@ -169,12 +169,12 @@
     content: '';
     width: 12px;
     height: 1px;
-    background-color: rgba(var(--color-text-rgb),0.25);
+    background-color: rgba(var(--color-text-rgb), 0.25);
     flex-shrink: 0;
 }
 
 .tierCard.selected .tierFeature {
-    color: rgba(var(--color-text-rgb),0.75);
+    color: rgba(var(--color-text-rgb), var(--ink-2));
 }
 
 /* ── Form section ── */
@@ -184,13 +184,13 @@
 }
 
 .formLabel {
-    font-size: 0.85rem;
+    font-size: var(--text-small);
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(var(--color-text-rgb),0.55);
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(var(--color-text-rgb),0.08);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
 }
 
 .form {
@@ -202,30 +202,30 @@
 .formGroup {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid rgba(var(--color-text-rgb),0.08);
-    padding: 20px 0;
+    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
+    padding: var(--space-4) 0;
     transition: border-color 0.2s ease;
 }
 
 .formGroup:first-child {
-    border-top: 1px solid rgba(var(--color-text-rgb),0.08);
+    border-top: 1px solid rgba(var(--color-text-rgb), 0.08);
 }
 
 .formGroup:focus-within {
-    border-bottom-color: rgba(var(--color-text-rgb),0.4);
+    border-bottom-color: rgba(var(--color-text-rgb), 0.4);
 }
 
 .label {
-    font-size: 0.68rem;
+    font-size: var(--text-label);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(var(--color-text-rgb),0.35);
-    margin-bottom: 8px;
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    margin-bottom: var(--space-2);
     transition: color 0.2s ease;
 }
 
 .formGroup:focus-within .label {
-    color: rgba(var(--color-text-rgb),0.7);
+    color: rgba(var(--color-text-rgb), 0.7);
 }
 
 .input,
@@ -239,14 +239,14 @@
     outline: none;
     color: var(--color-text);
     font-family: var(--font-default);
-    font-size: 0.95rem;
-    font-weight: 300;
+    font-size: var(--text-body);
+    font-weight: var(--weight-light);
 }
 
 .input::placeholder,
 .nameInput::placeholder,
 .textarea::placeholder {
-    color: rgba(var(--color-text-rgb),0.18);
+    color: rgba(var(--color-text-rgb), 0.18);
 }
 
 .select {
@@ -272,26 +272,26 @@
 }
 
 .submitBtn {
-    margin-top: 36px;
+    margin-top: var(--space-8);
     align-self: flex-start;
-    padding: 14px 40px;
+    padding: var(--space-3) var(--space-8);
     background-color: transparent;
-    border: 1px solid rgba(var(--color-text-rgb),0.3);
-    color: rgba(var(--color-text-rgb),0.7);
+    border: 1px solid rgba(var(--color-text-rgb), 0.3);
+    color: rgba(var(--color-text-rgb), var(--ink-2));
     font-family: var(--font-default);
-    font-size: 0.75rem;
-    font-weight: 400;
+    font-size: var(--text-label);
+    font-weight: var(--weight-regular);
     letter-spacing: 0.18em;
     text-transform: uppercase;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: var(--radius-sm);
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .submitBtn:hover {
-    background-color: rgba(var(--color-text-rgb),0.9);
+    background-color: rgba(var(--color-text-rgb), 0.9);
     color: var(--color-bg);
-    border-color: rgba(var(--color-text-rgb),0.9);
+    border-color: rgba(var(--color-text-rgb), 0.9);
 }
 
 .submitBtn:active {
@@ -306,34 +306,34 @@
 /* ── Messages ── */
 .messageContainer {
     min-height: 24px;
-    margin-top: 16px;
+    margin-top: var(--space-4);
 }
 
 .successMessage {
-    font-size: 0.8rem;
+    font-size: var(--text-small);
     letter-spacing: 0.05em;
-    color: rgba(var(--color-text-rgb),0.6);
-    padding: 12px 0;
-    border-top: 1px solid rgba(var(--color-text-rgb),0.15);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    padding: var(--space-3) 0;
+    border-top: 1px solid rgba(var(--color-text-rgb), 0.15);
 }
 
 .errorMessage {
-    font-size: 0.8rem;
+    font-size: var(--text-small);
     letter-spacing: 0.05em;
     color: #e07070;
-    padding: 12px 0;
+    padding: var(--space-3) 0;
     border-top: 1px solid rgba(224, 112, 112, 0.3);
 }
 
 /* ── Mobile ── */
 @media screen and (max-width: 900px) {
     .container {
-        padding: 24px;
-        padding-top: 24px !important;
+        padding: var(--space-6) var(--gutter) var(--space-12);
+        padding-top: var(--space-6);
     }
 
     .pageHeader {
-        margin-bottom: 36px;
+        margin-bottom: var(--space-8);
     }
 
     .pageSubtitle {
@@ -342,7 +342,7 @@
 
     .layout {
         grid-template-columns: 1fr;
-        gap: 48px;
+        gap: var(--space-12);
     }
 
     .tiersSection {
@@ -354,7 +354,7 @@
     }
 
     .tierCard {
-        padding: 20px 24px;
+        padding: var(--space-4) var(--space-6);
     }
 
     .submitBtn {
@@ -364,7 +364,7 @@
 
     .select {
         color: var(--color-text);
-        font-size: 16px !important;
+        font-size: 16px;
         background-color: transparent;
     }
 }

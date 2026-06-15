@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: 'Outfit', Arial, Helvetica, sans-serif;
-  scroll-behavior: smooth !important;
+  scroll-behavior: smooth;
   scrollbar-width: none;
 }
 
@@ -9,8 +9,8 @@
   display: none;
 }
 
-/* Mobile-specific improvements */
 html {
+  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -22,11 +22,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
 }
 
 /* Prevent zoom on input focus on iOS */
 input, textarea, select {
-  font-size: 16px !important;
+  font-size: 16px;
 }
 
 /* Fix for iOS Safari 100vh issue */
@@ -36,95 +45,40 @@ input, textarea, select {
   }
 }
 
-/* Ensure fixed positioning works properly on mobile */
 @media screen and (max-width: 852px) {
-  .navbar-toggler {
-    margin-right: 8% !important;
-  }
-
   .navbar-collapse .nav {
     width: 100%;
     justify-content: flex-end;
   }
 
   html, body {
-    position: relative !important;
-    overflow-x: hidden !important;
+    position: relative;
+    overflow-x: hidden;
   }
-  
+
   body {
-    padding-bottom: 0 !important;
-    margin: 0 !important;
+    padding-bottom: 0;
+    margin: 0;
   }
-  
+
   #root {
-    position: relative !important;
+    position: relative;
   }
-  
+
   .App {
-    position: relative !important;
-    overflow: visible !important;
+    position: relative;
+    overflow: visible;
   }
-  
+
   .contentWrapper {
-    position: relative !important;
-    overflow: visible !important;
+    position: relative;
+    overflow: visible;
   }
-  
-  /* Override any conflicting footer styles */
+
   footer {
-    position: static !important;
-    bottom: auto !important;
+    position: static;
+    bottom: auto;
   }
-  
-    /* Force white hamburger menu stripes - Global override */
-  .navbar-toggler {
-    border: none !important;
-    padding: 0 !important;
-    background: transparent !important;
-  }
-
-  .navbar-toggler:focus {
-    box-shadow: none !important;
-    outline: none !important;
-  }
-
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    filter: brightness(0) invert(1) !important;
-    -webkit-filter: brightness(0) invert(1) !important;
-  }
-
-  /* Target all possible Bootstrap hamburger selectors globally */
-  .navbar-toggler-icon,
-  .navbar .navbar-toggler .navbar-toggler-icon,
-  .navbar-toggler .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    filter: brightness(0) invert(1) !important;
-    -webkit-filter: brightness(0) invert(1) !important;
-  }
-
-  /* Scale the navbar collapse menu */
-
-}
-
-
-
-
-
-html {
-  scroll-behavior: smooth !important;
-}
-
-html, body {
-  background-color: var(--color-bg);
-}
-
-html, body {
-
-  margin: 0;
-  padding: 0;
-
 }
 
 #root, .App {
@@ -135,21 +89,21 @@ html, body {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  width: 3rem !important;
-  height: 5rem !important;
-  background-size: 100% 100% !important;
+  width: 3rem;
+  height: 5rem;
+  background-size: 100% 100%;
 }
 
 .carousel h3,
 .carousel p {
-  font-family: 'Outfit', sans-serif !important;
+  font-family: 'Outfit', sans-serif;
 }
 
 #contact * {
-  color: white !important;
+  color: white;
   transition: color 0.3s ease-in-out;
 }
 
 #contact.is-faded * {
-  color: transparent !important;
+  color: transparent;
 }

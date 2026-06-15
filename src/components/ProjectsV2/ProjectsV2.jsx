@@ -84,13 +84,11 @@ export const ProjectsV2 = () => {
                 src={project.image}
                 alt={project.title}
                 className={styles.cardImage}
+                loading="lazy"
               />
-              <div className={styles.cardOverlay}>
+              <div className={styles.cardScrim}>
                 <h3 className={styles.cardTitle}>{project.title}</h3>
                 <p className={styles.cardDescription}>{project.description}</p>
-              </div>
-              <div className={styles.cardLabel}>
-                <h3 className={styles.cardTitle}>{project.title}</h3>
               </div>
             </a>
           ))}

@@ -1,38 +1,38 @@
 @import "../../vars.css";
 
 .section {
-    margin-bottom: 64px;
-    padding-bottom: 64px;
+    margin-bottom: var(--space-16);
+    padding-bottom: var(--space-16);
     border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
 }
 
 .label {
-    font-size: 0.7rem;
+    font-size: var(--text-label);
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(var(--color-text-rgb), 0.35);
-    margin-bottom: 20px;
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    margin-bottom: var(--space-5);
 }
 
 /* ── Grid ── */
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
+    gap: var(--space-4);
 }
 
 /* ── Card ── */
 .card {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--space-3);
     min-width: 0;
 }
 
 /* ── Artwork ── */
 .artwork {
     aspect-ratio: 1 / 1;
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
     overflow: hidden;
     background-color: rgba(var(--color-text-rgb), 0.04);
 }
@@ -61,12 +61,12 @@
 .info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--space-1);
 }
 
 .title {
-    font-size: 0.9rem;
-    font-weight: 400;
+    font-size: var(--text-small);
+    font-weight: var(--weight-regular);
     color: rgba(var(--color-text-rgb), 0.85);
     white-space: nowrap;
     overflow: hidden;
@@ -77,13 +77,13 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 4px 6px;
+    gap: var(--space-1) var(--space-2);
     min-width: 0;
 }
 
 .artist {
-    font-size: 0.72rem;
-    color: rgba(var(--color-text-rgb), 0.35);
+    font-size: var(--text-label);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -91,54 +91,48 @@
 
 .privateArtist {
     font-style: italic;
-    color: rgba(var(--color-text-rgb), 0.2);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
 }
 
 .dot {
-    font-size: 0.6rem;
-    color: rgba(var(--color-text-rgb), 0.2);
+    font-size: var(--text-label);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
     flex-shrink: 0;
 }
 
 .serviceTag {
-    font-size: 0.62rem;
+    font-size: var(--text-label);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(var(--color-text-rgb), 0.25);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
 }
 
 /* ── Responsive ── */
-@media screen and (max-width: 1100px) {
-    .grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
 @media screen and (max-width: 900px) {
     .section {
-        margin-bottom: 48px;
-        padding-bottom: 48px;
+        margin-bottom: var(--space-12);
+        padding-bottom: var(--space-12);
     }
 
     .grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
+        gap: var(--space-3);
     }
 
     .title {
-        font-size: 0.8rem;
+        font-size: var(--text-small);
     }
 
     .artist,
     .dot,
     .serviceTag {
-        font-size: 0.65rem;
+        font-size: var(--text-label);
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        gap: var(--space-2);
     }
 }

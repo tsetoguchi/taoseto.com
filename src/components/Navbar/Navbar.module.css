@@ -7,108 +7,64 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    padding: 0 var(--frame-pad);
     z-index: 2;
     background-color: var(--color-nav) !important;
-    flex-direction: row;  
-    
-
-    
+    flex-direction: row;
 }
 
-
-
 .navLink {
-    font-size: 25px !important;
+    font-size: 1.25rem !important;
     font-family: var(--font-default) !important;
     color: var(--color-text) !important;
     text-decoration: none;
-    margin-left: auto !important;
-    opacity: 0.8;
-    transition: opacity 0.4s ease, transform 1s ease !important;
+    opacity: var(--ink-2);
+    transition: opacity 0.3s ease;
 }
 
-
 .navLink:hover {
-    /* color: var(--color-secondary) !important; */
     opacity: 1;
 }
 
 .headphonesIcon {
-
     scale: 0.8;
     padding-bottom: 3px;
 }
 
-
 .navLinkCommissions {
     display: flex !important;
     align-items: center !important;
-    gap: 8px; /* Space between icon and text */
-}
-
-.navLinkCommissions,
-.navLinkExperience,
-.navLinkProjects {
-    margin-right: 5%;
-}
-
-
-
-/* .navLinkGitHub {
-    margin-left: 65%; 
-}
-
-.navLinkLinkedin {
-    margin-right: 5%; 
-}
-
-.navLinkSpotify {
-    margin-left: -5% !important; 
-} */
-
-.fontAwesomeIcon {
-    font-size: 50px;
-}
-
-  
-.bg-dark {
-    z-index: 10;
-    background-color: var(--color-nav) !important;
+    gap: var(--space-2); /* Space between icon and text */
 }
 
 .title {
-    font-size: 50px !important;
+    font-size: 2.25rem !important;
     font-weight: 600;
     text-decoration: none;
     color: var(--color-text) !important;
     pointer-events: auto;
-    text-align: left; /* Align text to the left */
-    margin-left: 2.3%; /* Reset any negative margin */
-    margin-right: auto; /* Ensure it's left-aligned */
-    white-space: nowrap; /* Prevent line breaks */
-    transition: color 0.3s ease, transform 1s ease !important;
+    margin-left: 0;
+    margin-right: auto;
+    white-space: nowrap;
+    transition: color 0.3s ease;
     display: flex;
-    justify-content: flex-start; /* Align the title to the left horizontally */
     align-items: center;
-    flex-grow: 0; /* Prevent title from growing */
-}
-.title:hover {
-    /* Nothing as of now. */
+    flex-grow: 0;
 }
 
-.menu {
-    display: flex;
-}
-
+/* ── Menu group: right-aligned, can't overflow ── */
 .menuItems {
     display: flex;
-    gap: 47px;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+    gap: var(--space-8);
     list-style: none;
-    padding-left: 60%;
+    margin-right: 0;
+    padding-left: 0;
 }
 
 .menuItems a {
-    font-size: 25px;
     color: var(--color-text);
     text-decoration: none;
 }
@@ -123,30 +79,23 @@
     will-change: height;
 }
 
-@media screen and (max-width: 852px) {
+/* Matches Bootstrap's expand="lg" collapse breakpoint (992px) */
+@media screen and (max-width: 991px) {
 
     .title {
-        scale: 0.6;
+        font-size: 1.6rem !important;
+        margin-left: 0;
     }
 
     .navbar {
         flex-direction: column;
         align-items: flex-start;
-        
     }
 
-    .basic-navbar-nav{
-
-    }
-
+    /* ── Hamburger: white stripes, no border (single rule) ── */
     .navbar-toggler {
-        /* display: none !important; */
-        margin-left: 2.3%;
+        margin-left: 0;
         margin-right: auto;
-    }
-
-    /* Make hamburger menu stripes white - Multiple approaches */
-    .navbar-toggler {
         border: none !important;
         padding: 0 !important;
         background: transparent !important;
@@ -157,41 +106,11 @@
         outline: none !important;
     }
 
-    /* Approach 1: Direct SVG with white color */
     .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    }
-
-    /* Approach 2: CSS filter to force white */
-    .navbar-toggler-icon {
-        filter: brightness(0) invert(1) !important;
-        -webkit-filter: brightness(0) invert(1) !important;
-    }
-
-    /* Approach 3: Override with higher specificity */
-    .customNavbar .navbar-toggler .navbar-toggler-icon {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
         filter: brightness(0) invert(1) !important;
         -webkit-filter: brightness(0) invert(1) !important;
     }
-
-    /* Approach 4: Target all possible Bootstrap hamburger selectors */
-    .navbar-toggler-icon,
-    .navbar-toggler .navbar-toggler-icon,
-    .navbar .navbar-toggler .navbar-toggler-icon,
-    .customNavbar .navbar-toggler .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-        filter: brightness(0) invert(1) !important;
-        -webkit-filter: brightness(0) invert(1) !important;
-    }
-
-    /* .custom-toggler {
-        display: none !important;
-    }
-
-    .navbar-toggler-icon {
-        display: none !important;
-    } */
 
     .customNavbar {
         position: fixed;
@@ -200,60 +119,18 @@
         width: 100%;
         z-index: 2;
         background-color: var(--color-nav) !important;
-        flex-direction: row; 
-        
-    }
-    
-    .menu {
-        position: absolute;
-        right: 0;
-        margin-right: 10%;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 11px;
-        z-index: 3;
-    }
-
-    .menuBtn {
-        display: block;
-        cursor: pointer;
+        flex-direction: row;
     }
 
     .menuItems {
-
         flex-direction: column;
         align-items: flex-end;
-        gap: 13px;
-        border-radius: 10px;
-        background: var(--color-secondary) ;
+        flex: none;
+        gap: var(--space-3);
+        margin-right: 0;
+        border-radius: var(--radius-lg);
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
-        padding: 24px 33px;
+        padding: var(--space-6) var(--space-8);
         box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
     }
-
-    .menuOpen {
-        display: flex;
-        z-index: 1;
-    }
-
-    .navLink.navLinkProjects {
-        position: relative;
-        left: 4px;
-    }
-
-    .navLink.navLinkCommissions {
-        position: relative;
-        right: 1px;
-    }
-
-    .navLink.navLinkExperience {
-        position: relative;
-        left: 7px;
-    }
-
-    .navLink.navLinkSpotify {
-        position: relative;
-        left: 1px;
-    }
-    
 }
