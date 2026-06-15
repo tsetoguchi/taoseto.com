@@ -34,3 +34,6 @@ aws-deployment/config.env
 .env
 .env.local
 .env.production
+
+# Design review artifacts (screenshots, HIG captures, scripts)
+.design-review/
