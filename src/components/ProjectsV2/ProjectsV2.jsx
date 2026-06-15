@@ -4,9 +4,23 @@ import airy from "../../../assets/projects/airy.gif";
 import CurrentlyVST from "../../../assets/projects/currentlyvst.png";
 import ValStatsAnalyzer from "../../../assets/projects/valorant_stats_analyzer.png";
 import TheSlushieMachine from "../../../assets/projects/the_slushie_machine.png";
+import Nitecorn from "../../../assets/projects/nitecorn.png";
+import LyricalMiracle from "../../../assets/projects/lyrical_miracle.png";
 import styles from "./ProjectsV2.module.css";
 
 const PROJECTS = [
+  {
+    title: "Lyrical Miracle",
+    href: "https://lyricalmiracle.pages.dev/",
+    image: LyricalMiracle,
+    description: "Lyrics writing tool with real-time rhyme finding, syllable counts, and rhyme scheme analysis.",
+  },
+  {
+    title: "nitecorn",
+    href: "https://nitecorn.pages.dev/",
+    image: Nitecorn,
+    description: "Web app for converting songs into nightcore edits with pitch and tempo controls.",
+  },
   {
     title: "airy",
     href: "https://github.com/tsetoguchi/airy",
