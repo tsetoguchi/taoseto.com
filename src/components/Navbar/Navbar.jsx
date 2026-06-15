@@ -8,7 +8,6 @@ import {
   faLinkedin,
   faSpotify,
 } from "@fortawesome/free-brands-svg-icons";
-import { faHeadphones } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Navbar.module.css";
 
@@ -44,7 +43,6 @@ export const MyNavbar = () => {
               to="/commissions"
               onClick={handleNavClick}
             >
-              <FontAwesomeIcon icon={faHeadphones} className={styles.headphonesIcon} />
               Commissions
             </Nav.Link>
 
