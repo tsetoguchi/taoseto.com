@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import styles from "./Commissions.module.css";
 import { getApiEndpoint } from "../../config";

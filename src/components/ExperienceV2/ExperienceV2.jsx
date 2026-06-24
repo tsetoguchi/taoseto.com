@@ -20,7 +20,7 @@ const EXPERIENCE = [
     bullets: [
       "Garnered over 200 million streams across platforms, reflecting significant audience engagement and reach.",
       "Founded and manage independent music project Konac, producing original music and overseeing all creative and production aspects.",
-      "Built and maintained a global network of over 100 musicians, visual artists, and promoters, leveraging connections to create engaging content and manage social media accounts for increased brand visibility and exposure.",
+      "Built and maintained a global network of over 100 musicians, visual artists, and promoters, drawing on those connections to produce content and run social media accounts that grew the project's reach.",
     ],
   },
   {
