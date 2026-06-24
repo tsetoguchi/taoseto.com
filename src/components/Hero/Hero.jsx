@@ -10,14 +10,14 @@ export const Hero = () => {
         <title>tao seto</title>
         <meta
           name="description"
-          content="Tao Seto — Tokyo-based audio engineer and CS graduate. Mixing, mastering, and music technology. 12+ years in music production, 7+ years in tech."
+          content="Tao Seto is a Tokyo-based audio engineer and CS graduate. Mixing, mastering, and music technology. 12+ years in music production, 7+ years in tech."
         />
         <meta property="og:title" content="tao seto" />
         <meta property="og:url" content="https://taoseto.com" />
       </Helmet>
       <div className={styles.container}>
         <div className={styles.content}>
-          <p className={styles.eyebrow}>Tokyo — Music & Technology</p>
+          <p className={styles.eyebrow}>Tokyo · Music & Technology</p>
           <h1 className={styles.name}>tao seto</h1>
           <p className={styles.description}>
             Computer Science and Music Technology graduate with 12+ years in
