@@ -23,6 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# Editor atomic-save temp files
+*.tmp.*
+
 # Claude Code
 .claude/
 CLAUDE.md
