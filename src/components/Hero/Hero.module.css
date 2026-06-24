@@ -113,7 +113,7 @@
     height: auto;
     z-index: 1;
     opacity: 0.7;
-    animation: floating 5s ease-in-out infinite, glowPulse 5s ease-in-out infinite;
+    animation: floating 5s ease-in-out infinite;
     transition: opacity 0.3s ease;
 }
 
@@ -121,46 +121,10 @@
     opacity: 1;
 }
 
-/* ── Blur orbs ── */
-.topBlur {
-    position: absolute;
-    width: 50vw;
-    height: 50vw;
-    min-width: 150px;
-    max-width: 100%;
-    max-height: 100%;
-    top: max(-128px, -10vh);
-    left: max(-10vw, 0);
-    border-radius: 764px;
-    background: rgba(109, 109, 109, 0.7);
-    filter: blur(100px);
-    z-index: 0;
-}
-
-.bottomBlur {
-    position: absolute;
-    width: 70vw;
-    height: 50vw;
-    min-width: 250px;
-    max-height: 100%;
-    top: max(246px, 50vh);
-    right: max(-25vw, 0);
-    border-radius: 764px;
-    background: rgba(184, 184, 184, 0.7);
-    filter: blur(100px);
-    z-index: 0;
-}
-
 @keyframes floating {
     0%   { transform: translateY(0); }
     50%  { transform: translateY(10px); }
     100% { transform: translateY(0); }
-}
-
-@keyframes glowPulse {
-    0%   { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.15)); }
-    50%  { filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.55)); }
-    100% { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.15)); }
 }
 
 /* ── Mobile ── */
@@ -203,26 +167,12 @@
     .heroImg {
         width: 75%;
         opacity: 1;
-        animation: floating 3s ease-in-out infinite, glowPulse 3s ease-in-out infinite;
+        animation: floating 3s ease-in-out infinite;
     }
 
     @keyframes floating {
         0%   { transform: translateY(0); }
         50%  { transform: translateY(3px); }
         100% { transform: translateY(0); }
-    }
-
-    .topBlur {
-        width: 80vw;
-        height: 40vw;
-        top: -5vh;
-        left: 0;
-    }
-
-    .bottomBlur {
-        width: 90vw;
-        height: 40vw;
-        top: 60vh;
-        right: 0;
     }
 }
