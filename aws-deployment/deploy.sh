@@ -163,9 +163,28 @@ get_stack_outputs() {
         --region $REGION \
         --query 'Stacks[0].Outputs[?OutputKey==`ApiGatewayUrl`].OutputValue' \
         --output text)
-    
+
     print_success "S3 Bucket: $S3_BUCKET"
     print_success "API Gateway URL: $API_GATEWAY_URL"
+
+    # The CloudFront distribution for this site (taoseto.com) is managed
+    # outside this CloudFormation stack, so find it by matching its origin
+    # to the S3 bucket rather than relying on a stack output.
+    CF_INFO=$(aws cloudfront list-distributions \
+        --query "DistributionList.Items[?contains(Origins.Items[0].DomainName, '${S3_BUCKET}')].[Id,DomainName]" \
+        --output text)
+    CLOUDFRONT_DISTRIBUTION_ID=$(echo "$CF_INFO" | awk 'NR==1{print $1}')
+    CLOUDFRONT_DOMAIN=$(echo "$CF_INFO" | awk 'NR==1{print $2}')
+
+    if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
+        print_warning "No CloudFront distribution found for bucket $S3_BUCKET; cache invalidation will be skipped"
+        CLOUDFRONT_ALIASES=""
+    else
+        print_success "CloudFront distribution: $CLOUDFRONT_DISTRIBUTION_ID ($CLOUDFRONT_DOMAIN)"
+        CLOUDFRONT_ALIASES=$(aws cloudfront list-distributions \
+            --query "DistributionList.Items[?Id=='${CLOUDFRONT_DISTRIBUTION_ID}'].Aliases.Items[]" \
+            --output text)
+    fi
 }
 
 # Upload website files to S3
@@ -205,13 +224,18 @@ upload_to_s3() {
 
 # Invalidate CloudFront cache
 invalidate_cloudfront() {
+    if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
+        print_warning "Skipping CloudFront invalidation (no distribution found)"
+        return
+    fi
+
     print_status "Invalidating CloudFront cache..."
-    
+
     aws cloudfront create-invalidation \
         --distribution-id $CLOUDFRONT_DISTRIBUTION_ID \
         --paths "/*" \
-        --region $REGION
-    
+        > /dev/null
+
     print_success "CloudFront cache invalidated"
 }
 
@@ -287,16 +311,15 @@ display_final_info() {
     print_success "Deployment completed successfully!"
     echo
     print_status "Your website is now available at:"
-    
-    if [ ! -z "$DOMAIN_NAME" ]; then
-        echo "  https://$DOMAIN_NAME"
-    else
-        CLOUDFRONT_DOMAIN=$(aws cloudformation describe-stacks \
-            --stack-name $STACK_NAME \
-            --region $REGION \
-            --query 'Stacks[0].Outputs[?OutputKey==`CloudFrontDomainName`].OutputValue' \
-            --output text)
+
+    if [ ! -z "$CLOUDFRONT_ALIASES" ]; then
+        for alias in $CLOUDFRONT_ALIASES; do
+            echo "  https://$alias"
+        done
+    elif [ ! -z "$CLOUDFRONT_DOMAIN" ]; then
         echo "  https://$CLOUDFRONT_DOMAIN"
+    else
+        echo "  (CloudFront distribution not found — check the S3 bucket website endpoint)"
     fi
     
     echo
@@ -326,7 +349,8 @@ main() {
     upload_to_s3
     update_lambda_functions
     update_website_config
-    
+    invalidate_cloudfront
+
     # Final information
     display_final_info
 }
