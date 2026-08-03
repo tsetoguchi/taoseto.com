@@ -44,10 +44,10 @@ const EXPERIENCE = [
     role: "Site Reliability Engineer",
     period: "February 2022 - July 2022",
     bullets: [
-      "Led full-stack development of a client web app, improving navigation speed and minimizing click expenditure by 75%.",
-      "Engaged in daily Scrum meetings and automated manual operational tasks, exceeding $500,000 in cost savings.",
-      "Cooperated with operations teams to mitigate failure patterns, reduce downtime, and improve stability, enhancing performance by up to 200%.",
-      "Enhanced application reliability by up to 180%, proactively analyzing system performance using tools like Dynatrace and Splunk to detect and address anomalies.",
+      "Built a client web app prototype with a team of four, reducing navigation from four clicks to one.",
+      "Diagnosed and resolved account-level transactional lock errors in Snowflake that the team could not previously identify, and automated their detection to reduce manual operational effort.",
+      "Cooperated with operations teams to mitigate failure patterns, reduce downtime, and improve stability, enhancing performance by 200%.",
+      "Enhanced application reliability by 180%, proactively analyzing system performance using tools like Dynatrace and Splunk to detect and address anomalies.",
     ],
   },
   {
