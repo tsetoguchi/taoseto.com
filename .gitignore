@@ -40,3 +40,6 @@ aws-deployment/config.env
 
 # Design review artifacts (screenshots, HIG captures, scripts)
 .design-review/
+
+# Playwright MCP session artifacts
+.playwright-mcp/
