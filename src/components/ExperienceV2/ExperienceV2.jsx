@@ -18,6 +18,7 @@ const EXPERIENCE = [
     role: "Founder & Producer",
     period: "2014 — Present",
     bullets: [
+      "Signed to NoCopyrightSounds as the label's first ever Japanese artist, announced by NCS on release day in July 2016.",
       "Landed Spotify editorial placements on Brain Food (3.7M saves) and metropolis (869K saves); Away, the Brain Food placement, is the catalogue's most-streamed track at 3.1M plays.",
       "Built a catalogue that has drawn 7,800 creator posts on TikTok totalling 59M views, 5.6M Spotify streams, and 46K Shazams.",
       "Founded and manage independent music project Konac, producing original music and overseeing all creative and production aspects.",
