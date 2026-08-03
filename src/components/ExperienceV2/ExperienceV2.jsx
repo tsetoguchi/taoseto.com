@@ -3,7 +3,7 @@ import styles from './ExperienceV2.module.css';
 import Resume from '../../../assets/experience/tao_seto_resume.pdf';
 
 // Company logos — add image files to assets/experience/ to enable
-const logos = import.meta.glob('../../../assets/experience/*.{png,jpg,svg}', { eager: true });
+const logos = import.meta.glob('../../../assets/experience/*.{webp,png,jpg,svg}', { eager: true });
 const getLogo = (name) => {
   const match = Object.entries(logos).find(([path]) => path.includes(name));
   return match ? match[1].default : null;
