@@ -1,10 +1,11 @@
 import { Helmet } from "react-helmet-async";
 
-import airy from "../../../assets/projects/airy.gif";
-import CurrentlyVST from "../../../assets/projects/currentlyvst.png";
-import ValStatsAnalyzer from "../../../assets/projects/valorant_stats_analyzer.png";
-import TheSlushieMachine from "../../../assets/projects/the_slushie_machine.png";
-import Nitecorn from "../../../assets/projects/nitecorn.png";
+import airyVideo from "../../../assets/projects/airy.mp4";
+import airyPoster from "../../../assets/projects/airy-poster.jpg";
+import CurrentlyVST from "../../../assets/projects/currentlyvst.webp";
+import ValStatsAnalyzer from "../../../assets/projects/valorant_stats_analyzer.webp";
+import TheSlushieMachine from "../../../assets/projects/the_slushie_machine.webp";
+import Nitecorn from "../../../assets/projects/nitecorn.webp";
 import LyricalMiracle from "../../../assets/projects/lyrical_miracle.png";
 import styles from "./ProjectsV2.module.css";
 
@@ -26,7 +27,9 @@ const PROJECTS = [
   {
     title: "airy",
     href: "https://github.com/tsetoguchi/airy",
-    image: airy,
+    // Screen recording, so it ships as H.264 rather than a 30 MB GIF.
+    video: airyVideo,
+    image: airyPoster,
     imagePosition: "center center",
     description:
       "Simple real-time oscilloscope audio plugin that allows users to visualize waveforms of incoming audio signals.",
@@ -86,13 +89,28 @@ export const ProjectsV2 = () => {
               rel="noopener noreferrer"
               className={styles.card}
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                className={styles.cardImage}
-                style={{ objectPosition: project.imagePosition }}
-                loading="lazy"
-              />
+              {project.video ? (
+                <video
+                  src={project.video}
+                  poster={project.image}
+                  className={styles.cardImage}
+                  style={{ objectPosition: project.imagePosition }}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="none"
+                  aria-label={project.title}
+                />
+              ) : (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className={styles.cardImage}
+                  style={{ objectPosition: project.imagePosition }}
+                  loading="lazy"
+                />
+              )}
               <div className={styles.cardScrim}>
                 <h3 className={styles.cardTitle}>{project.title}</h3>
                 <p className={styles.cardDescription}>{project.description}</p>

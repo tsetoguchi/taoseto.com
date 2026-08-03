@@ -133,6 +133,8 @@
   object-fit: contain;
 }
 
+/* Logos ship at 160px so the 60px box stays sharp on 2x displays. */
+
 .logoFallback {
   font-size: 2rem;
   font-weight: var(--weight-light);
