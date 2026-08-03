@@ -54,6 +54,8 @@
 }
 
 .resumeBtn {
+  /* Hidden for now — bring back by removing this line. */
+  display: none;
   font-size: var(--text-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
