@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import airyVideo from "../../../assets/projects/airy.mp4";
 import airyPoster from "../../../assets/projects/airy-poster.jpg";
 import CurrentlyVST from "../../../assets/projects/currentlyvst.webp";
-import ValStatsAnalyzer from "../../../assets/projects/valorant_stats_analyzer.webp";
+import Valorant from "../../../assets/projects/valorant.webp";
 import TheSlushieMachine from "../../../assets/projects/the_slushie_machine.webp";
 import LyricLike from "../../../assets/projects/lyriclike.webp";
 import styles from "./ProjectsV2.module.css";
@@ -38,8 +38,8 @@ const PROJECTS = [
   {
     title: "Valolytics",
     href: "https://github.com/tsetoguchi/Valolytics",
-    image: ValStatsAnalyzer,
-    imagePosition: "center top",
+    image: Valorant,
+    imagePosition: "center center",
     description: "Esports match analysis dashboard for VALORANT with player and match metrics.",
   },
   {
