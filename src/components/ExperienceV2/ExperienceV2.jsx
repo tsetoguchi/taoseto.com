@@ -16,13 +16,11 @@ const EXPERIENCE = [
     logo: getLogo("konac"),
     gradient: ["#1a1a1a", "#8a8a8a"],
     role: "Founder & Producer",
-    period: "2014 — Present",
+    period: "April 2015 — Present",
     bullets: [
-      "Signed to NoCopyrightSounds as the label's first ever Japanese artist, announced by NCS on release day in July 2016.",
+      "Signed to NoCopyrightSounds as the label's first ever Japanese artist, announced by NCS on release day, July 2016; negotiated the contract directly with NCS executives and also released on Tasty.",
       "Landed Spotify editorial placements on Brain Food (3.7M saves) and metropolis (869K saves); Away, the Brain Food placement, is the catalogue's most-streamed track at 3.1M plays.",
-      "Built a catalogue that has drawn 7,800 creator posts on TikTok totalling 59M views, 5.6M Spotify streams, and 46K Shazams.",
-      "Founded and manage independent music project Konac, producing original music and overseeing all creative and production aspects.",
-      "Built and maintained a global network of over 100 musicians, visual artists, and promoters, drawing on those connections to produce content and run social media accounts that grew the project's reach.",
+      "Built a catalogue that has drawn 7,800 creator posts on TikTok totalling 59M views, 5.6M Spotify streams, and 46K Shazams; work the artist-facing analytics of Spotify, Apple Music, and TikTok for Artists directly.",
     ],
   },
   {
@@ -33,9 +31,9 @@ const EXPERIENCE = [
     role: "Lead Audio Engineer & International Communications",
     period: "March 2025 - March 2026",
     bullets: [
-      "Worked with executive teams and major artists like The Alchemist, DJ MURO, and MISIA using Pro Tools and Avid S6 consoles, recorded audio that aired on nationwide J-WAVE radio and LAWSON commercials, attended mastering sessions at Sony Music studios, and shadowed engineers such as Goh Hotoda (Depeche Mode, Madonna, Janet Jackson, Anri, etc.).",
-      "Developed automated audio-to-SRT subtitle generation systems and created a timecode display VST plugin using JUCE framework in C++ to streamline studio workflows.",
-      "Provided creative direction and worked directly with the company president on branding decisions including helping design logo and slogans for sister companies, deciding album titles, and developing event concepts and naming.",
+      "Drove Rhythmedia's in-house audio production capability from zero to one, launching on-demand studio sessions with The Alchemist, MISIA, and DJ MURO, and cutting broadcast-commercial post-production turnaround by 2-5 days for clients including Lawson, J-Wave, and Koikeya.",
+      "Managed collaboration across time zones and cultures with counterparts in the US, UK, and Thailand, including The Alchemist and mastering engineer Herb Powers Jr., building a coordination process that supported 6+ projects.",
+      "Engineered the workflow's software tooling, including a Python OpenAI Whisper audio-to-SRT pipeline replacing from-scratch subtitle creation in After Effects, and a C++/JUCE timecode display VST used across 10+ hours of production audio.",
     ],
   },
   {
@@ -46,10 +44,9 @@ const EXPERIENCE = [
     role: "Site Reliability Engineer",
     period: "February 2022 - July 2022",
     bullets: [
-      "Built a client web app prototype with a team of four, reducing navigation from four clicks to one.",
-      "Diagnosed and resolved account-level transactional lock errors in Snowflake that the team could not previously identify, and automated their detection to reduce manual operational effort.",
-      "Cooperated with operations teams to mitigate failure patterns, reduce downtime, and improve stability, enhancing performance by 200%.",
-      "Enhanced application reliability by 180%, proactively analyzing system performance using tools like Dynatrace and Splunk to detect and address anomalies.",
+      "Investigated production edge cases in microservices at a $4T+ AUM custodian bank using Dynatrace and Splunk, shipping PRs with defensive error handling and logging across API endpoints.",
+      "Prototyped an internal client-data analysis web app for a 5-person operations team, refactoring UI routing to cut per-task navigation from 4 clicks to 1.",
+      "Diagnosed root cause of account-level transactional lock timeouts in Snowflake through query profile analysis, authoring Python automation that replaced manual query-profile inspection with near-instant alerts and cut mean time to triage from 10-30 minutes to seconds.",
     ],
   },
   {
