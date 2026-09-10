@@ -5,24 +5,17 @@ import airyPoster from "../../../assets/projects/airy-poster.jpg";
 import CurrentlyVST from "../../../assets/projects/currentlyvst.webp";
 import ValStatsAnalyzer from "../../../assets/projects/valorant_stats_analyzer.webp";
 import TheSlushieMachine from "../../../assets/projects/the_slushie_machine.webp";
-import Nitecorn from "../../../assets/projects/nitecorn.webp";
-import LyricalMiracle from "../../../assets/projects/lyrical_miracle.png";
+import LyricLike from "../../../assets/projects/lyriclike.webp";
 import styles from "./ProjectsV2.module.css";
 
 const PROJECTS = [
   {
-    title: "Lyrical Miracle",
-    href: "https://lyricalmiracle.pages.dev/",
-    image: LyricalMiracle,
-    imagePosition: "center 35%",
-    description: "Lyrics writing tool with real-time rhyme finding, syllable counts, and rhyme scheme analysis.",
-  },
-  {
-    title: "nitecorn",
-    href: "https://nitecorn.pages.dev/",
-    image: Nitecorn,
+    title: "LyricLike",
+    href: "https://lyriclike.com/",
+    image: LyricLike,
     imagePosition: "center top",
-    description: "Web app for converting songs into nightcore edits with pitch and tempo controls.",
+    description:
+      "Lyric writing tool with real-time rhyme finding across six rhyme types, syllable counts, and rhyme scheme analysis.",
   },
   {
     title: "airy",
