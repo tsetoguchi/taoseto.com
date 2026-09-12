@@ -41,9 +41,12 @@ export const Hero = () => {
           rel="noopener noreferrer"
           className={styles.linkWrapper}
         >
-          {/* Decorative: the label below is the link's accessible name. */}
-          <img src={heroImage} alt="" className={styles.heroImg} />
-          <span className={styles.linkLabel}>Konac — my music project ↗</span>
+          {/* No visible label, so the alt text carries the link's name. */}
+          <img
+            src={heroImage}
+            alt="Konac — my music project"
+            className={styles.heroImg}
+          />
         </a>
       </div>
     </section>
