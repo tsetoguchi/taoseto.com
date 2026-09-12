@@ -14,9 +14,11 @@
 
     /* One accent — reserved for primary action + links (monochrome elsewhere) */
     --accent: #D4B483;
+    /* Brighter step used for the filled primary button, where small dark
+       uppercase type needs a crisper ground than the base accent gives. */
+    --accent-strong: #E6C594;
 
     /* ── Fonts ── */
-    --font-roboto: 'Roboto';
     --font-default: Outfit;
 
     /* ── Spacing (8-pt rhythm) ── */
@@ -24,6 +26,7 @@
     --space-2: 8px;
     --space-3: 12px;
     --space-4: 16px;
+    --space-5: 20px;
     --space-6: 24px;
     --space-8: 32px;
     --space-12: 48px;
@@ -50,6 +53,7 @@
     --weight-light: 300;
     --weight-regular: 400;
     --weight-medium: 500;
+    --weight-semibold: 600;
 
     /* ── Ink (text opacity steps over --color-bg) ── */
     --ink-1: 0.92;   /* primary */
