@@ -92,13 +92,7 @@ export const ExperienceV2 = () => {
 
         <div className={styles.cards}>
           {EXPERIENCE.map((entry, i) => (
-            <a
-              key={i}
-              href={entry.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.card}
-            >
+            <article key={i} className={styles.card}>
               {entry.gradient && (
                 <div
                   className={styles.cardGradient}
@@ -126,7 +120,16 @@ export const ExperienceV2 = () => {
 
               <div className={styles.cardRight}>
                 <div className={styles.cardHeader}>
-                  <h3 className={styles.companyName}>{entry.company}</h3>
+                  <h3 className={styles.companyName}>
+                    <a
+                      href={entry.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.companyLink}
+                    >
+                      {entry.company}
+                    </a>
+                  </h3>
                   <p className={styles.role}>{entry.role}</p>
                 </div>
                 <ul className={styles.bullets}>
@@ -135,7 +138,7 @@ export const ExperienceV2 = () => {
                   ))}
                 </ul>
               </div>
-            </a>
+            </article>
           ))}
         </div>
       </div>
