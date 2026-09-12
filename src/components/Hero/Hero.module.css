@@ -29,11 +29,13 @@
 }
 
 /* ── Text content ── */
+/* The block stays centred, but its children step right as they descend so
+   the eye travels a shallow diagonal instead of a plumb line. */
 .content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     color: var(--color-text);
     z-index: 1;
     max-width: 560px;
@@ -55,6 +57,7 @@
     font-family: var(--font-default);
     color: var(--color-text);
     margin: 0 0 var(--space-6);
+    margin-left: 30px;
     line-height: 1.05;
     letter-spacing: -0.01em;
 }
@@ -68,6 +71,7 @@
     /* Block stays centred in the column; the prose itself reads left-aligned. */
     text-align: left;
     margin: 0 0 var(--space-8);
+    margin-left: 60px;
 }
 
 /* ── CTAs ── */
@@ -75,6 +79,7 @@
     display: flex;
     gap: var(--space-3);
     align-items: center;
+    margin-left: 90px;
 }
 
 .ctaPrimary {
@@ -117,11 +122,13 @@
 /* ── Hero image ── */
 .linkWrapper {
     display: block;
-    width: 300px;
+    width: 200px;
     max-width: 100%;
     text-decoration: none;
     color: inherit;
     border-radius: var(--radius-sm);
+    /* Continues the step pattern rather than resetting to centre. */
+    transform: translateX(140px);
 }
 
 .linkWrapper:focus-visible {
@@ -129,11 +136,20 @@
     outline-offset: 6px;
 }
 
+/* Held back so it reads as the tail of the descent rather than the heaviest
+   thing on the page, which is what stopped the eye at the bottom. */
 .heroImg {
     display: block;
     width: 100%;
     height: auto;
     z-index: 1;
+    opacity: 0.55;
+    transition: opacity 0.3s ease;
+}
+
+.linkWrapper:hover .heroImg,
+.linkWrapper:focus-visible .heroImg {
+    opacity: 1;
 }
 
 
@@ -154,7 +170,7 @@
     }
 
     .linkWrapper {
-        width: 240px;
+        width: 165px;
     }
 }
 
@@ -181,6 +197,20 @@
         text-align: center;
         max-width: 100%;
         margin-top: var(--space-8);
+    }
+
+    .name,
+    .description,
+    .ctas {
+        margin-left: 0;
+    }
+
+    .linkWrapper {
+        transform: none;
+    }
+
+    .heroImg {
+        opacity: 1;
     }
 
     .name {
