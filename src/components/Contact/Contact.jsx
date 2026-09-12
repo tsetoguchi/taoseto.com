@@ -9,8 +9,8 @@ export const Contact = () => {
         <h2 className={styles.contactHeader}>Contact</h2>
         <a href="mailto:tao@taoseto.com" className={styles.emailLink}>
           <FontAwesomeIcon icon={faEnvelope} />
+          <span>tao@taoseto.com</span>
         </a>
-        tao@taoseto.com
       </div>
     </footer>
   );
