@@ -2,11 +2,34 @@
   box-sizing: border-box;
   font-family: 'Outfit', Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
-  scrollbar-width: none;
 }
 
-*::-webkit-scrollbar {
-  display: none;
+/* Scrollbars stay visible — they are the only cue that a page continues
+   below the fold — but are toned down to suit the dark palette. */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245, 245, 245, 0.25) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(245, 245, 245, 0.22);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(245, 245, 245, 0.4);
+  background-clip: content-box;
 }
 
 html {
