@@ -11,42 +11,42 @@ import styles from "./ProjectsV2.module.css";
 const PROJECTS = [
   {
     title: "LyricLike",
+    aspect: 2.286,
     href: "https://lyriclike.com/",
     image: LyricLike,
-    imagePosition: "center top",
     description:
       "Lyric writing tool with real-time rhyme finding across six rhyme types, syllable counts, and rhyme scheme analysis.",
   },
   {
     title: "airy",
+    aspect: 1.707,
     href: "https://github.com/tsetoguchi/airy",
     // Screen recording, so it ships as H.264 rather than a 30 MB GIF.
     video: airyVideo,
     image: airyPoster,
-    imagePosition: "center center",
     description:
       "Simple real-time oscilloscope audio plugin that allows users to visualize waveforms of incoming audio signals.",
   },
   {
     title: "Currently VST",
+    aspect: 1.772,
     href: "https://github.com/tsetoguchi/CurrentlyVST",
     image: CurrentlyVST,
-    imagePosition: "center center",
     description:
       "JUCE-based audio plugin displaying DAW timecode to help producers and engineers stay in sync.",
   },
   {
     title: "Valolytics",
+    aspect: 3.892,
     href: "https://github.com/tsetoguchi/Valolytics",
     image: Valorant,
-    imagePosition: "center center",
     description: "Esports match analysis dashboard for VALORANT with player and match metrics.",
   },
   {
     title: "The Slushie Machine",
+    aspect: 2.269,
     href: "https://github.com/tsetoguchi/The-Slushie-Machine",
     image: TheSlushieMachine,
-    imagePosition: "center top",
     description: "Audio processing app with a focus on low latency and simplistic UI workflows.",
   },
 ];
@@ -82,28 +82,31 @@ export const ProjectsV2 = () => {
               rel="noopener noreferrer"
               className={styles.card}
             >
-              {project.video ? (
-                <video
-                  src={project.video}
-                  poster={project.image}
-                  className={styles.cardImage}
-                  style={{ objectPosition: project.imagePosition }}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="none"
-                  aria-label={project.title}
-                />
-              ) : (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className={styles.cardImage}
-                  style={{ objectPosition: project.imagePosition }}
-                  loading="lazy"
-                />
-              )}
+              <div
+                className={styles.media}
+                style={{ aspectRatio: project.aspect }}
+              >
+                {project.video ? (
+                  <video
+                    src={project.video}
+                    poster={project.image}
+                    className={styles.cardImage}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="none"
+                    aria-label={project.title}
+                  />
+                ) : (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className={styles.cardImage}
+                    loading="lazy"
+                  />
+                )}
+              </div>
               <div className={styles.cardScrim}>
                 <h3 className={styles.cardTitle}>{project.title}</h3>
                 <p className={styles.cardDescription}>{project.description}</p>
