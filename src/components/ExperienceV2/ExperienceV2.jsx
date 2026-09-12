@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import styles from './ExperienceV2.module.css';
-import Resume from '../../../assets/experience/tao_seto_resume.pdf';
 
 // Company logos — add image files to assets/experience/ to enable
 const logos = import.meta.glob('../../../assets/experience/*.{webp,png,jpg,svg}', { eager: true });
@@ -79,14 +78,6 @@ export const ExperienceV2 = () => {
           <p className={styles.pageTitle}>Background</p>
           <div className={styles.headerRow}>
             <h1 className={styles.pageSubtitle}>Experience</h1>
-            <a
-              href={Resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.resumeBtn}
-            >
-              Resume ↗
-            </a>
           </div>
         </div>
 
