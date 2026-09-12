@@ -6,6 +6,7 @@ import { Commissions } from './components/Commissions/Commissions';
 import { ExperienceV2 } from './components/ExperienceV2/ExperienceV2';
 import { ProjectsV2 } from './components/ProjectsV2/ProjectsV2';
 import { Contact } from './components/Contact/Contact';
+import { NotFound } from './components/NotFound/NotFound';
 import { useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 
@@ -68,6 +69,7 @@ function AppContent() {
           <Route path="/Experience" element={<Navigate to="/experience" replace />} />
           <Route path="/projects" element={<ProjectsV2 />} />
           <Route path="/Projects" element={<Navigate to="/projects" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
       {location.pathname === '/' && <Contact className={styles.contact} />}

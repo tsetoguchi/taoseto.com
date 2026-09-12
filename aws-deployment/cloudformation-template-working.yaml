@@ -50,13 +50,14 @@ Resources:
         SecurityHeadersConfig:
           ContentSecurityPolicy:
             # Allows: same-origin assets, inline scripts (required for GA gtag snippet),
-            # Google Analytics, and API Gateway calls for the contact form.
+            # Google Analytics, API Gateway calls for the contact form, and
+            # data-URI fonts injected at runtime by Font Awesome.
             ContentSecurityPolicy: >-
               default-src 'self';
               script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
               style-src 'self' 'unsafe-inline';
               img-src 'self' data: https://www.google-analytics.com;
-              font-src 'self';
+              font-src 'self' data:;
               connect-src 'self' https://www.google-analytics.com https://*.execute-api.us-east-1.amazonaws.com;
               frame-ancestors 'none';
               base-uri 'self';
