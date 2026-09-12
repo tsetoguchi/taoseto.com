@@ -18,7 +18,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     flex: 1;
     gap: var(--space-20);
@@ -29,8 +29,9 @@
 }
 
 /* ── Text content ── */
-/* The block stays centred, but its children step right as they descend so
-   the eye travels a shallow diagonal instead of a plumb line. */
+/* The descent starts at the page frame — the same line as the wordmark in
+   the nav — and accelerates rightward, so the diagonal has the full width to
+   travel across rather than 90px in the middle of the canvas. */
 .content {
     display: flex;
     flex-direction: column;
@@ -38,7 +39,7 @@
     text-align: left;
     color: var(--color-text);
     z-index: 1;
-    max-width: 560px;
+    max-width: 620px;
 }
 
 .eyebrow {
@@ -57,7 +58,7 @@
     font-family: var(--font-default);
     color: var(--color-text);
     margin: 0 0 var(--space-6);
-    margin-left: 30px;
+    margin-left: 60px;
     line-height: 1.05;
     letter-spacing: -0.01em;
 }
@@ -71,7 +72,7 @@
     /* Block stays centred in the column; the prose itself reads left-aligned. */
     text-align: left;
     margin: 0 0 var(--space-8);
-    margin-left: 60px;
+    margin-left: 140px;
 }
 
 /* ── CTAs ── */
@@ -79,7 +80,7 @@
     display: flex;
     gap: var(--space-3);
     align-items: center;
-    margin-left: 90px;
+    margin-left: 240px;
 }
 
 .ctaPrimary {
@@ -122,13 +123,13 @@
 /* ── Hero image ── */
 .linkWrapper {
     display: block;
-    width: 200px;
+    width: 240px;
     max-width: 100%;
     text-decoration: none;
     color: inherit;
     border-radius: var(--radius-sm);
-    /* Continues the step pattern rather than resetting to centre. */
-    transform: translateX(140px);
+    /* Continues the accelerating interval rather than jumping. */
+    margin-left: 370px;
 }
 
 .linkWrapper:focus-visible {
@@ -136,20 +137,13 @@
     outline-offset: 6px;
 }
 
-/* Held back so it reads as the tail of the descent rather than the heaviest
-   thing on the page, which is what stopped the eye at the bottom. */
+/* Size and position keep it from anchoring the page; it stays at full
+   strength so the mark itself reads clearly. */
 .heroImg {
     display: block;
     width: 100%;
     height: auto;
     z-index: 1;
-    opacity: 0.55;
-    transition: opacity 0.3s ease;
-}
-
-.linkWrapper:hover .heroImg,
-.linkWrapper:focus-visible .heroImg {
-    opacity: 1;
 }
 
 
@@ -206,12 +200,9 @@
     }
 
     .linkWrapper {
-        transform: none;
+        margin-left: 0;
     }
 
-    .heroImg {
-        opacity: 1;
-    }
 
     .name {
         font-size: 3rem;
