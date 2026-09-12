@@ -128,8 +128,10 @@
     text-decoration: none;
     color: inherit;
     border-radius: var(--radius-sm);
-    /* Continues the accelerating interval rather than jumping. */
-    margin-left: 370px;
+    /* Lands on the frame's right edge — the same grid line the social icons
+       and the contact rule end on — so the diagonal runs corner to corner
+       and terminates somewhere the eye can verify. */
+    align-self: flex-end;
 }
 
 .linkWrapper:focus-visible {
@@ -208,6 +210,7 @@
 
     .linkWrapper {
         margin-left: 0;
+        align-self: center;
     }
 
 
