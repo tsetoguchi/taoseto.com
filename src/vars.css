@@ -14,9 +14,9 @@
 
     /* One accent — reserved for primary action + links (monochrome elsewhere) */
     --accent: #D4B483;
-    /* Brighter step used for the filled primary button, where small dark
-       uppercase type needs a crisper ground than the base accent gives. */
-    --accent-strong: #E6C594;
+    /* Filled primary button. Bone reads closer to paper than to gold, which
+       keeps the button feeling considered rather than decorative. */
+    --accent-strong: #EDE6DA;
 
     /* ── Fonts ── */
     --font-default: Outfit;

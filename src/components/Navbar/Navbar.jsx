@@ -10,9 +10,9 @@ import {
 import styles from "./Navbar.module.css";
 
 const PAGE_LINKS = [
-  { to: "/commissions", label: "Commissions" },
   { to: "/experience", label: "Experience" },
   { to: "/projects", label: "Projects" },
+  { to: "/commissions", label: "Commissions" },
 ];
 
 const SOCIAL_LINKS = [
