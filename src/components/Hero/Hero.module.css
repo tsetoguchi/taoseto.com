@@ -18,14 +18,24 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     flex: 1;
-    gap: var(--space-20);
     margin: 0;
     padding: 0 var(--frame-pad);
     z-index: 1;
     overflow: hidden;
+}
+
+/* Sized to its contents, so the stagger is preserved inside while the block
+   as a whole centres — leaving equal margins instead of one dead slab. */
+.assembly {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: max-content;
+    max-width: 100%;
+    gap: var(--space-20);
 }
 
 /* ── Text content ── */
@@ -128,10 +138,9 @@
     text-decoration: none;
     color: inherit;
     border-radius: var(--radius-sm);
-    /* Lands on the frame's right edge — the same grid line the social icons
-       and the contact rule end on — so the diagonal runs corner to corner
-       and terminates somewhere the eye can verify. */
-    align-self: flex-end;
+    /* One more interval of the same progression — 60, 80, 100, 130 — so the
+       mark reads as the end of the line rather than a separate object. */
+    margin-left: 370px;
 }
 
 .linkWrapper:focus-visible {
@@ -159,7 +168,7 @@
 /* Short desktop viewports: the home screen does not scroll, so the column
    tightens rather than running under the fixed contact bar. */
 @media screen and (min-width: 901px) and (max-height: 820px) {
-    .container {
+    .assembly {
         gap: var(--space-12);
     }
 
@@ -187,7 +196,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        gap: var(--space-12);
         height: 100dvh;
         min-height: auto;
         padding: var(--space-20) var(--gutter) 120px;
@@ -206,6 +214,12 @@
     .description,
     .ctas {
         margin-left: 0;
+    }
+
+    .assembly {
+        width: 100%;
+        align-items: center;
+        gap: var(--space-12);
     }
 
     .linkWrapper {
