@@ -52,6 +52,9 @@ const TIERS = [
   },
 ];
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const FIELD_ORDER = ["name", "email", "service", "message"];
+
 export const Commissions = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -60,38 +63,60 @@ export const Commissions = () => {
     message: "",
   });
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    clearFieldError(name);
   };
 
   const handleTierSelect = (tierId) => {
     setFormData({ ...formData, service: tierId });
+    clearFieldError("service");
   };
 
-  const validateForm = () => {
-    if (!formData.name.trim()) { setErrorMessage("Please enter your name"); return false; }
-    if (!formData.email.trim()) { setErrorMessage("Please enter your email"); return false; }
-    if (!formData.service) { setErrorMessage("Please select a service"); return false; }
-    if (!formData.message.trim()) { setErrorMessage("Please describe your project"); return false; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setErrorMessage("Please enter a valid email address"); return false;
+  // Errors clear as the field is corrected rather than on a timer.
+  const clearFieldError = (field) => {
+    setFieldErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  };
+
+  const collectFieldErrors = () => {
+    const errors = {};
+    if (!formData.name.trim()) errors.name = "Please enter your name.";
+    if (!formData.email.trim()) {
+      errors.email = "Please enter your email.";
+    } else if (!EMAIL_PATTERN.test(formData.email)) {
+      errors.email = "Please enter a valid email address.";
     }
-    return true;
+    if (!formData.service) errors.service = "Please select a service.";
+    if (!formData.message.trim()) errors.message = "Please describe your project.";
+    return errors;
+  };
+
+  const focusFirstInvalidField = (errors) => {
+    const firstInvalid = FIELD_ORDER.find((field) => errors[field]);
+    if (firstInvalid) document.getElementById(firstInvalid)?.focus();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) {
-      setShowError(true);
-      setTimeout(() => setShowError(false), 5000);
+    const errors = collectFieldErrors();
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      setErrorMessage("");
+      focusFirstInvalidField(errors);
       return;
     }
     setIsSubmitting(true);
-    setShowError(false);
+    setErrorMessage("");
     setShowSuccess(false);
     try {
       const response = await fetch(getApiEndpoint("contact"), {
@@ -104,14 +129,13 @@ export const Commissions = () => {
       if (data.success) {
         setShowSuccess(true);
         setFormData({ name: "", email: "", service: "", message: "" });
-        setTimeout(() => setShowSuccess(false), 5000);
       } else {
         throw new Error(data.error || "Failed to send message");
       }
     } catch (error) {
-      setShowError(true);
-      setErrorMessage(error.message || "There was an error sending your message. Please try again.");
-      setTimeout(() => setShowError(false), 5000);
+      setErrorMessage(
+        error.message || "There was an error sending your message. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -167,26 +191,38 @@ export const Commissions = () => {
         {/* Form */}
         <div className={styles.formSection}>
           <p className={styles.formLabel}>Inquiry</p>
-          <form onSubmit={handleSubmit} className={styles.form}>
+          <form onSubmit={handleSubmit} className={styles.form} noValidate>
 
             <div className={styles.formGroup}>
               <label htmlFor="name" className={styles.label}>Name</label>
               <input
                 type="text" id="name" name="name"
+                autoComplete="name"
                 value={formData.name} onChange={handleChange}
                 placeholder="Your name" className={styles.nameInput}
                 disabled={isSubmitting} required
+                aria-invalid={!!fieldErrors.name}
+                aria-describedby={fieldErrors.name ? "name-error" : undefined}
               />
+              {fieldErrors.name && (
+                <p id="name-error" className={styles.fieldError}>{fieldErrors.name}</p>
+              )}
             </div>
 
             <div className={styles.formGroup}>
               <label htmlFor="email" className={styles.label}>Email</label>
               <input
                 type="email" id="email" name="email"
+                autoComplete="email"
                 value={formData.email} onChange={handleChange}
                 placeholder="your@email.com" className={styles.input}
                 disabled={isSubmitting} required
+                aria-invalid={!!fieldErrors.email}
+                aria-describedby={fieldErrors.email ? "email-error" : undefined}
               />
+              {fieldErrors.email && (
+                <p id="email-error" className={styles.fieldError}>{fieldErrors.email}</p>
+              )}
             </div>
 
             <div className={styles.formGroup}>
@@ -195,6 +231,8 @@ export const Commissions = () => {
                 id="service" name="service"
                 value={formData.service} onChange={handleChange}
                 className={styles.select} disabled={isSubmitting} required
+                aria-invalid={!!fieldErrors.service}
+                aria-describedby={fieldErrors.service ? "service-error" : undefined}
               >
                 <option value="">Select a service...</option>
                 <option value="Mixing">Mixing</option>
@@ -202,6 +240,9 @@ export const Commissions = () => {
                 <option value="Mixing & Mastering">Mixing & Mastering</option>
                 <option value="Other">Other</option>
               </select>
+              {fieldErrors.service && (
+                <p id="service-error" className={styles.fieldError}>{fieldErrors.service}</p>
+              )}
             </div>
 
             <div className={styles.formGroup}>
@@ -211,7 +252,12 @@ export const Commissions = () => {
                 value={formData.message} onChange={handleChange}
                 placeholder="Tell me about your project, timeline, and any specific requirements..."
                 className={styles.textarea} disabled={isSubmitting} required rows={5}
+                aria-invalid={!!fieldErrors.message}
+                aria-describedby={fieldErrors.message ? "message-error" : undefined}
               />
+              {fieldErrors.message && (
+                <p id="message-error" className={styles.fieldError}>{fieldErrors.message}</p>
+              )}
             </div>
 
             <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
@@ -227,7 +273,7 @@ export const Commissions = () => {
                 Thank you for your inquiry.
               </div>
             )}
-            {showError && (
+            {errorMessage && (
               <div className={styles.errorMessage}>{errorMessage}</div>
             )}
           </div>
