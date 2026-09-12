@@ -20,6 +20,7 @@ const PROJECTS = [
   {
     title: "airy",
     aspect: 1.707,
+    playbackRate: 0.4,
     href: "https://github.com/tsetoguchi/airy",
     // Screen recording, so it ships as H.264 rather than a 30 MB GIF.
     video: airyVideo,
@@ -91,6 +92,12 @@ export const ProjectsV2 = () => {
                     src={project.video}
                     poster={project.image}
                     className={styles.cardImage}
+                    ref={(el) => {
+                      // Slowed at playback rather than re-encoding the source.
+                      if (el && project.playbackRate) {
+                        el.playbackRate = project.playbackRate;
+                      }
+                    }}
                     autoPlay
                     loop
                     muted
