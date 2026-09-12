@@ -1,22 +1,64 @@
 @import '../../vars.css';
 
+/* Breakpoint matches the collapse point the Bootstrap navbar used (expand="lg"). */
 
-.customNavbar {
+.navbar {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    /* Pinned: .contentWrapper offsets content by a fixed 80px. */
+    min-height: 64px;
     padding: 0 var(--frame-pad);
     z-index: 2;
-    background-color: var(--color-nav) !important;
-    flex-direction: row;
+    background-color: var(--color-nav);
+}
+
+.title {
+    font-size: 2.25rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+    white-space: nowrap;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    padding: var(--space-2) 0;
+}
+
+.title:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+/* ── Menu ── */
+.collapse {
+    display: flex;
+    flex: 1;
+}
+
+.collapseInner {
+    display: flex;
+    flex: 1;
+}
+
+.menuItems {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
 }
 
 .navLink {
-    font-size: 1.25rem !important;
-    font-family: var(--font-default) !important;
-    color: var(--color-text) !important;
+    display: block;
+    padding: var(--space-2);
+    font-size: 1.25rem;
+    font-family: var(--font-default);
+    color: var(--color-text);
     text-decoration: none;
     opacity: var(--ink-2);
     transition: opacity 0.3s ease;
@@ -26,95 +68,88 @@
     opacity: 1;
 }
 
-.navLinkCommissions {
-    display: flex !important;
-    align-items: center !important;
+.navLink:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+    opacity: 1;
 }
 
-.title {
-    font-size: 2.25rem !important;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--color-text) !important;
-    pointer-events: auto;
-    margin-left: 0;
-    margin-right: auto;
-    white-space: nowrap;
-    transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
-    flex-grow: 0;
+/* ── Hamburger ── */
+.toggler {
+    display: none;
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
 }
 
-/* ── Menu group: right-aligned, can't overflow ── */
-.menuItems {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex: 1;
-    gap: var(--space-8);
-    list-style: none;
-    margin-right: 0;
-    padding-left: 0;
+.toggler:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
 }
 
-.menuItems a {
-    color: var(--color-text);
-    text-decoration: none;
+.togglerIcon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(245,245,245,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
 }
 
-/* ── Smooth collapse ── */
-:global(.collapsing) {
-    transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: height;
-}
-
-:global(.navbar-collapse) {
-    will-change: height;
-}
-
-/* Matches Bootstrap's expand="lg" collapse breakpoint (992px) */
 @media screen and (max-width: 991px) {
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        min-height: 48px;
+    }
 
     .title {
-        font-size: 1.6rem !important;
-        margin-left: 0;
+        font-size: 1.6rem;
     }
 
-    /* ── Hamburger: white stripes, no border ── */
-    :global(.navbar-toggler) {
-        border: none !important;
-        padding: 0 !important;
-        background: transparent !important;
-        box-shadow: none !important;
+    .toggler {
+        display: block;
     }
 
-    :global(.navbar-toggler):focus-visible {
-        outline: 2px solid var(--accent) !important;
-        outline-offset: 4px;
-        border-radius: var(--radius-sm);
+    /* 0fr → 1fr animates to the menu's natural height without hard-coding it. */
+    .collapse {
+        flex: 0 0 100%;
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    :global(.navbar-toggler-icon) {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(245,245,245,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    .collapse.isOpen {
+        grid-template-rows: 1fr;
     }
 
-    .customNavbar {
-        position: fixed;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        z-index: 2;
-        background-color: var(--color-nav) !important;
-        flex-direction: row;
+    .collapseInner {
+        overflow: hidden;
+        min-height: 0;
+        /* Kept out of the tab order while collapsed, but only after the
+           closing animation has finished. */
+        visibility: hidden;
+        transition: visibility 0s linear 0.35s;
+    }
+
+    .collapse.isOpen .collapseInner {
+        visibility: visible;
+        transition-delay: 0s;
     }
 
     .menuItems {
         flex-direction: column;
         align-items: flex-end;
-        flex: none;
+        flex: 1;
         gap: var(--space-3);
-        margin-right: 0;
         border-radius: var(--radius-lg);
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
         padding: var(--space-6) var(--space-8);
