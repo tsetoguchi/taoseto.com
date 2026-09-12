@@ -138,8 +138,10 @@ export const Commissions = () => {
         <div className={styles.tiersSection}>
           <p className={styles.tiersLabel}>You're looking for</p>
           {TIERS.map((tier) => (
-            <div
+            <button
               key={tier.id}
+              type="button"
+              aria-pressed={formData.service === tier.id}
               className={[
                 styles.tierCard,
                 tier.featured ? styles.featured : "",
@@ -158,7 +160,7 @@ export const Commissions = () => {
                   <li key={f} className={styles.tierFeature}>{f}</li>
                 ))}
               </ul>
-            </div>
+            </button>
           ))}
         </div>
 
@@ -217,7 +219,9 @@ export const Commissions = () => {
             </button>
           </form>
 
-          <div className={styles.messageContainer}>
+          {/* Live region is always mounted so screen readers announce the
+              message when it appears, not just the container. */}
+          <div className={styles.messageContainer} role="status" aria-live="polite">
             {showSuccess && (
               <div className={styles.successMessage}>
                 Thank you for your inquiry.

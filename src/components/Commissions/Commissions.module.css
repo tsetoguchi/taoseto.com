@@ -62,7 +62,21 @@
     border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
 }
 
+/* Rendered as a <button> so the tier is selectable by keyboard; the
+   appearance/font resets undo the UA button defaults. */
 .tierCard {
+    appearance: none;
+    -webkit-appearance: none;
+    /* Flex column rather than block: a button otherwise centres its content
+       vertically, which misaligns cards of differing height in the grid. */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    color: inherit;
     border: 1px solid rgba(var(--color-text-rgb), 0.08);
     border-radius: var(--radius-sm);
     padding: var(--space-8);
@@ -71,6 +85,11 @@
     background-color: transparent;
     position: relative;
     overflow: hidden;
+}
+
+.tierCard:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 .tierCard::before {

@@ -31,6 +31,7 @@ export const MyNavbar = () => {
 
       <Navbar.Toggle
         aria-controls="basic-navbar-nav"
+        aria-expanded={expanded}
         className="custom-toggler"
       />
       
