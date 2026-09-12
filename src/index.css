@@ -69,11 +69,6 @@ input, textarea, select {
 }
 
 @media screen and (max-width: 852px) {
-  .navbar-collapse .nav {
-    width: 100%;
-    justify-content: flex-end;
-  }
-
   html, body {
     position: relative;
     overflow-x: hidden;
@@ -110,18 +105,6 @@ input, textarea, select {
   min-height: 100vh;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  width: 3rem;
-  height: 5rem;
-  background-size: 100% 100%;
-}
-
-.carousel h3,
-.carousel p {
-  font-family: 'Outfit', sans-serif;
-}
-
 #contact * {
   color: white;
   transition: color 0.3s ease-in-out;
@@ -129,4 +112,22 @@ input, textarea, select {
 
 #contact.is-faded * {
   color: transparent;
+}
+
+/* Honour the OS "reduce motion" setting: the hero logo floats indefinitely
+   and every route change fades, both of which can trigger vestibular
+   symptoms. Motion is removed rather than shortened. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }

@@ -84,14 +84,6 @@ export const ExperienceV2 = () => {
         <div className={styles.cards}>
           {EXPERIENCE.map((entry, i) => (
             <article key={i} className={styles.card}>
-              {entry.gradient && (
-                <div
-                  className={styles.cardGradient}
-                  style={{
-                    background: `linear-gradient(135deg, ${entry.gradient[0]}, ${entry.gradient[1]})`,
-                  }}
-                />
-              )}
               <div className={styles.cardLeft}>
                 <div className={styles.logoWrapper}>
                   {entry.logo ? (
