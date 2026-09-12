@@ -59,8 +59,9 @@ function AppContent() {
 
   return (
     <div className={`${styles.App}${isHome ? ` ${styles.homeLayout}` : ''}`}>
+      <a href="#main" className={styles.skipLink}>Skip to content</a>
       <MyNavbar />
-      <div key={location.pathname} className={styles.contentWrapper}>
+      <main id="main" key={location.pathname} className={styles.contentWrapper}>
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/commissions" element={<Commissions />} />
@@ -71,7 +72,7 @@ function AppContent() {
           <Route path="/Projects" element={<Navigate to="/projects" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </div>
+      </main>
       {location.pathname === '/' && <Contact className={styles.contact} />}
     </div>
   );

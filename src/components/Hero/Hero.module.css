@@ -103,13 +103,21 @@
 
 /* ── Hero image ── */
 .linkWrapper {
-    display: contents;
+    display: block;
+    width: 30%;
     text-decoration: none;
     color: inherit;
+    border-radius: var(--radius-sm);
+}
+
+.linkWrapper:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
 }
 
 .heroImg {
-    width: 30%;
+    display: block;
+    width: 100%;
     height: auto;
     z-index: 1;
     opacity: 0.7;
@@ -164,8 +172,12 @@
         justify-content: center;
     }
 
-    .heroImg {
+    .linkWrapper {
         width: 75%;
+    }
+
+    .heroImg {
+        width: 100%;
         opacity: 1;
         animation: floating 3s ease-in-out infinite;
     }
