@@ -56,12 +56,12 @@ export const ProjectsV2 = () => {
   return (
     <section className={styles.container}>
       <Helmet>
-        <title>Projects — tao seto</title>
+        <title>Projects</title>
         <meta
           name="description"
           content="Software and audio projects by Tao Seto — JUCE audio plugins, web apps, tools, and games."
         />
-        <meta property="og:title" content="Projects — tao seto" />
+        <meta property="og:title" content="Projects" />
         <meta property="og:url" content="https://taoseto.com/projects" />
       </Helmet>
 

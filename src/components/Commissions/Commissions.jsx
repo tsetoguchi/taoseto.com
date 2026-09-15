@@ -144,9 +144,9 @@ export const Commissions = () => {
   return (
     <section className={styles.container}>
       <Helmet>
-        <title>Commissions — tao seto</title>
+        <title>Commissions</title>
         <meta name="description" content="Mixing, mastering, and music technology services by Tao Seto. Radio-ready mixdowns, commercial-grade masters, and priority turnaround." />
-        <meta property="og:title" content="Commissions — tao seto" />
+        <meta property="og:title" content="Commissions" />
         <meta property="og:url" content="https://taoseto.com/commissions" />
       </Helmet>
       <div className={styles.pageHeader}>
