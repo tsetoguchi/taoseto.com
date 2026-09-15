@@ -6,7 +6,7 @@ export const NotFound = () => {
   return (
     <section className={styles.container}>
       <Helmet>
-        <title>Page not found — tao seto</title>
+        <title>Page not found</title>
         <meta name="robots" content="noindex" />
       </Helmet>
 

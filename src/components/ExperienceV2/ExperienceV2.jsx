@@ -67,9 +67,9 @@ export const ExperienceV2 = () => {
   return (
     <section className={styles.container}>
       <Helmet>
-        <title>Experience — tao seto</title>
+        <title>Experience</title>
         <meta name="description" content="Tao Seto's professional experience in music production, audio engineering, and software engineering. Konac, Rhythmedia, State Street, and more." />
-        <meta property="og:title" content="Experience — tao seto" />
+        <meta property="og:title" content="Experience" />
         <meta property="og:url" content="https://taoseto.com/experience" />
       </Helmet>
 
