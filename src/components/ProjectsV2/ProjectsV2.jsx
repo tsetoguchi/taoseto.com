@@ -10,7 +10,7 @@ import styles from "./ProjectsV2.module.css";
 
 const PROJECTS = [
   {
-    title: "LyricLike",
+    title: "LyricLike.com",
     aspect: 2.286,
     href: "https://lyriclike.com/",
     image: LyricLike,
