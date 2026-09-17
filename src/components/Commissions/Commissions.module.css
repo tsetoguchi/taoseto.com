@@ -92,7 +92,7 @@
 .stepNumber {
     font-size: var(--text-label);
     letter-spacing: 0.14em;
-    color: var(--ghost-white);
+    color: var(--accent-strong);
     font-variant-numeric: tabular-nums;
 }
 
@@ -102,10 +102,9 @@
     color: rgba(var(--color-text-rgb), var(--ink-3));
 }
 
-.requiredNote {
-    margin: calc(var(--space-6) * -1 + var(--space-2)) 0 var(--space-6);
-    font-size: var(--text-small);
-    font-weight: var(--weight-light);
+/* Per-field marker replaces a single "all fields required" note: it holds up
+   under scanning instead of depending on the reader having seen it earlier. */
+.requiredMark {
     color: rgba(var(--color-text-rgb), var(--ink-3));
 }
 
@@ -154,7 +153,7 @@
 }
 
 .serviceOption.selected .serviceMarker {
-    border-color: var(--ghost-white);
+    border-color: var(--accent-strong);
 }
 
 .serviceOption.selected .serviceMarker::after {
@@ -162,7 +161,7 @@
     position: absolute;
     inset: 3px;
     border-radius: 50%;
-    background-color: var(--ghost-white);
+    background-color: var(--accent-strong);
 }
 
 /* The native control is hidden but still focusable, so the row shows the ring
@@ -177,8 +176,17 @@
 }
 
 .serviceOption:has(.serviceRadio:focus-visible) {
-    outline: 2px solid var(--ghost-white);
+    outline: 2px solid var(--accent-strong);
     outline-offset: -2px;
+}
+
+/* :has() fallback: on browsers without it, ring the marker via a sibling
+   combinator instead of leaving keyboard focus with no visible indicator. */
+@supports not selector(:has(a)) {
+    .serviceRadio:focus-visible ~ .serviceMarker {
+        outline: 2px solid var(--accent-strong);
+        outline-offset: 2px;
+    }
 }
 
 .serviceBody {
@@ -288,14 +296,14 @@
     transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-/* Ghost white rather than --accent: against the resting border the accent
+/* --accent-strong rather than --accent: against the resting border the accent
    measures 2.83:1, under the 3:1 WCAG 2.4.13 wants between the two states.
-   Ghost white reaches 5.27:1, so the focused field is the more legible of the
-   two despite differing by brightness rather than hue. */
+   This reaches 4.49:1, so the focused field is the more legible of the two
+   despite differing by brightness rather than hue. */
 .input:focus,
 .nameInput:focus,
 .textarea:focus {
-    border-color: var(--ghost-white);
+    border-color: var(--accent-strong);
     background-color: rgba(var(--color-text-rgb), 0.06);
 }
 

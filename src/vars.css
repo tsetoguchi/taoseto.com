@@ -14,13 +14,10 @@
 
     /* One accent — reserved for primary action + links (monochrome elsewhere) */
     --accent: #D4B483;
-    /* Filled primary button. Bone reads closer to paper than to gold, which
-       keeps the button feeling considered rather than decorative. */
+    /* The bright pale: filled primary buttons, and anything marking a chosen
+       or focused control. Bone reads closer to paper than to gold, which keeps
+       it feeling considered rather than decorative. */
     --accent-strong: #EDE6DA;
-    /* Marks a chosen or enumerated thing — a selected radio, a step number.
-       Kept distinct from --accent so the two carry separate meanings:
-       --accent is focus, --ghost-white is state. */
-    --ghost-white: #F8F8FF;
 
     /* ── Fonts ── */
     --font-default: Outfit;

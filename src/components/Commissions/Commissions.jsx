@@ -146,7 +146,10 @@ export const Commissions = () => {
           <legend className={styles.legend}>
             <span className={styles.sectionHead}>
               <span className={styles.stepNumber} aria-hidden="true">01</span>
-              <span className={styles.sectionLabel}>What you need</span>
+              <span className={styles.sectionLabel}>
+                What you need
+                <span className={styles.requiredMark} aria-hidden="true"> *</span>
+              </span>
             </span>
           </legend>
 
@@ -202,12 +205,12 @@ export const Commissions = () => {
             <span className={styles.stepNumber} aria-hidden="true">02</span>
             <span className={styles.sectionLabel}>Your details</span>
           </p>
-          {/* Stated once rather than marking four of four fields required. */}
-          <p className={styles.requiredNote}>All fields required.</p>
           <form onSubmit={handleSubmit} className={styles.form} noValidate>
 
             <div className={styles.formGroup}>
-              <label htmlFor="name" className={styles.label}>Name</label>
+              <label htmlFor="name" className={styles.label}>
+                Name<span className={styles.requiredMark} aria-hidden="true"> *</span>
+              </label>
               <input
                 type="text" id="name" name="name"
                 autoComplete="name"
@@ -223,7 +226,9 @@ export const Commissions = () => {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="email" className={styles.label}>Email</label>
+              <label htmlFor="email" className={styles.label}>
+                Email<span className={styles.requiredMark} aria-hidden="true"> *</span>
+              </label>
               <input
                 type="email" id="email" name="email"
                 autoComplete="email"
@@ -239,7 +244,9 @@ export const Commissions = () => {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="message" className={styles.label}>Message</label>
+              <label htmlFor="message" className={styles.label}>
+                Message<span className={styles.requiredMark} aria-hidden="true"> *</span>
+              </label>
               <textarea
                 id="message" name="message"
                 value={formData.message} onChange={handleChange}
