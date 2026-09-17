@@ -61,48 +61,14 @@ input, textarea, select {
   font-size: 16px;
 }
 
-/* Fix for iOS Safari 100vh issue */
-@supports (-webkit-touch-callout: none) {
-  .App {
-    min-height: -webkit-fill-available;
-  }
-}
-
-@media screen and (max-width: 852px) {
-  html, body {
-    position: relative;
-    overflow-x: hidden;
-  }
-
-  body {
-    padding-bottom: 0;
-    margin: 0;
-  }
-
-  #root {
-    position: relative;
-  }
-
-  .App {
-    position: relative;
-    overflow: visible;
-  }
-
-  .contentWrapper {
-    position: relative;
-    overflow: visible;
-  }
-
-  footer {
-    position: static;
-    bottom: auto;
-  }
-}
-
-#root, .App {
+/* .App and .contentWrapper are CSS-Modules class names, so they cannot be
+   targeted from here — their layout lives in App.module.css. */
+#root {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 #contact * {

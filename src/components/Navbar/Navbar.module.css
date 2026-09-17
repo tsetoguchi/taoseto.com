@@ -9,8 +9,9 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    /* Pinned: .contentWrapper offsets content by a fixed 80px. */
-    min-height: 64px;
+    /* In flow here; .contentWrapper pays back the height only once this goes
+       fixed at the mobile breakpoint. */
+    min-height: var(--nav-height);
     padding: 0 var(--frame-pad);
     z-index: 2;
     background-color: var(--color-nav);
@@ -18,7 +19,7 @@
 
 .title {
     font-size: 2.25rem;
-    font-weight: 600;
+    font-weight: var(--weight-regular);
     text-decoration: none;
     color: var(--color-text);
     white-space: nowrap;
@@ -53,8 +54,14 @@
     flex: 1;
 }
 
+/* min-width matters for the icon-only social links, which are otherwise
+   narrower than a comfortable touch target. */
 .navLink {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     padding: var(--space-2);
     font-size: 1.25rem;
     font-family: var(--font-default);
@@ -76,13 +83,19 @@
 }
 
 /* ── Hamburger ── */
+/* The 30px icon is padded out to a 44px touch target — this is the primary
+   navigation control on mobile. */
 .toggler {
     display: none;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     appearance: none;
     -webkit-appearance: none;
     border: none;
     background: transparent;
-    padding: 0;
+    padding: var(--space-2);
     cursor: pointer;
 }
 
@@ -108,7 +121,7 @@
         top: 0;
         left: 0;
         right: 0;
-        min-height: 48px;
+        min-height: var(--nav-height-mobile);
     }
 
     .title {
@@ -116,7 +129,7 @@
     }
 
     .toggler {
-        display: block;
+        display: flex;
     }
 
     /* 0fr → 1fr animates to the menu's natural height without hard-coding it. */

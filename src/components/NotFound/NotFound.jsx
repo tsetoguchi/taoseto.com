@@ -14,7 +14,7 @@ export const NotFound = () => {
         <p className={styles.code}>404</p>
         <h1 className={styles.heading}>Page not found</h1>
         <p className={styles.description}>
-          That page doesn&rsquo;t exist — it may have moved, or the link may be
+          That page doesn&rsquo;t exist. It may have moved, or the link may be
           out of date.
         </p>
 

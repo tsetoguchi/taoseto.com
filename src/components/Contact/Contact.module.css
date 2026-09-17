@@ -1,6 +1,14 @@
 @import "../../vars.css";
 
+/* Pinned to the bottom of the viewport: the home screen does not scroll at
+   full height, so the bar is the page's baseline rather than content that
+   follows it. Previously inherited from an unscoped `footer` rule in
+   App.module.css. */
 .container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-color: var(--color-bg);
     color: var(--color-text);
     width: 100%;
@@ -21,8 +29,7 @@
 .contactHeader {
     font-size: var(--text-small);
     font-weight: var(--weight-regular);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
     color: rgba(var(--color-text-rgb), var(--ink-3));
     margin: 0;
 }
@@ -31,7 +38,7 @@
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    min-height: 24px;
+    min-height: 44px;
     color: rgba(var(--color-text-rgb), var(--ink-3));
     text-decoration: none;
     transition: color 0.2s ease;
@@ -48,12 +55,12 @@
 }
 
 @media screen and (max-width: 900px) {
+    /* The link itself now carries a 44px touch target, so the bar's own
+       padding shrinks to keep its overall height unchanged. The viewport
+       meta uses viewport-fit=cover, so the home indicator is cleared here. */
     .container {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: var(--space-4) var(--gutter);
+        padding: var(--space-1) var(--gutter);
+        padding-bottom: max(var(--space-1), env(safe-area-inset-bottom));
         background-color: var(--color-bg);
         z-index: 99;
     }
