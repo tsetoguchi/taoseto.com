@@ -29,8 +29,8 @@ export const Hero = () => {
             </p>
 
             <div className={styles.ctas}>
-              <Link to="/commissions" className={styles.ctaPrimary}>
-                Commissions
+              <Link to="/projects" className={styles.ctaPrimary}>
+                Projects
               </Link>
               <Link to="/experience" className={styles.ctaSecondary}>
                 Experience
