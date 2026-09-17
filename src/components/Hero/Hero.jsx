@@ -24,8 +24,8 @@ export const Hero = () => {
             <h1 className={styles.name}>tao seto</h1>
             <p className={styles.description}>
               Computer Science and Music Technology graduate with 12+ years in
-              music production and 7+ years in tech. Love creating meaningful
-              products.
+              music production and 7+ years in tech. Bridging the gap between
+              artistry and programming.
             </p>
 
             <div className={styles.ctas}>
