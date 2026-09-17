@@ -85,7 +85,7 @@ export const ProjectsV2 = () => {
             >
               <div
                 className={styles.media}
-                style={{ aspectRatio: project.aspect }}
+                style={{ "--card-aspect": String(project.aspect) }}
               >
                 {project.video ? (
                   <video

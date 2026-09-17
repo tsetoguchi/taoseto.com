@@ -14,8 +14,10 @@
   animation: fadeIn 0.4s ease-in;
 }
 
+/* The container's gutter is the page inset; a second one here doubled it to
+   40px a side at 320px. */
 .content {
-  width: min(var(--content-max), 100% - var(--space-8));
+  width: min(var(--content-max), 100%);
   margin: 0 auto;
 }
 
@@ -78,9 +80,11 @@
 
 /* ── Image fills its own box, which carries the media's aspect ratio ── */
 
+/* --card-aspect is set per project from the component. */
 .media {
   position: relative;
   width: 100%;
+  aspect-ratio: var(--card-aspect);
 }
 
 .cardImage {
@@ -149,6 +153,12 @@
 /* Below this the card is too short for the text to overlay without burying
    the screenshot, so the caption moves underneath it instead. */
 @media screen and (max-width: 900px) {
+  /* The widest screenshots render ~60px tall at phone widths, which is
+     illegible — they crop to a readable height instead. */
+  .media {
+    aspect-ratio: min(var(--card-aspect), 1.9);
+  }
+
   .cardScrim {
     position: static;
     background: none;

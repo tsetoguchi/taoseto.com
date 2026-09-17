@@ -54,14 +54,22 @@
   align-items: center;
 }
 
+/* Padding alone leaves the buttons a pixel short of a 44px touch target. */
+.ctaPrimary,
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+
 .ctaPrimary {
   text-decoration: none;
   font-size: var(--text-small);
   font-weight: var(--weight-medium);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: var(--color-bg);
-  background-color: var(--accent);
+  background-color: var(--accent-strong);
   padding: var(--space-3) var(--space-8);
   border-radius: var(--radius-sm);
   transition: filter 0.2s ease;
@@ -75,8 +83,7 @@
   text-decoration: none;
   font-size: var(--text-small);
   font-weight: var(--weight-regular);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: rgba(var(--color-text-rgb), var(--ink-3));
   border: 1px solid rgba(var(--color-text-rgb), 0.45);
   padding: var(--space-3) var(--space-8);
