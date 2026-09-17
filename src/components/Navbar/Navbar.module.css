@@ -67,11 +67,17 @@
     font-family: var(--font-default);
     color: var(--color-text);
     text-decoration: none;
-    opacity: var(--ink-2);
+    /* Sits a step below body ink so the current page can reach full strength
+       without needing a weight change, which would shift the row's width. */
+    opacity: var(--ink-3);
     transition: opacity 0.3s ease;
 }
 
 .navLink:hover {
+    opacity: 1;
+}
+
+.navLinkActive {
     opacity: 1;
 }
 

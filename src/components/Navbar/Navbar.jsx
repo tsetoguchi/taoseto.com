@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
@@ -61,15 +61,20 @@ export const MyNavbar = () => {
       >
         <div className={styles.collapseInner}>
           <nav className={styles.menuItems} aria-label="Main">
+            {/* NavLink rather than Link: it marks the current page with
+                aria-current, which is what carries the highlight to anyone
+                not seeing the colour change. */}
             {PAGE_LINKS.map((link) => (
-              <Link
+              <NavLink
                 key={link.to}
                 to={link.to}
-                className={styles.navLink}
+                className={({ isActive }) =>
+                  `${styles.navLink}${isActive ? ` ${styles.navLinkActive}` : ""}`
+                }
                 onClick={closeMenu}
               >
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
 
             {SOCIAL_LINKS.map((link) => (
