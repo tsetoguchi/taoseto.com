@@ -74,12 +74,9 @@ export const ExperienceV2 = () => {
       </Helmet>
 
       <div className={styles.content} id="content">
-        <div className={styles.pageHeader}>
-          <p className={styles.pageTitle}>Background</p>
-          <div className={styles.headerRow}>
-            <h1 className={styles.pageSubtitle}>Experience</h1>
-          </div>
-        </div>
+        <header className={styles.pageHeader}>
+          <h1 className={styles.pageHeading}>Experience</h1>
+        </header>
 
         <div className={styles.cards}>
           {EXPERIENCE.map((entry, i) => (

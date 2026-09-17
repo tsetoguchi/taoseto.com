@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 
-import airyVideo from "../../../assets/projects/airy.mp4";
 import airyPoster from "../../../assets/projects/airy-poster.jpg";
 import CurrentlyVST from "../../../assets/projects/currentlyvst.webp";
 import Valorant from "../../../assets/projects/valorant.webp";
@@ -15,18 +14,16 @@ const PROJECTS = [
     href: "https://lyriclike.com/",
     image: LyricLike,
     description:
-      "Lyric writing tool with real-time rhyme finding across six rhyme types, syllable counts, and rhyme scheme analysis.",
+      "A rhyme finder for writing lyrics. Six kinds of rhyme, syllable counts and scheme analysis, all updating as you type.",
+    meta: ["2026", "JavaScript", "lyriclike.com"],
   },
   {
     title: "airy",
     aspect: 1.707,
-    playbackRate: 0.4,
     href: "https://github.com/tsetoguchi/airy",
-    // Screen recording, so it ships as H.264 rather than a 30 MB GIF.
-    video: airyVideo,
     image: airyPoster,
-    description:
-      "Simple real-time oscilloscope audio plugin that allows users to visualize waveforms of incoming audio signals.",
+    description: "A real-time oscilloscope. It draws the signal while it plays, and that is all it does.",
+    meta: ["2026", "C++/JUCE"],
   },
   {
     title: "Currently VST",
@@ -34,21 +31,26 @@ const PROJECTS = [
     href: "https://github.com/tsetoguchi/CurrentlyVST",
     image: CurrentlyVST,
     description:
-      "JUCE-based audio plugin displaying DAW timecode to help producers and engineers stay in sync.",
+      "Built for DAWs that give you no clear time display. It puts the playhead's timecode on screen and sizes itself to whatever resolution it lands on.",
+    meta: ["2025", "C++/JUCE"],
   },
   {
     title: "Valolytics",
     aspect: 3.892,
     href: "https://github.com/tsetoguchi/Valolytics",
     image: Valorant,
-    description: "Esports match analysis dashboard for VALORANT with player and match metrics.",
+    description:
+      "Point it at a VLR tournament's match pages and it scrapes the results, rates every team by ELO, and weighs a given matchup.",
+    meta: ["2025", "Python"],
   },
   {
     title: "The Slushie Machine",
     aspect: 2.269,
     href: "https://github.com/tsetoguchi/The-Slushie-Machine",
     image: TheSlushieMachine,
-    description: "Audio processing app with a focus on low latency and simplistic UI workflows.",
+    description:
+      "Delay, filter, chorus, limiter, imager and waveshaper, chained in series — where the order you put them in is the whole instrument.",
+    meta: ["2023", "C++/JUCE", "VST3"],
   },
 ];
 
@@ -67,11 +69,7 @@ export const ProjectsV2 = () => {
 
       <div className={styles.content}>
         <header className={styles.pageHeader}>
-          <p className={styles.pageTitle}>Portfolio</p>
-          <h1 className={styles.pageSubtitle}>Projects</h1>
-          <p className={styles.pageDescription}>
-            A selection of audio, web, and software engineering projects I've developed.
-          </p>
+          <h1 className={styles.pageHeading}>Projects</h1>
         </header>
 
         <div className={styles.stack}>
@@ -87,36 +85,19 @@ export const ProjectsV2 = () => {
                 className={styles.media}
                 style={{ "--card-aspect": String(project.aspect) }}
               >
-                {project.video ? (
-                  <video
-                    src={project.video}
-                    poster={project.image}
-                    className={styles.cardImage}
-                    ref={(el) => {
-                      // Slowed at playback rather than re-encoding the source.
-                      if (el && project.playbackRate) {
-                        el.playbackRate = project.playbackRate;
-                      }
-                    }}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="none"
-                    aria-label={project.title}
-                  />
-                ) : (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className={styles.cardImage}
-                    loading="lazy"
-                  />
-                )}
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className={styles.cardImage}
+                  loading="lazy"
+                />
               </div>
               <div className={styles.cardScrim}>
                 <h3 className={styles.cardTitle}>{project.title}</h3>
                 <p className={styles.cardDescription}>{project.description}</p>
+                {/* Joined into one string so the facts are not read as three
+                    run-together words. */}
+                <p className={styles.cardMeta}>{project.meta.join(" · ")}</p>
               </div>
             </a>
           ))}

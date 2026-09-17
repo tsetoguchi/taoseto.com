@@ -43,3 +43,6 @@ aws-deployment/config.env
 
 # Playwright MCP session artifacts
 .playwright-mcp/
+
+# Working notes and plans
+.plans/

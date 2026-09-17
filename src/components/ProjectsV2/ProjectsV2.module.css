@@ -28,27 +28,34 @@
   padding-bottom: var(--space-6);
 }
 
-.pageTitle {
-  margin: 0 0 10px;
-  font-size: var(--text-label);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(var(--color-text-rgb), var(--ink-3));
-}
-
-.pageSubtitle {
-  margin: 0 0 var(--space-2);
+.pageHeading {
+  margin: 0;
   font-size: var(--text-h1);
   font-weight: var(--weight-light);
   color: var(--color-text);
   line-height: 1.15;
 }
 
-.pageDescription {
-  margin: 0;
-  color: rgba(var(--color-text-rgb), var(--ink-2));
-  font-size: var(--text-body);
-  max-width: 780px;
+/* Above 991px the navbar is expanded, so the lit nav item says which page this
+   is and the visible heading would only repeat it. The h1 is hidden rather
+   than removed: it still anchors the heading order above the card h3s. */
+@media screen and (min-width: 992px) {
+  .pageHeader {
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .pageHeading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }
 
 /* ── Card stack ── */
@@ -110,11 +117,14 @@
   position: absolute;
   inset: auto 0 0 0;
   padding: var(--space-16) var(--space-8) var(--space-6);
+  /* Opaque at the foot rather than 0.95: some screenshots carry their own
+     title text along the bottom edge, which otherwise reads through the
+     caption. */
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.95) 0%,
-    rgba(0, 0, 0, 0.9) 40%,
-    rgba(0, 0, 0, 0.65) 70%,
+    rgb(0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.97) 45%,
+    rgba(0, 0, 0, 0.7) 75%,
     transparent 100%
   );
   transition: background 0.3s ease;
@@ -148,11 +158,22 @@
   max-width: 600px;
 }
 
+.cardMeta {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  color: rgba(var(--color-text-rgb), var(--ink-3));
+}
+
 /* ── Mobile ── */
 
 /* Below this the card is too short for the text to overlay without burying
    the screenshot, so the caption moves underneath it instead. */
 @media screen and (max-width: 900px) {
+  .pageHeading {
+    font-size: 1.8rem;
+  }
+
   /* The widest screenshots render ~60px tall at phone widths, which is
      illegible — they crop to a readable height instead. */
   .media {

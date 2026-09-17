@@ -17,16 +17,7 @@
     padding-bottom: var(--space-6);
 }
 
-.pageTitle {
-    font-size: var(--text-label);
-    font-weight: var(--weight-regular);
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(var(--color-text-rgb), var(--ink-3));
-    margin: 0 0 10px;
-}
-
-.pageSubtitle {
+.pageHeading {
     font-size: var(--text-h1);
     font-weight: var(--weight-light);
     color: var(--color-text);
@@ -34,10 +25,31 @@
     line-height: 1.15;
 }
 
+/* Above 991px the navbar is expanded, so the lit nav item says which page this
+   is and the visible heading would only repeat it. The h1 is hidden rather
+   than removed: it still anchors the heading order above the section h2s. */
+@media screen and (min-width: 992px) {
+    .pageHeader {
+        margin: 0;
+        padding: 0;
+        border-bottom: 0;
+    }
+
+    .pageHeading {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+}
+
 /* ── Two-column layout ── */
-/* Column counts follow the space available rather than a breakpoint: a hard
-   2x2 held down to 901px, where tier cards shrank to 168px and their
-   features wrapped one word per line. */
+/* The columns fold on available space rather than a breakpoint, so the service
+   summaries keep a readable measure instead of narrowing to a word per line. */
 .layout {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -45,156 +57,191 @@
     align-items: start;
 }
 
-/* ── Tiers ── */
-.tiersSection {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--space-6);
+/* ── Services ── */
+/* A <fieldset> groups the radios; the reset undoes the UA border and the
+   min-width that otherwise stops it shrinking inside the grid. */
+.servicesSection {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
 }
 
-.tiersLabel {
-    grid-column: 1 / -1;
+/* A <legend> cannot itself be the flex row reliably, so it stays a plain block
+   and the shared header sits inside it. */
+.legend {
+    display: block;
+    width: 100%;
+    padding: 0;
+}
+
+/* Both column headers use this, so they share one baseline and one rule. The
+   explicit margin-top matters: the form's header is a <p>, which would
+   otherwise inherit the UA 1em default and sit 15px below its counterpart. */
+.sectionHead,
+.formHead {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    width: 100%;
+    margin: 0 0 var(--space-6);
+    padding: 0 0 var(--space-4);
+    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.12);
+}
+
+.stepNumber {
+    font-size: var(--text-label);
+    letter-spacing: 0.14em;
+    color: var(--accent-strong);
+    font-variant-numeric: tabular-nums;
+}
+
+.sectionLabel {
     font-size: var(--text-small);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    letter-spacing: 0.01em;
     color: rgba(var(--color-text-rgb), var(--ink-3));
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
 }
 
-/* Rendered as a <button> so the tier is selectable by keyboard; the
-   appearance/font resets undo the UA button defaults. */
-.tierCard {
-    appearance: none;
-    -webkit-appearance: none;
-    /* Flex column rather than block: a button otherwise centres its content
-       vertically, which misaligns cards of differing height in the grid. */
+/* Per-field marker replaces a single "all fields required" note: it holds up
+   under scanning instead of depending on the reader having seen it earlier. */
+.requiredMark {
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+}
+
+/* Hairline-separated rows rather than a card grid, so the column reads as a
+   list of choices and mirrors the form's rows opposite it. */
+.serviceList {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    width: 100%;
-    text-align: left;
-    font: inherit;
-    color: inherit;
-    border: 1px solid rgba(var(--color-text-rgb), 0.08);
-    border-radius: var(--radius-sm);
-    padding: var(--space-8);
-    cursor: pointer;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
-    background-color: transparent;
+}
+
+/* Rules appear only between rows — never closing the top or bottom of the
+   group — so a hairline always means "next option" and nothing else. */
+.serviceOption {
     position: relative;
-    overflow: hidden;
-}
-
-.tierCard:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
-
-.tierCard::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: transparent;
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    padding: var(--space-5) 0;
+    cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
-.tierCard:hover {
-    border-color: rgba(var(--color-text-rgb), 0.2);
+.serviceOption + .serviceOption {
+    border-top: 1px solid rgba(var(--color-text-rgb), 0.08);
+}
+
+.serviceOption:hover {
     background-color: rgba(var(--color-text-rgb), 0.02);
 }
 
-.tierCard:hover::before {
-    background-color: rgba(var(--color-text-rgb), 0.2);
+/* 0.4 clears the 3:1 that identifies a control (WCAG 1.4.11); the ring fills
+   on selection, so the state is a shape change and not colour alone. */
+.serviceMarker {
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
+    border-radius: 50%;
+    position: relative;
+    transition: border-color 0.2s ease;
 }
 
-.tierCard.selected {
-    border-color: rgba(var(--color-text-rgb), 0.35);
-    background-color: rgba(var(--color-text-rgb), 0.03);
+.serviceOption:hover .serviceMarker {
+    border-color: rgba(var(--color-text-rgb), 0.7);
 }
 
-.tierCard.selected::before {
-    background-color: rgba(var(--color-text-rgb), 0.7);
+.serviceOption.selected .serviceMarker {
+    border-color: var(--accent-strong);
 }
 
-.tierCard.featured {
-    border-color: rgba(var(--color-text-rgb), 0.15);
+.serviceOption.selected .serviceMarker::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background-color: var(--accent-strong);
 }
 
-.tierCard.featured.selected {
-    border-color: rgba(var(--color-text-rgb), 0.4);
-    background-color: rgba(var(--color-text-rgb), 0.04);
-}
-
-.tierHeader {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: var(--space-4);
-}
-
-.tierName {
-    font-size: var(--text-body);
-    font-weight: var(--weight-medium);
-    color: var(--color-text);
-    letter-spacing: 0.01em;
-}
-
-.tierBadge {
-    font-size: var(--text-label);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(var(--color-text-rgb), var(--ink-3));
-    border: 1px solid rgba(var(--color-text-rgb), 0.2);
-    padding: 2px var(--space-2);
-    border-radius: var(--radius-sm);
-}
-
-.tierPrice {
-    font-size: var(--text-small);
-    color: rgba(var(--color-text-rgb), var(--ink-3));
-    margin-bottom: var(--space-4);
-}
-
-.tierDivider {
+/* The native control is hidden but still focusable, so the row shows the ring
+   on its behalf. */
+.serviceRadio {
+    position: absolute;
+    width: 1px;
     height: 1px;
-    background-color: rgba(var(--color-text-rgb), 0.07);
-    margin-bottom: var(--space-4);
+    opacity: 0;
+    margin: 0;
+    pointer-events: none;
 }
 
-.tierFeatures {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.serviceOption:has(.serviceRadio:focus-visible) {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: -2px;
+}
+
+/* :has() fallback: on browsers without it, ring the marker via a sibling
+   combinator instead of leaving keyboard focus with no visible indicator. */
+@supports not selector(:has(a)) {
+    .serviceRadio:focus-visible ~ .serviceMarker {
+        outline: 2px solid var(--accent-strong);
+        outline-offset: 2px;
+    }
+}
+
+.serviceBody {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-2);
 }
 
-.tierFeature {
+.serviceName {
     font-size: var(--text-body);
-    color: rgba(var(--color-text-rgb), var(--ink-1));
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    line-height: 1.4;
+    font-weight: var(--weight-medium);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    letter-spacing: 0.01em;
+    transition: color 0.2s ease;
 }
 
-.tierFeature::before {
+.serviceOption:hover .serviceName,
+.serviceOption.selected .serviceName {
+    color: var(--color-text);
+}
+
+.serviceSummary {
+    font-size: var(--text-small);
+    font-weight: var(--weight-light);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    line-height: 1.6;
+    max-width: 46ch;
+}
+
+.serviceItems {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+}
+
+.serviceItem {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: var(--text-small);
+    font-weight: var(--weight-light);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    line-height: 1.5;
+}
+
+.serviceItem::before {
     content: '';
     width: 12px;
     height: 1px;
     background-color: rgba(var(--color-text-rgb), 0.25);
     flex-shrink: 0;
-}
-
-.tierCard.selected .tierFeature {
-    color: rgba(var(--color-text-rgb), var(--ink-2));
+    /* Baseline alignment would sit the 1px rule on the text baseline; nudge it
+       up to the middle of the line. */
+    transform: translateY(-5px);
 }
 
 /* ── Form section ── */
@@ -203,123 +250,122 @@
     flex-direction: column;
 }
 
-.formLabel {
-    font-size: var(--text-small);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(var(--color-text-rgb), var(--ink-3));
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
-}
-
+/* No rules in this column: the fields carry their own edges, so a hairline
+   here would compete with the ones separating service rows opposite. */
 .form {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: var(--space-5);
 }
 
+/* The label sits nearer its own field (8px) than the gap between groups
+   (20px), so each pair groups by proximity rather than by a divider. */
 .formGroup {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
-    padding: var(--space-4) 0;
-    transition: border-color 0.2s ease;
+    gap: var(--space-2);
 }
 
-.formGroup:first-child {
-    border-top: 1px solid rgba(var(--color-text-rgb), 0.08);
-}
-
-.formGroup:focus-within {
-    border-bottom-color: rgba(var(--color-text-rgb), 0.4);
-}
-
+/* Sentence case, and up from --text-label: at 12px the lowercase form sat
+   small against a 17px field. Context separates these from the section labels
+   above — a field label has an input under it, not a step number and a rule. */
 .label {
-    font-size: var(--text-label);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: var(--text-small);
+    letter-spacing: 0.01em;
     color: rgba(var(--color-text-rgb), var(--ink-3));
-    margin-bottom: var(--space-2);
     transition: color 0.2s ease;
 }
 
 .formGroup:focus-within .label {
-    color: rgba(var(--color-text-rgb), 0.7);
+    color: rgba(var(--color-text-rgb), var(--ink-1));
 }
 
 .input,
 .nameInput,
-.select,
 .textarea {
     width: 100%;
-    padding: var(--space-3) 0;
-    background: transparent;
-    border: none;
+    padding: var(--space-3) var(--space-4);
+    background-color: rgba(var(--color-text-rgb), 0.04);
+    border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
+    border-radius: var(--radius-sm);
     outline: none;
     color: var(--color-text);
     font-family: var(--font-default);
     font-size: var(--text-body);
     font-weight: var(--weight-light);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
+/* --accent-strong rather than --accent: against the resting border the accent
+   measures 2.83:1, under the 3:1 WCAG 2.4.13 wants between the two states.
+   This reaches 4.49:1, so the focused field is the more legible of the two
+   despite differing by brightness rather than hue. */
+.input:focus,
+.nameInput:focus,
+.textarea:focus {
+    border-color: var(--accent-strong);
+    background-color: rgba(var(--color-text-rgb), 0.06);
+}
+
+/* 0.52 keeps the hint at 4.5:1. The labels above carry the real meaning, so
+   these stay examples rather than substitutes for them. */
 .input::placeholder,
 .nameInput::placeholder,
 .textarea::placeholder {
-    color: rgba(var(--color-text-rgb), 0.18);
+    color: rgba(var(--color-text-rgb), 0.52);
 }
 
-.select {
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 4px center;
-    background-size: 14px;
-    padding-right: 24px;
-}
-
-.select option {
-    background-color: #1a1a1a;
-    color: var(--color-text);
+/* Chrome paints autofilled fields near-white, which on this palette hides the
+   value entirely. The inset shadow repaints the well behind the text. */
+.input:-webkit-autofill,
+.nameInput:-webkit-autofill,
+.textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #14120f inset;
+    -webkit-text-fill-color: var(--color-text);
+    caret-color: var(--color-text);
 }
 
 .textarea {
-    min-height: 100px;
-    resize: none;
+    min-height: 120px;
+    /* Growable: the message is the one field with no predictable length. */
+    resize: vertical;
     line-height: 1.6;
 }
 
+/* Filled, matching the hero's primary CTA. The previous outline sat at
+   alpha 0.3 — 2.47:1 — below the 3:1 a control's boundary needs. */
 .submitBtn {
-    margin-top: var(--space-8);
+    margin-top: var(--space-2);
     align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     padding: var(--space-3) var(--space-8);
-    background-color: transparent;
-    border: 1px solid rgba(var(--color-text-rgb), 0.3);
-    color: rgba(var(--color-text-rgb), var(--ink-2));
+    background-color: var(--accent-strong);
+    border: 0;
+    color: var(--color-bg);
     font-family: var(--font-default);
     font-size: var(--text-small);
-    font-weight: var(--weight-regular);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.02em;
     cursor: pointer;
     border-radius: var(--radius-sm);
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: filter 0.2s ease, opacity 0.2s ease;
 }
 
 .submitBtn:hover {
-    background-color: rgba(var(--color-text-rgb), 0.9);
-    color: var(--color-bg);
-    border-color: rgba(var(--color-text-rgb), 0.9);
+    filter: brightness(1.08);
 }
 
 .submitBtn:active {
     opacity: 0.8;
 }
 
+/* 0.3 dropped the "Sending..." label to 2.47:1. Disabled controls are exempt
+   from contrast rules, but this one is reporting progress, so it stays legible. */
 .submitBtn:disabled {
-    opacity: 0.3;
+    opacity: 0.55;
     cursor: not-allowed;
 }
 
@@ -362,7 +408,7 @@
         margin-bottom: var(--space-8);
     }
 
-    .pageSubtitle {
+    .pageHeading {
         font-size: 1.8rem;
     }
 
@@ -371,26 +417,8 @@
         gap: var(--space-12);
     }
 
-    .tiersSection {
-        grid-template-columns: 1fr;
-    }
-
-    .tiersLabel {
-        margin-bottom: 0;
-    }
-
-    .tierCard {
-        padding: var(--space-4) var(--space-6);
-    }
-
     .submitBtn {
         width: 100%;
         text-align: center;
-    }
-
-    .select {
-        color: var(--color-text);
-        font-size: 16px;
-        background-color: transparent;
     }
 }
