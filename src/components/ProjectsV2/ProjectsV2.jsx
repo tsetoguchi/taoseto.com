@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 
-import airyVideo from "../../../assets/projects/airy.mp4";
 import airyPoster from "../../../assets/projects/airy-poster.jpg";
 import CurrentlyVST from "../../../assets/projects/currentlyvst.webp";
 import Valorant from "../../../assets/projects/valorant.webp";
@@ -21,10 +20,7 @@ const PROJECTS = [
   {
     title: "airy",
     aspect: 1.707,
-    playbackRate: 0.4,
     href: "https://github.com/tsetoguchi/airy",
-    // Screen recording, so it ships as H.264 rather than a 30 MB GIF.
-    video: airyVideo,
     image: airyPoster,
     description: "A real-time oscilloscope. It draws the signal while it plays, and that is all it does.",
     meta: ["2026", "C++/JUCE"],
@@ -89,32 +85,12 @@ export const ProjectsV2 = () => {
                 className={styles.media}
                 style={{ "--card-aspect": String(project.aspect) }}
               >
-                {project.video ? (
-                  <video
-                    src={project.video}
-                    poster={project.image}
-                    className={styles.cardImage}
-                    ref={(el) => {
-                      // Slowed at playback rather than re-encoding the source.
-                      if (el && project.playbackRate) {
-                        el.playbackRate = project.playbackRate;
-                      }
-                    }}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="none"
-                    aria-label={project.title}
-                  />
-                ) : (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className={styles.cardImage}
-                    loading="lazy"
-                  />
-                )}
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className={styles.cardImage}
+                  loading="lazy"
+                />
               </div>
               <div className={styles.cardScrim}>
                 <h3 className={styles.cardTitle}>{project.title}</h3>
