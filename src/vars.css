@@ -17,6 +17,10 @@
     /* Filled primary button. Bone reads closer to paper than to gold, which
        keeps the button feeling considered rather than decorative. */
     --accent-strong: #EDE6DA;
+    /* Marks a chosen or enumerated thing — a selected radio, a step number.
+       Kept distinct from --accent so the two carry separate meanings:
+       --accent is focus, --ghost-white is state. */
+    --ghost-white: #F8F8FF;
 
     /* ── Fonts ── */
     --font-default: Outfit;
@@ -63,6 +67,11 @@
     --ink-1: 0.92;   /* primary */
     --ink-2: 0.72;   /* body */
     --ink-3: 0.6;    /* muted — minimum for informational text */
+    /* Anything that identifies a control or its state — an input's border, a
+       radio's ring — needs 3:1 against the page (WCAG 1.4.11). Over --color-bg
+       that bottoms out at alpha 0.353, so 0.4 is the floor with headroom.
+       Hairlines that merely separate content are decorative and sit lower. */
+    --ink-edge: 0.4;
 
     /* ── Radius ── */
     --radius-sm: 4px;

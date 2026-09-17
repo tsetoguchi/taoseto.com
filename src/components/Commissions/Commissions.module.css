@@ -67,16 +67,47 @@
     min-width: 0;
 }
 
-.servicesLabel {
+/* A <legend> cannot itself be the flex row reliably, so it stays a plain block
+   and the shared header sits inside it. */
+.legend {
     display: block;
     width: 100%;
+    padding: 0;
+}
+
+/* Both column headers use this, so they share one baseline and one rule. The
+   explicit margin-top matters: the form's header is a <p>, which would
+   otherwise inherit the UA 1em default and sit 15px below its counterpart. */
+.sectionHead,
+.formHead {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    width: 100%;
+    margin: 0 0 var(--space-6);
     padding: 0 0 var(--space-4);
-    margin-bottom: var(--space-4);
+    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.12);
+}
+
+.stepNumber {
+    font-size: var(--text-label);
+    letter-spacing: 0.14em;
+    color: var(--ghost-white);
+    font-variant-numeric: tabular-nums;
+}
+
+.sectionLabel {
     font-size: var(--text-small);
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgba(var(--color-text-rgb), var(--ink-3));
-    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
+}
+
+.requiredNote {
+    margin: calc(var(--space-6) * -1 + var(--space-2)) 0 var(--space-6);
+    font-size: var(--text-small);
+    font-weight: var(--weight-light);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
 }
 
 /* Hairline-separated rows rather than a card grid, so the column reads as a
@@ -86,42 +117,53 @@
     flex-direction: column;
 }
 
+/* Rules appear only between rows — never closing the top or bottom of the
+   group — so a hairline always means "next option" and nothing else. */
 .serviceOption {
     position: relative;
-    display: block;
-    padding: var(--space-5) 0 var(--space-5) var(--space-5);
-    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    padding: var(--space-5) 0;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
-.serviceOption:first-child {
+.serviceOption + .serviceOption {
     border-top: 1px solid rgba(var(--color-text-rgb), 0.08);
-}
-
-/* The left rail carries the selection, so the row itself never grows a border
-   or a fill that would read as a card again. */
-.serviceOption::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: -1px;
-    bottom: -1px;
-    width: 2px;
-    background-color: transparent;
-    transition: background-color 0.2s ease;
 }
 
 .serviceOption:hover {
     background-color: rgba(var(--color-text-rgb), 0.02);
 }
 
-.serviceOption:hover::before {
-    background-color: rgba(var(--color-text-rgb), 0.2);
+/* 0.4 clears the 3:1 that identifies a control (WCAG 1.4.11); the ring fills
+   on selection, so the state is a shape change and not colour alone. */
+.serviceMarker {
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
+    border-radius: 50%;
+    position: relative;
+    transition: border-color 0.2s ease;
 }
 
-.serviceOption.selected::before {
-    background-color: rgba(var(--color-text-rgb), 0.7);
+.serviceOption:hover .serviceMarker {
+    border-color: rgba(var(--color-text-rgb), 0.7);
+}
+
+.serviceOption.selected .serviceMarker {
+    border-color: var(--ghost-white);
+}
+
+.serviceOption.selected .serviceMarker::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background-color: var(--ghost-white);
 }
 
 /* The native control is hidden but still focusable, so the row shows the ring
@@ -201,36 +243,20 @@
     flex-direction: column;
 }
 
-.formLabel {
-    font-size: var(--text-small);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(var(--color-text-rgb), var(--ink-3));
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
-}
-
+/* No rules in this column: the fields carry their own edges, so a hairline
+   here would compete with the ones separating service rows opposite. */
 .form {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: var(--space-5);
 }
 
+/* The label sits nearer its own field (8px) than the gap between groups
+   (20px), so each pair groups by proximity rather than by a divider. */
 .formGroup {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08);
-    padding: var(--space-4) 0;
-    transition: border-color 0.2s ease;
-}
-
-.formGroup:first-child {
-    border-top: 1px solid rgba(var(--color-text-rgb), 0.08);
-}
-
-.formGroup:focus-within {
-    border-bottom-color: rgba(var(--color-text-rgb), 0.4);
+    gap: var(--space-2);
 }
 
 .label {
@@ -238,69 +264,95 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgba(var(--color-text-rgb), var(--ink-3));
-    margin-bottom: var(--space-2);
     transition: color 0.2s ease;
 }
 
 .formGroup:focus-within .label {
-    color: rgba(var(--color-text-rgb), 0.7);
+    color: rgba(var(--color-text-rgb), var(--ink-1));
 }
 
 .input,
 .nameInput,
 .textarea {
     width: 100%;
-    padding: var(--space-3) 0;
-    background: transparent;
-    border: none;
+    padding: var(--space-3) var(--space-4);
+    background-color: rgba(var(--color-text-rgb), 0.04);
+    border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
+    border-radius: var(--radius-sm);
     outline: none;
     color: var(--color-text);
     font-family: var(--font-default);
     font-size: var(--text-body);
     font-weight: var(--weight-light);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
+.input:focus,
+.nameInput:focus,
+.textarea:focus {
+    border-color: var(--accent);
+    background-color: rgba(var(--color-text-rgb), 0.06);
+}
+
+/* 0.52 keeps the hint at 4.5:1. The labels above carry the real meaning, so
+   these stay examples rather than substitutes for them. */
 .input::placeholder,
 .nameInput::placeholder,
 .textarea::placeholder {
-    color: rgba(var(--color-text-rgb), 0.18);
+    color: rgba(var(--color-text-rgb), 0.52);
+}
+
+/* Chrome paints autofilled fields near-white, which on this palette hides the
+   value entirely. The inset shadow repaints the well behind the text. */
+.input:-webkit-autofill,
+.nameInput:-webkit-autofill,
+.textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #14120f inset;
+    -webkit-text-fill-color: var(--color-text);
+    caret-color: var(--color-text);
 }
 
 .textarea {
-    min-height: 100px;
-    resize: none;
+    min-height: 120px;
+    /* Growable: the message is the one field with no predictable length. */
+    resize: vertical;
     line-height: 1.6;
 }
 
+/* Filled, matching the hero's primary CTA. The previous outline sat at
+   alpha 0.3 — 2.47:1 — below the 3:1 a control's boundary needs. */
 .submitBtn {
-    margin-top: var(--space-8);
+    margin-top: var(--space-2);
     align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     padding: var(--space-3) var(--space-8);
-    background-color: transparent;
-    border: 1px solid rgba(var(--color-text-rgb), 0.3);
-    color: rgba(var(--color-text-rgb), var(--ink-2));
+    background-color: var(--accent-strong);
+    border: 0;
+    color: var(--color-bg);
     font-family: var(--font-default);
     font-size: var(--text-small);
-    font-weight: var(--weight-regular);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.02em;
     cursor: pointer;
     border-radius: var(--radius-sm);
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: filter 0.2s ease, opacity 0.2s ease;
 }
 
 .submitBtn:hover {
-    background-color: rgba(var(--color-text-rgb), 0.9);
-    color: var(--color-bg);
-    border-color: rgba(var(--color-text-rgb), 0.9);
+    filter: brightness(1.08);
 }
 
 .submitBtn:active {
     opacity: 0.8;
 }
 
+/* 0.3 dropped the "Sending..." label to 2.47:1. Disabled controls are exempt
+   from contrast rules, but this one is reporting progress, so it stays legible. */
 .submitBtn:disabled {
-    opacity: 0.3;
+    opacity: 0.55;
     cursor: not-allowed;
 }
 

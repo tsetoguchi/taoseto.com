@@ -141,7 +141,14 @@ export const Commissions = () => {
           className={styles.servicesSection}
           aria-describedby={fieldErrors.service ? "service-error" : undefined}
         >
-          <legend className={styles.servicesLabel}>What you need</legend>
+          {/* The step number is decorative: reading order already carries the
+              sequence, and "01 What you need" reads badly as a group label. */}
+          <legend className={styles.legend}>
+            <span className={styles.sectionHead}>
+              <span className={styles.stepNumber} aria-hidden="true">01</span>
+              <span className={styles.sectionLabel}>What you need</span>
+            </span>
+          </legend>
 
           <div className={styles.serviceList}>
             {SERVICES.map((service, index) => (
@@ -166,6 +173,9 @@ export const Commissions = () => {
                   disabled={isSubmitting}
                   className={styles.serviceRadio}
                 />
+                {/* Selection shows as a filled ring — a shape change, not only
+                    a colour change, so it survives colour-blindness. */}
+                <span className={styles.serviceMarker} aria-hidden="true" />
                 <span className={styles.serviceBody}>
                   <span className={styles.serviceName}>{service.name}</span>
                   <span className={styles.serviceSummary}>{service.summary}</span>
@@ -188,7 +198,12 @@ export const Commissions = () => {
 
         {/* Form */}
         <div className={styles.formSection}>
-          <p className={styles.formLabel}>Inquiry</p>
+          <p className={styles.formHead}>
+            <span className={styles.stepNumber} aria-hidden="true">02</span>
+            <span className={styles.sectionLabel}>Your details</span>
+          </p>
+          {/* Stated once rather than marking four of four fields required. */}
+          <p className={styles.requiredNote}>All fields required.</p>
           <form onSubmit={handleSubmit} className={styles.form} noValidate>
 
             <div className={styles.formGroup}>
