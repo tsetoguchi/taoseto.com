@@ -158,6 +158,12 @@
         transition-delay: 0s;
     }
 
+    /* Icon-only links are wider than their glyph to stay tappable, so the
+       glyph is pinned right rather than centred in that box. */
+    .navLink {
+        justify-content: flex-end;
+    }
+
     .menuItems {
         flex-direction: column;
         align-items: flex-end;
@@ -165,7 +171,9 @@
         gap: var(--space-3);
         border-radius: var(--radius-lg);
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
-        padding: var(--space-6) var(--space-8);
+        /* No right padding: each link carries its own, so the text and icons
+           land on the same right edge as the hamburger above them. */
+        padding: var(--space-6) 0 var(--space-6) var(--space-8);
         box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
     }
 }
