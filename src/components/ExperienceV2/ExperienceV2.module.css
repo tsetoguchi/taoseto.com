@@ -172,7 +172,6 @@
 .role {
   font-size: var(--text-small);
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: rgba(var(--color-text-rgb), var(--ink-3));
   margin: 0;
 }
