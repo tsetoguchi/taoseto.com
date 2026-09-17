@@ -35,6 +35,10 @@
     --space-24: 96px;
 
     /* ── Layout frame ── */
+    /* The navbar is in flow above 991px and fixed below it, so only the
+       mobile height needs to be paid back as content offset. */
+    --nav-height: 64px;
+    --nav-height-mobile: 48px;
     --gutter: clamp(24px, 6vw, 80px);
     --content-max: 1180px;
     /* Side padding that lines up full-bleed elements (nav, hero, footer) with

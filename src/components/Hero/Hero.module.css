@@ -9,7 +9,6 @@
     flex: 1;
     min-height: 0;
     padding-bottom: 132px;
-    overflow: hidden;
 }
 
 /* Stacked and centred: the copy reads as a single column with the project
@@ -24,7 +23,6 @@
     margin: 0;
     padding: 0 var(--frame-pad);
     z-index: 1;
-    overflow: hidden;
 }
 
 /* Sized to its contents, so the stagger is preserved inside while the block
@@ -88,9 +86,19 @@
 /* ── CTAs ── */
 .ctas {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--space-3);
     align-items: center;
     margin-left: 240px;
+}
+
+/* Padding alone leaves the buttons a pixel short of a 44px touch target. */
+.ctaPrimary,
+.ctaSecondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
 }
 
 .ctaPrimary {
@@ -98,8 +106,7 @@
     font-family: var(--font-default);
     font-size: var(--text-small);
     font-weight: var(--weight-semibold);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
     color: var(--color-bg);
     background-color: var(--accent-strong);
     padding: var(--space-3) var(--space-8);
@@ -116,8 +123,7 @@
     font-family: var(--font-default);
     font-size: var(--text-small);
     font-weight: var(--weight-regular);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
     color: rgba(var(--color-text-rgb), var(--ink-3));
     border: 1px solid rgba(var(--color-text-rgb), 0.45);
     padding: var(--space-3) var(--space-8);
@@ -188,25 +194,28 @@
 
 /* ── Mobile ── */
 @media screen and (max-width: 900px) {
+    /* The wrapper already offsets the fixed navbar, so the column claims the
+       rest of the viewport — and grows past it, scrolling, when a short or
+       landscape screen cannot fit the stack. */
     .section {
-        min-height: 100dvh;
+        min-height: 0;
+        padding-bottom: 0;
     }
 
     .container {
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        height: 100dvh;
-        min-height: auto;
-        padding: var(--space-20) var(--gutter) 120px;
+        justify-content: center;
+        min-height: calc(100dvh - var(--nav-height-mobile));
+        padding: var(--space-12) var(--gutter) var(--space-24);
         margin: 0;
-        overflow: hidden;
     }
 
     .content {
         align-items: center;
         text-align: center;
-        max-width: 100%;
+        /* Unbounded, the paragraph runs ~95 characters per line at 768px. */
+        max-width: min(100%, 48ch);
         margin-top: var(--space-8);
     }
 
@@ -233,11 +242,21 @@
     }
 
     .description {
-        font-size: var(--text-small);
+        font-size: var(--text-body);
     }
 
+    /* The pair does not fit one line at 320px, so it wraps and each button
+       stretches instead of overflowing the column. */
     .ctas {
         justify-content: center;
+        width: 100%;
+    }
+
+    .ctaPrimary,
+    .ctaSecondary {
+        flex: 1 1 auto;
+        text-align: center;
+        padding: var(--space-3) var(--space-6);
     }
 
     .linkWrapper {

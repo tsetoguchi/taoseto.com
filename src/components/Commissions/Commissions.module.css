@@ -5,7 +5,6 @@
     background-color: var(--color-bg);
     min-height: 100vh;
     padding: var(--space-6) var(--frame-pad) var(--space-16);
-    padding-top: 0;
     display: flex;
     flex-direction: column;
     font-family: var(--font-default);
@@ -36,9 +35,12 @@
 }
 
 /* ── Two-column layout ── */
+/* Column counts follow the space available rather than a breakpoint: a hard
+   2x2 held down to 901px, where tier cards shrank to 168px and their
+   features wrapped one word per line. */
 .layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: var(--space-16);
     align-items: start;
 }
@@ -46,8 +48,7 @@
 /* ── Tiers ── */
 .tiersSection {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: var(--space-6);
 }
 
@@ -134,7 +135,7 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-4);
 }
 
 .tierName {
@@ -252,7 +253,7 @@
 .select,
 .textarea {
     width: 100%;
-    padding: 6px 0;
+    padding: var(--space-3) 0;
     background: transparent;
     border: none;
     outline: none;
@@ -298,7 +299,7 @@
     border: 1px solid rgba(var(--color-text-rgb), 0.3);
     color: rgba(var(--color-text-rgb), var(--ink-2));
     font-family: var(--font-default);
-    font-size: var(--text-label);
+    font-size: var(--text-small);
     font-weight: var(--weight-regular);
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -338,7 +339,7 @@
 
 .fieldError {
     margin: var(--space-2) 0 0;
-    font-size: var(--text-label);
+    font-size: var(--text-small);
     letter-spacing: 0.04em;
     color: #e88b8b;
 }
@@ -355,7 +356,6 @@
 @media screen and (max-width: 900px) {
     .container {
         padding: var(--space-6) var(--gutter) var(--space-12);
-        padding-top: var(--space-6);
     }
 
     .pageHeader {

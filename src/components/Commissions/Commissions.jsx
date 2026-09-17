@@ -8,7 +8,6 @@ const TIERS = [
   {
     id: "Mixing",
     name: "Mixing",
-    price: "",
     featured: false,
     features: [
       "Radio ready mixdown",
@@ -19,7 +18,6 @@ const TIERS = [
   {
     id: "Mastering",
     name: "Mastering",
-    price: "",
     featured: false,
     features: [
       "Platform-ready master",
@@ -30,7 +28,6 @@ const TIERS = [
   {
     id: "Mixing & Mastering",
     name: "Mixing & Mastering",
-    price: "",
     featured: true,
     badge: "Full service",
     features: [
@@ -42,7 +39,6 @@ const TIERS = [
   {
     id: "Other",
     name: "Other",
-    price: "",
     featured: false,
     features: [
       "Beat & track production",
@@ -177,7 +173,7 @@ export const Commissions = () => {
                 <span className={styles.tierName}>{tier.name}</span>
                 {tier.badge && <span className={styles.tierBadge}>{tier.badge}</span>}
               </div>
-              <p className={styles.tierPrice}>{tier.price}</p>
+              {tier.price && <p className={styles.tierPrice}>{tier.price}</p>}
               <div className={styles.tierDivider} />
               <ul className={styles.tierFeatures}>
                 {tier.features.map((f) => (
