@@ -30,27 +30,34 @@
   padding-bottom: var(--space-6);
 }
 
-.pageTitle {
-  font-size: var(--text-label);
-  font-weight: var(--weight-regular);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(var(--color-text-rgb), var(--ink-3));
-  margin: 0 0 10px;
-}
-
-.headerRow {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-}
-
-.pageSubtitle {
+.pageHeading {
   font-size: var(--text-h1);
   font-weight: var(--weight-light);
   color: var(--color-text);
   margin: 0;
   line-height: 1.15;
+}
+
+/* Above 991px the navbar is expanded, so the lit nav item says which page this
+   is and the visible heading would only repeat it. The h1 is hidden rather
+   than removed: it still anchors the heading order above the card h3s. */
+@media screen and (min-width: 992px) {
+  .pageHeader {
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .pageHeading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }
 
 /* ── Cards ── */
@@ -232,12 +239,7 @@
     font-size: 1.5rem;
   }
 
-  .headerRow {
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .pageSubtitle {
+  .pageHeading {
     font-size: 1.8rem;
   }
 

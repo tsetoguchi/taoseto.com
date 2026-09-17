@@ -4,43 +4,30 @@ import styles from "./Commissions.module.css";
 import { getApiEndpoint } from "../../config";
 import { CommissionsPortfolio2 as CommissionsPortfolio } from "./CommissionsPortfolio2";
 
-const TIERS = [
+// `id` is the value submitted to the backend, so it stays stable even when the
+// display name changes.
+const SERVICES = [
   {
     id: "Mixing",
     name: "Mixing",
-    featured: false,
-    features: [
-      "Radio ready mixdown",
-      "Instrumental + Stems",
-      "5 rounds of revisions",
-    ],
+    summary:
+      "Balance, processing and stereo staging on a finished arrangement. You get the mixdown plus the instrumental and stems, and five rounds of revisions.",
   },
   {
     id: "Mastering",
     name: "Mastering",
-    featured: false,
-    features: [
-      "Platform-ready master",
-      "Commercial grade loudness",
-      "3 rounds of revisions",
-    ],
+    summary: "Final loudness, tone and format for release. Three rounds.",
   },
   {
     id: "Mixing & Mastering",
     name: "Mixing & Mastering",
-    featured: true,
-    badge: "Full service",
-    features: [
-      "All mixing services",
-      "All mastering services free of charge",
-      "Priority turnaround",
-    ],
+    summary: "Both, with the mastering included and priority turnaround.",
   },
   {
     id: "Other",
-    name: "Other",
-    featured: false,
-    features: [
+    name: "Something else",
+    summary: "Anything else in the production chain:",
+    items: [
       "Beat & track production",
       "Pre-production arrangement",
       "Post-production editing & cleanup",
@@ -49,7 +36,8 @@ const TIERS = [
 ];
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const FIELD_ORDER = ["name", "email", "service", "message"];
+// Service sits left of the form, so it leads the focus order.
+const FIELD_ORDER = ["service", "name", "email", "message"];
 
 export const Commissions = () => {
   const [formData, setFormData] = useState({
@@ -67,11 +55,6 @@ export const Commissions = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     clearFieldError(name);
-  };
-
-  const handleTierSelect = (tierId) => {
-    setFormData({ ...formData, service: tierId });
-    clearFieldError("service");
   };
 
   // Errors clear as the field is corrected rather than on a timer.
@@ -145,44 +128,63 @@ export const Commissions = () => {
         <meta property="og:title" content="Commissions" />
         <meta property="og:url" content="https://taoseto.com/commissions" />
       </Helmet>
-      <div className={styles.pageHeader}>
-        <p className={styles.pageTitle}>Services</p>
-        <h1 className={styles.pageSubtitle}>Get in touch</h1>
-      </div>
+      <header className={styles.pageHeader}>
+        <h1 className={styles.pageHeading}>Commissions</h1>
+      </header>
 
       <CommissionsPortfolio />
 
       <div className={styles.layout}>
 
-        {/* Tiers */}
-        <div className={styles.tiersSection}>
-          <p className={styles.tiersLabel}>You're looking for</p>
-          {TIERS.map((tier) => (
-            <button
-              key={tier.id}
-              type="button"
-              aria-pressed={formData.service === tier.id}
-              className={[
-                styles.tierCard,
-                tier.featured ? styles.featured : "",
-                formData.service === tier.id ? styles.selected : "",
-              ].join(" ")}
-              onClick={() => handleTierSelect(tier.id)}
-            >
-              <div className={styles.tierHeader}>
-                <span className={styles.tierName}>{tier.name}</span>
-                {tier.badge && <span className={styles.tierBadge}>{tier.badge}</span>}
-              </div>
-              {tier.price && <p className={styles.tierPrice}>{tier.price}</p>}
-              <div className={styles.tierDivider} />
-              <ul className={styles.tierFeatures}>
-                {tier.features.map((f) => (
-                  <li key={f} className={styles.tierFeature}>{f}</li>
-                ))}
-              </ul>
-            </button>
-          ))}
-        </div>
+        {/* Services */}
+        <fieldset
+          className={styles.servicesSection}
+          aria-describedby={fieldErrors.service ? "service-error" : undefined}
+        >
+          <legend className={styles.servicesLabel}>What you need</legend>
+
+          <div className={styles.serviceList}>
+            {SERVICES.map((service, index) => (
+              <label
+                key={service.id}
+                className={[
+                  styles.serviceOption,
+                  formData.service === service.id ? styles.selected : "",
+                ].join(" ")}
+              >
+                {/* Native radios so one choice is enforced and the arrow keys
+                    move between options without a roving tabindex. */}
+                <input
+                  type="radio"
+                  name="service"
+                  /* The group's first control is what an unanswered "select a
+                     service" error focuses. */
+                  id={index === 0 ? "service" : undefined}
+                  value={service.id}
+                  checked={formData.service === service.id}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className={styles.serviceRadio}
+                />
+                <span className={styles.serviceBody}>
+                  <span className={styles.serviceName}>{service.name}</span>
+                  <span className={styles.serviceSummary}>{service.summary}</span>
+                  {service.items && (
+                    <span className={styles.serviceItems}>
+                      {service.items.map((item) => (
+                        <span key={item} className={styles.serviceItem}>{item}</span>
+                      ))}
+                    </span>
+                  )}
+                </span>
+              </label>
+            ))}
+          </div>
+
+          {fieldErrors.service && (
+            <p id="service-error" className={styles.fieldError}>{fieldErrors.service}</p>
+          )}
+        </fieldset>
 
         {/* Form */}
         <div className={styles.formSection}>
@@ -218,26 +220,6 @@ export const Commissions = () => {
               />
               {fieldErrors.email && (
                 <p id="email-error" className={styles.fieldError}>{fieldErrors.email}</p>
-              )}
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="service" className={styles.label}>Service</label>
-              <select
-                id="service" name="service"
-                value={formData.service} onChange={handleChange}
-                className={styles.select} disabled={isSubmitting} required
-                aria-invalid={!!fieldErrors.service}
-                aria-describedby={fieldErrors.service ? "service-error" : undefined}
-              >
-                <option value="">Select a service...</option>
-                <option value="Mixing">Mixing</option>
-                <option value="Mastering">Mastering</option>
-                <option value="Mixing & Mastering">Mixing & Mastering</option>
-                <option value="Other">Other</option>
-              </select>
-              {fieldErrors.service && (
-                <p id="service-error" className={styles.fieldError}>{fieldErrors.service}</p>
               )}
             </div>
 
