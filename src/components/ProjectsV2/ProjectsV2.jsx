@@ -27,7 +27,8 @@ const PROJECTS = [
     title: "airy",
     href: "https://github.com/tsetoguchi/airy",
     image: airyPoster,
-    description: "A real-time oscilloscope. It draws the signal while it plays, and that is all it does.",
+    description:
+      "A real-time oscilloscope audio plugin. Visually pleasing and has an adjustable zoom knob.",
     meta: ["2026", "C++/JUCE"],
   },
   {
