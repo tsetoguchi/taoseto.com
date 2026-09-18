@@ -10,7 +10,6 @@ import styles from "./ProjectsV2.module.css";
 const PROJECTS = [
   {
     title: "LyricLike.com",
-    aspect: 2.286,
     href: "https://lyriclike.com/",
     image: LyricLike,
     description:
@@ -19,7 +18,6 @@ const PROJECTS = [
   },
   {
     title: "airy",
-    aspect: 1.707,
     href: "https://github.com/tsetoguchi/airy",
     image: airyPoster,
     description: "A real-time oscilloscope. It draws the signal while it plays, and that is all it does.",
@@ -27,7 +25,6 @@ const PROJECTS = [
   },
   {
     title: "Currently VST",
-    aspect: 1.772,
     href: "https://github.com/tsetoguchi/CurrentlyVST",
     image: CurrentlyVST,
     description:
@@ -36,7 +33,6 @@ const PROJECTS = [
   },
   {
     title: "Valolytics",
-    aspect: 3.892,
     href: "https://github.com/tsetoguchi/Valolytics",
     image: Valorant,
     description:
@@ -45,7 +41,6 @@ const PROJECTS = [
   },
   {
     title: "The Slushie Machine",
-    aspect: 2.269,
     href: "https://github.com/tsetoguchi/The-Slushie-Machine",
     image: TheSlushieMachine,
     description:
@@ -72,32 +67,29 @@ export const ProjectsV2 = () => {
           <h1 className={styles.pageHeading}>Projects</h1>
         </header>
 
-        <div className={styles.stack}>
+        <div className={styles.projects}>
           {PROJECTS.map((project) => (
             <a
               key={project.title}
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.card}
+              className={styles.project}
             >
-              <div
-                className={styles.media}
-                style={{ "--card-aspect": String(project.aspect) }}
-              >
+              <div className={styles.media}>
                 <img
                   src={project.image}
                   alt={project.title}
-                  className={styles.cardImage}
+                  className={styles.projectImage}
                   loading="lazy"
                 />
               </div>
-              <div className={styles.cardScrim}>
-                <h3 className={styles.cardTitle}>{project.title}</h3>
-                <p className={styles.cardDescription}>{project.description}</p>
+              <div className={styles.projectText}>
+                <h3 className={styles.projectTitle}>{project.title}</h3>
+                <p className={styles.projectDescription}>{project.description}</p>
                 {/* Joined into one string so the facts are not read as three
                     run-together words. */}
-                <p className={styles.cardMeta}>{project.meta.join(" · ")}</p>
+                <p className={styles.projectMeta}>{project.meta.join(" · ")}</p>
               </div>
             </a>
           ))}

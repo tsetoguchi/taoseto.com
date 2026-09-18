@@ -7,6 +7,7 @@ import '@fontsource/outfit/300.css'
 import '@fontsource/outfit/400.css'
 import '@fontsource/outfit/500.css'
 import '@fontsource/outfit/600.css'
+import '@fontsource/ibarra-real-nova/400.css'
 
 
 createRoot(document.getElementById('root')).render(

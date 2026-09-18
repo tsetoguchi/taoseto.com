@@ -9,6 +9,13 @@
     --color-dark: #4f75aa;
     --color-bg: #0A0A0A;
     --color-text-rgb: 245, 245, 245;
+    /* Light-on-dark flipped, for sections set in reverse. */
+    --color-inverse-bg: #F5F5F5;
+    --color-inverse-text: #0A0A0A;
+    --color-inverse-text-rgb: 10, 10, 10;
+    /* Error text, pale on the dark ground and deep on the inverse one. */
+    --color-error: #e88b8b;
+    --color-error-inverse: #b42318;
     --color-contact: #F5F5F5;
     --color-nav: #0A0A0A;
 
@@ -20,7 +27,8 @@
     --accent-strong: #EDE6DA;
 
     /* ── Fonts ── */
-    --font-default: Outfit;
+    --font-default: 'Outfit', Arial, Helvetica, sans-serif;
+    --font-display: 'Ibarra Real Nova', Georgia, 'Times New Roman', serif;
 
     /* ── Spacing (8-pt rhythm) ── */
     --space-1: 4px;
@@ -40,15 +48,20 @@
        mobile height needs to be paid back as content offset. */
     --nav-height: 64px;
     --nav-height-mobile: 48px;
+    /* Room left under the home hero so the fixed contact bar never covers it. */
+    --contact-clearance: 132px;
     --gutter: clamp(24px, 6vw, 80px);
     --content-max: 1180px;
     /* Side padding that lines up full-bleed elements (nav, hero, footer) with
        the left edge of centered, content-max-capped page content. */
     --frame-pad: max(var(--gutter), calc((100% - var(--content-max)) / 2));
+    /* The same inset measured from the viewport, for elements whose containing
+       block is narrower than the page (e.g. one half of a split layout). */
+    --frame-pad-viewport: max(var(--gutter), calc((100vw - var(--content-max)) / 2));
 
     /* ── Type scale ── */
     --text-display: 4.5rem;
-    --text-h1: 2.4rem;
+    --text-h1: 2.8rem;
     --text-h2: 1.3rem;
     --text-body: 1.0625rem;   /* 17px */
     --text-small: 0.9375rem;  /* 15px */

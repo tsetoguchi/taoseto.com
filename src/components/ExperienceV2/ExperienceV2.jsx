@@ -28,7 +28,7 @@ const EXPERIENCE = [
     logo: getLogo("rhythmedia"),
     gradient: ["#3d1510", "#e05a3a"],
     role: "Lead Audio Engineer & International Communications",
-    period: "March 2025 - March 2026",
+    period: "March 2025 — March 2026",
     bullets: [
       "Drove Rhythmedia's in-house audio production capability from zero to one, launching on-demand studio sessions with The Alchemist, MISIA, and DJ MURO, and cutting broadcast-commercial post-production turnaround by 2-5 days for clients including Lawson, J-Wave, and Koikeya.",
       "Managed collaboration across time zones and cultures with counterparts in the US, UK, and Thailand, including The Alchemist and mastering engineer Herb Powers Jr., building a coordination process that supported 6+ projects.",
@@ -41,7 +41,7 @@ const EXPERIENCE = [
     logo: getLogo("statestreet"),
     gradient: ["#0a1540", "#2a5cdb"],
     role: "Site Reliability Engineer",
-    period: "February 2022 - July 2022",
+    period: "February 2022 — July 2022",
     bullets: [
       "Investigated production edge cases in microservices at a $4T+ AUM custodian bank using Dynatrace and Splunk, shipping PRs with defensive error handling and logging across API endpoints.",
       "Prototyped an internal client-data analysis web app for a 5-person operations team, refactoring UI routing to cut per-task navigation from 4 clicks to 1.",
@@ -56,10 +56,7 @@ const EXPERIENCE = [
     role: "Music Producer",
     period: "July 2019",
     bullets: [
-      "Produced, mixed, and mastered music using FL Studio and Ableton for a KohGenDo commercial broadcast to millions on national television and YouTube Ads, contributing to an increase in brand visibility.",
-      "Collaborated closely with renowned Japanese actress Hikari Mitsushima to refine and finalize music, ensuring alignment with the commercial's vision.",
-      "Supervised and conducted recording sessions with a guitarist, achieving high-quality recordings under tight deadlines, showcasing strong project management skills.",
-    ],
+      "Produced the music for a Koh Gen Do commercial launching the brand's new muse, aired on Japanese national television and as a YouTube ad to millions.",    ],
   },
 ];
 
@@ -78,46 +75,43 @@ export const ExperienceV2 = () => {
           <h1 className={styles.pageHeading}>Experience</h1>
         </header>
 
-        <div className={styles.cards}>
+        <div className={styles.entries}>
           {EXPERIENCE.map((entry, i) => (
-            <article key={i} className={styles.card}>
-              <div className={styles.cardLeft}>
-                <div className={styles.logoWrapper}>
-                  {entry.logo ? (
-                    <img
-                      src={entry.logo}
-                      alt={`${entry.company} logo`}
-                      className={styles.companyLogo}
-                    />
-                  ) : (
-                    <span className={styles.logoFallback}>
-                      {entry.company.charAt(0)}
-                    </span>
-                  )}
-                </div>
+            <article key={i} className={styles.entry}>
+              <div className={styles.logoWrapper}>
+                {entry.logo ? (
+                  <img
+                    src={entry.logo}
+                    alt={`${entry.company} logo`}
+                    className={styles.companyLogo}
+                  />
+                ) : (
+                  <span className={styles.logoFallback}>
+                    {entry.company.charAt(0)}
+                  </span>
+                )}
+              </div>
+
+              <div className={styles.entryMeta}>
+                <h3 className={styles.companyName}>
+                  <a
+                    href={entry.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.companyLink}
+                  >
+                    {entry.company}
+                  </a>
+                </h3>
+                <p className={styles.role}>{entry.role}</p>
                 <span className={styles.period}>{entry.period}</span>
               </div>
 
-              <div className={styles.cardRight}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.companyName}>
-                    <a
-                      href={entry.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.companyLink}
-                    >
-                      {entry.company}
-                    </a>
-                  </h3>
-                  <p className={styles.role}>{entry.role}</p>
-                </div>
-                <ul className={styles.bullets}>
-                  {entry.bullets.map((b, j) => (
-                    <li key={j} className={styles.bullet}>{b}</li>
-                  ))}
-                </ul>
-              </div>
+              <ul className={styles.bullets}>
+                {entry.bullets.map((b, j) => (
+                  <li key={j} className={styles.bullet}>{b}</li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>
