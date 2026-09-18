@@ -29,14 +29,14 @@
   font-size: var(--text-h1);
   font-weight: var(--weight-light);
   color: var(--color-text);
-  line-height: 1.15;
+  line-height: var(--leading-heading);
   margin: 0 0 var(--space-4);
 }
 
 .description {
   font-size: var(--text-body);
   color: rgba(var(--color-text-rgb), var(--ink-2));
-  line-height: 1.7;
+  line-height: var(--leading-body);
   max-width: 480px;
   margin: 0 0 var(--space-12);
 }
@@ -67,7 +67,7 @@
   background-color: var(--accent-strong);
   padding: var(--space-3) var(--space-8);
   border-radius: var(--radius-sm);
-  transition: filter 0.2s ease;
+  transition: filter var(--duration-fast) ease;
 }
 
 .ctaPrimary:hover {
@@ -80,15 +80,15 @@
   font-weight: var(--weight-regular);
   letter-spacing: 0.02em;
   color: rgba(var(--color-text-rgb), var(--ink-3));
-  border: 1px solid rgba(var(--color-text-rgb), 0.45);
+  border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
   padding: var(--space-3) var(--space-8);
   border-radius: var(--radius-sm);
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--duration-fast) ease, border-color var(--duration-fast) ease;
 }
 
 .ctaSecondary:hover {
-  color: rgba(var(--color-text-rgb), 0.9);
-  border-color: rgba(var(--color-text-rgb), 0.7);
+  color: rgba(var(--color-text-rgb), var(--ink-1));
+  border-color: rgba(var(--color-text-rgb), var(--ink-2));
 }
 
 @media screen and (max-width: 600px) {

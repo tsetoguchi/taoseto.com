@@ -13,7 +13,7 @@
        fixed at the mobile breakpoint. */
     min-height: var(--nav-height);
     padding: 0 var(--frame-pad);
-    z-index: 2;
+    z-index: var(--z-nav);
     background-color: var(--color-nav);
 }
 
@@ -24,7 +24,7 @@
     text-decoration: none;
     color: var(--color-text);
     white-space: nowrap;
-    transition: color 0.3s ease;
+    transition: color var(--duration-base) ease;
     display: flex;
     align-items: center;
     margin-right: auto;
@@ -71,7 +71,7 @@
     /* Sits a step below body ink so the current page can reach full strength
        without needing a weight change, which would shift the row's width. */
     opacity: var(--ink-3);
-    transition: opacity 0.3s ease;
+    transition: opacity var(--duration-base) ease;
 }
 
 .navLink:hover {
@@ -140,7 +140,7 @@
         flex: 0 0 100%;
         display: grid;
         grid-template-rows: 0fr;
-        transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: grid-template-rows var(--duration-base) cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .collapse.isOpen {
@@ -153,7 +153,7 @@
         /* Kept out of the tab order while collapsed, but only after the
            closing animation has finished. */
         visibility: hidden;
-        transition: visibility 0s linear 0.35s;
+        transition: visibility 0s linear var(--duration-base);
     }
 
     .collapse.isOpen .collapseInner {

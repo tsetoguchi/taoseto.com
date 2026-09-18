@@ -21,7 +21,7 @@
     font-weight: var(--weight-light);
     color: var(--color-text);
     margin: 0;
-    line-height: 1.15;
+    line-height: var(--leading-heading);
 }
 
 /* ── Bands ── */
@@ -45,13 +45,14 @@
 }
 
 /* Colours in a band derive from --color-text(-rgb), so swapping those inverts
-   it. The bone accent and pale error red vanish on the light ground, so they
-   swap too. The border-image paints the full-bleed strip (see ExperienceV2). */
+   it. The bone accent, pale error red and control edge fall short on the light
+   ground, so they swap too. The border-image paints the full-bleed strip (see ExperienceV2). */
 .band:nth-child(even) {
     --color-text: var(--color-inverse-text);
     --color-text-rgb: var(--color-inverse-text-rgb);
     --accent-strong: var(--color-inverse-text);
     --color-error: var(--color-error-inverse);
+    --ink-edge: var(--ink-edge-inverse);
     border-image: linear-gradient(var(--color-inverse-bg), var(--color-inverse-bg))
         fill 0 / 0 / 0 100vmax;
 }
@@ -88,7 +89,7 @@
     margin: 0;
     font-size: var(--text-h3);
     font-weight: var(--weight-medium);
-    line-height: 1.2;
+    line-height: var(--leading-title);
     color: var(--color-text);
 }
 
@@ -96,7 +97,7 @@
     margin: 0;
     max-width: var(--measure);
     font-size: var(--text-body);
-    line-height: 1.7;
+    line-height: var(--leading-body);
     color: rgba(var(--color-text-rgb), var(--ink-2));
 }
 
@@ -114,7 +115,7 @@
     font-weight: var(--weight-semibold);
     letter-spacing: 0.02em;
     text-decoration: none;
-    transition: filter 0.2s ease;
+    transition: filter var(--duration-fast) ease;
 }
 
 .bandCta:hover {
@@ -171,15 +172,15 @@
     align-items: start;
     padding: var(--space-5) 0;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color var(--duration-fast) ease;
 }
 
 .serviceOption + .serviceOption {
-    border-top: 1px solid rgba(var(--color-text-rgb), 0.08);
+    border-top: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
 }
 
 .serviceOption:hover {
-    background-color: rgba(var(--color-text-rgb), 0.02);
+    background-color: rgba(var(--color-text-rgb), var(--ink-fill));
 }
 
 /* 0.4 clears the 3:1 that identifies a control (WCAG 1.4.11); the ring fills
@@ -191,11 +192,11 @@
     border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
     border-radius: 50%;
     position: relative;
-    transition: border-color 0.2s ease;
+    transition: border-color var(--duration-fast) ease;
 }
 
 .serviceOption:hover .serviceMarker {
-    border-color: rgba(var(--color-text-rgb), 0.7);
+    border-color: rgba(var(--color-text-rgb), var(--ink-2));
 }
 
 .serviceOption.selected .serviceMarker {
@@ -246,7 +247,7 @@
     font-weight: var(--weight-medium);
     color: rgba(var(--color-text-rgb), var(--ink-3));
     letter-spacing: 0.01em;
-    transition: color 0.2s ease;
+    transition: color var(--duration-fast) ease;
 }
 
 .serviceOption:hover .serviceName,
@@ -258,7 +259,7 @@
     font-size: var(--text-small);
     font-weight: var(--weight-regular);
     color: rgba(var(--color-text-rgb), var(--ink-3));
-    line-height: 1.6;
+    line-height: var(--leading-snug);
     max-width: 46ch;
 }
 
@@ -276,7 +277,7 @@
     font-size: var(--text-small);
     font-weight: var(--weight-regular);
     color: rgba(var(--color-text-rgb), var(--ink-3));
-    line-height: 1.5;
+    line-height: var(--leading-snug);
 }
 
 .serviceItem::before {
@@ -319,7 +320,7 @@
     font-size: var(--text-small);
     letter-spacing: 0.01em;
     color: rgba(var(--color-text-rgb), var(--ink-3));
-    transition: color 0.2s ease;
+    transition: color var(--duration-fast) ease;
 }
 
 .formGroup:focus-within .label {
@@ -331,7 +332,7 @@
 .textarea {
     width: 100%;
     padding: var(--space-3) var(--space-4);
-    background-color: rgba(var(--color-text-rgb), 0.04);
+    background-color: rgba(var(--color-text-rgb), var(--ink-fill));
     border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
     border-radius: var(--radius-sm);
     outline: none;
@@ -339,7 +340,7 @@
     font-family: var(--font-default);
     font-size: var(--text-body);
     font-weight: var(--weight-regular);
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+    transition: border-color var(--duration-fast) ease, background-color var(--duration-fast) ease;
 }
 
 /* --accent-strong rather than --accent: against the resting border the accent
@@ -350,7 +351,7 @@
 .nameInput:focus,
 .textarea:focus {
     border-color: var(--accent-strong);
-    background-color: rgba(var(--color-text-rgb), 0.06);
+    background-color: rgba(var(--color-text-rgb), var(--ink-fill-active));
 }
 
 /* 0.52 keeps the hint at 4.5:1. The labels above carry the real meaning, so
@@ -375,7 +376,7 @@
     min-height: 120px;
     /* Growable: the message is the one field with no predictable length. */
     resize: vertical;
-    line-height: 1.6;
+    line-height: var(--leading-snug);
 }
 
 /* Filled, matching the hero's primary CTA. The previous outline sat at
@@ -397,7 +398,7 @@
     letter-spacing: 0.02em;
     cursor: pointer;
     border-radius: var(--radius-sm);
-    transition: filter 0.2s ease, opacity 0.2s ease;
+    transition: filter var(--duration-fast) ease, opacity var(--duration-fast) ease;
 }
 
 .submitBtn:hover {
@@ -439,9 +440,9 @@
 .errorMessage {
     font-size: var(--text-small);
     letter-spacing: 0.05em;
-    color: #e07070;
+    color: var(--color-error);
     padding: var(--space-3) 0;
-    border-top: 1px solid rgba(224, 112, 112, 0.3);
+    border-top: 1px solid color-mix(in srgb, var(--color-error) 30%, transparent);
 }
 
 /* ── Mobile ── */

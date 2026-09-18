@@ -85,6 +85,34 @@
        that bottoms out at alpha 0.353, so 0.4 is the floor with headroom.
        Hairlines that merely separate content are decorative and sit lower. */
     --ink-edge: 0.4;
+    /* Dark ink on --color-inverse-bg needs alpha 0.44 for the same 3:1. */
+    --ink-edge-inverse: 0.5;
+    /* Decorative only (~1.2:1): never the sole cue for a control or state. */
+    --ink-hairline: 0.08;   /* separators between rows */
+    --ink-fill: 0.04;       /* wells: inputs, artwork, hovered rows */
+    --ink-fill-active: 0.06;
+
+    /* ── Leading ── */
+    --leading-display: 0.95;
+    --leading-heading: 1.15;  /* h1-sized headings */
+    --leading-title: 1.2;     /* h3 and single-line titles */
+    /* Running text never goes below 1.5 (WCAG 1.4.8); tighter steps are for
+       headings and single lines only. */
+    --leading-snug: 1.5;      /* small, multi-line text */
+    --leading-body: 1.7;
+
+    /* ── Motion ── */
+    /* Anything answering a click or tap stays at or under 300ms so it reads
+       as a response, not a wait. prefers-reduced-motion zeroes all of these
+       in index.css. */
+    --duration-fast: 0.2s;    /* hover and focus feedback */
+    --duration-base: 0.3s;    /* opening and closing, e.g. the mobile menu */
+    --duration-slow: 0.4s;    /* decorative motion nobody waits on */
+
+    /* ── Layers ── */
+    --z-nav: 2;
+    --z-contact-bar: 99;
+    --z-skip-link: 1000;
 
     /* ── Radius ── */
     --radius-sm: 4px;
