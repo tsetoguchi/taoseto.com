@@ -44,33 +44,26 @@ const TRACKS = [
 
 export const CommissionsPortfolio2 = () => {
   return (
-    <div className={styles.section}>
-      <p className={styles.label}>Selected work</p>
-
-      <div className={styles.grid}>
-        {TRACKS.map((track) => (
-          <div key={track.id} className={styles.card}>
-            <div className={styles.artwork}>
-              {track.coverArt ? (
-                <img src={track.coverArt} alt={`${track.title} cover`} className={styles.artworkImg} />
-              ) : (
-                <div className={styles.artworkPlaceholder} />
-              )}
-            </div>
-
-            <div className={styles.info}>
-              <span className={styles.title}>{track.title}</span>
-              <div className={styles.meta}>
-                <span className={styles.artist}>
-                  {track.artist ?? <span className={styles.privateArtist}>Private client</span>}
-                </span>
-                <span className={styles.dot}>·</span>
-                <span className={styles.serviceTag}>{track.service}</span>
-              </div>
-            </div>
+    <ul className={styles.list}>
+      {TRACKS.map((track) => (
+        <li key={track.id} className={styles.track}>
+          <div className={styles.artwork}>
+            {track.coverArt ? (
+              <img src={track.coverArt} alt={`${track.title} cover`} className={styles.artworkImg} />
+            ) : (
+              <div className={styles.artworkPlaceholder} />
+            )}
           </div>
-        ))}
-      </div>
-    </div>
+
+          <div className={styles.info}>
+            <span className={styles.title}>{track.title}</span>
+            <span className={styles.meta}>
+              {track.artist ?? <span className={styles.privateArtist}>Private client</span>}
+            </span>
+            <span className={styles.meta}>{track.service}</span>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 };

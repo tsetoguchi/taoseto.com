@@ -9,7 +9,7 @@
   position: relative;
   background-color: var(--color-bg);
   min-height: 100vh;
-  padding: var(--space-6) var(--frame-pad) var(--space-16);
+  padding: var(--space-16) var(--frame-pad) var(--space-16);
   font-family: var(--font-default);
   animation: fadeIn 0.4s ease-in;
 }
@@ -25,12 +25,11 @@
 
 /* ── Page header ── */
 .pageHeader {
-  margin-bottom: var(--space-16);
-  border-bottom: 1px solid rgba(var(--color-text-rgb), 0.12);
-  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-20);
 }
 
 .pageHeading {
+  font-family: var(--font-display);
   font-size: var(--text-h1);
   font-weight: var(--weight-light);
   color: var(--color-text);
@@ -38,32 +37,42 @@
   line-height: 1.15;
 }
 
-/* ── Cards ── */
-.cards {
+/* ── Entries ── */
+/* Open rows, with every second one set in reverse as a full-bleed band. */
+.entries {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
 }
 
-.card {
-  position: relative;
-  display: flex;
-  gap: var(--space-8);
-  padding: var(--space-8);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(var(--color-text-rgb), 0.06);
-  background: rgba(var(--color-text-rgb), 0.02);
-  text-decoration: none;
+/* The logo holds the left column; company, role and dates head the reading
+   column, which is capped at a comfortable measure. */
+.entry {
+  --logo-box: 240px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 700px);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "logo meta"
+    "logo bullets";
+  column-gap: var(--space-16);
+  row-gap: var(--space-6);
+  padding-block: var(--space-12);
   color: var(--color-text);
-  transition: border-color 0.3s ease, background 0.3s ease;
-  overflow: hidden;
 }
 
+.entry:first-child {
+  padding-top: 0;
+}
 
-.card:hover,
-.card:focus-within {
-  border-color: rgba(var(--color-text-rgb), 0.15);
-  background: rgba(var(--color-text-rgb), 0.04);
+/* Every colour in an entry derives from --color-text(-rgb), so swapping those
+   inverts the text, logo tile and links together. The border-image fills the
+   box and outsets sideways to the viewport edges in one paint, which avoids
+   the seam a background + box-shadow pair leaves at fractional heights. */
+.entry:nth-child(even) {
+  --color-text: var(--color-inverse-text);
+  --color-text-rgb: var(--color-inverse-text-rgb);
+  border-image: linear-gradient(var(--color-inverse-bg), var(--color-inverse-bg))
+    fill 0 / 0 / 0 100vmax;
 }
 
 .companyLink {
@@ -83,67 +92,39 @@
   border-radius: var(--radius-sm);
 }
 
-/* ── Left column: logo + period ── */
-.cardLeft {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
-  flex-shrink: 0;
-  /* Wide enough for a full "Month Year - Month Year" range on two lines. */
-  width: 120px;
-  padding-top: 4px;
-}
-
+/* ── Left column: logo ── */
 .logoWrapper {
-  width: 80px;
-  height: 80px;
-  border-radius: var(--radius-md);
-  background: rgba(var(--color-text-rgb), 0.06);
+  grid-area: logo;
+  justify-self: center;
+  align-self: center;
+  width: var(--logo-box);
+  height: var(--logo-box);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  flex-shrink: 0;
 }
 
+/* Logos ship at 432px, so 216px is the largest box that stays sharp on 2x. */
 .companyLogo {
-  width: 60px;
-  height: 60px;
+  width: 216px;
+  height: 216px;
   object-fit: contain;
 }
 
-/* Logos ship at 160px so the 60px box stays sharp on 2x displays. */
-
 .logoFallback {
-  font-size: 2rem;
+  font-size: 5.5rem;
   font-weight: var(--weight-light);
   color: rgba(var(--color-text-rgb), 0.3);
   line-height: 1;
 }
 
-.period {
-  font-size: var(--text-label);
-  letter-spacing: 0.06em;
-  color: rgba(var(--color-text-rgb), var(--ink-3));
-  text-align: center;
-}
-
-/* ── Right column: details ── */
-.cardRight {
-  flex: 1;
-  min-width: 0;
-}
-
-.cardHeader {
-  margin-bottom: var(--space-4);
-}
-
 .companyName {
-  font-size: var(--text-h2);
+  font-size: 1.6rem;
   font-weight: var(--weight-medium);
+  line-height: 1.2;
   color: var(--color-text);
-  margin: 0 0 4px;
+  margin: 0;
   letter-spacing: 0.01em;
 }
 
@@ -154,62 +135,67 @@
   margin: 0;
 }
 
+.period {
+  font-size: var(--text-small);
+  letter-spacing: 0.04em;
+  color: rgba(var(--color-text-rgb), var(--ink-3));
+}
+
+/* ── Right column: company, role, period, then bullets ── */
+.entryMeta {
+  grid-area: meta;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .bullets {
+  grid-area: bullets;
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  /* With no markers, the gap alone separates the items. */
+  gap: var(--space-4);
 }
 
 .bullet {
   font-size: var(--text-body);
   color: rgba(var(--color-text-rgb), var(--ink-2));
   line-height: 1.7;
-  padding-left: var(--space-4);
-  position: relative;
-}
-
-.bullet::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 11px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(var(--color-text-rgb), 0.2);
 }
 
 /* ── Mobile ── */
 @media screen and (max-width: 900px) {
   .container {
-    padding: var(--space-6) var(--gutter) var(--space-12);
+    padding: var(--space-12) var(--gutter) var(--space-12);
   }
 
-  .card {
-    flex-direction: column;
-    gap: var(--space-4);
-    padding: var(--space-6);
+  /* The logo sits beside the heading and the bullets take the full width. */
+  .entry {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "logo meta"
+      "bullets bullets";
+    column-gap: var(--space-4);
+    padding-block: var(--space-8);
   }
 
-  .cardLeft {
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    gap: var(--space-3);
+  .entryMeta {
+    align-self: center;
+    gap: var(--space-1);
   }
 
   .logoWrapper {
-    width: 56px;
-    height: 56px;
-    border-radius: var(--radius-md);
+    width: 64px;
+    height: 64px;
   }
 
   .companyLogo {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
   }
 
   .logoFallback {
@@ -217,10 +203,10 @@
   }
 
   .pageHeading {
-    font-size: 1.8rem;
+    font-size: 2.1rem;
   }
 
   .companyName {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
 }

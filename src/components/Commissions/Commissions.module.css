@@ -4,7 +4,7 @@
     position: relative;
     background-color: var(--color-bg);
     min-height: 100vh;
-    padding: var(--space-6) var(--frame-pad) var(--space-16);
+    padding: var(--space-16) var(--frame-pad) var(--space-16);
     display: flex;
     flex-direction: column;
     font-family: var(--font-default);
@@ -12,12 +12,11 @@
 
 /* ── Page header ── */
 .pageHeader {
-    margin-bottom: var(--space-16);
-    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.12);
-    padding-bottom: var(--space-6);
+    margin-bottom: var(--space-20);
 }
 
 .pageHeading {
+    font-family: var(--font-display);
     font-size: var(--text-h1);
     font-weight: var(--weight-light);
     color: var(--color-text);
@@ -25,14 +24,111 @@
     line-height: 1.15;
 }
 
-/* ── Two-column layout ── */
-/* The columns fold on available space rather than a breakpoint, so the service
-   summaries keep a readable measure instead of narrowing to a word per line. */
-.layout {
+/* ── Bands ── */
+/* The same row as Projects: a heading column on the left, the content on the
+   right, and every second band set in reverse as a full-bleed strip. */
+.bands {
+    display: flex;
+    flex-direction: column;
+}
+
+.band {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--space-16);
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
     align-items: start;
+    column-gap: var(--space-12);
+    padding-block: var(--space-16);
+}
+
+.band:first-child {
+    padding-top: 0;
+}
+
+/* Colours in a band derive from --color-text(-rgb), so swapping those inverts
+   it. The bone accent and pale error red vanish on the light ground, so they
+   swap too. The border-image paints the full-bleed strip (see ExperienceV2). */
+.band:nth-child(even) {
+    --color-text: var(--color-inverse-text);
+    --color-text-rgb: var(--color-inverse-text-rgb);
+    --accent-strong: var(--color-inverse-text);
+    --color-error: var(--color-error-inverse);
+    border-image: linear-gradient(var(--color-inverse-bg), var(--color-inverse-bg))
+        fill 0 / 0 / 0 100vmax;
+}
+
+/* The heading block sits level with the middle of a taller content column. */
+.bandCentered {
+    align-items: center;
+}
+
+/* Heading on the right, content on the left. Placement only: the heading stays
+   first in source order, so it is still read first and stacks on top. */
+.bandMirrored {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+}
+
+.bandMirrored > .bandIntro {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.bandMirrored > :not(.bandIntro) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.bandIntro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+}
+
+.bandTitle {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: var(--weight-medium);
+    line-height: 1.2;
+    color: var(--color-text);
+}
+
+.bandText {
+    margin: 0;
+    max-width: 36ch;
+    font-size: var(--text-body);
+    line-height: 1.7;
+    color: rgba(var(--color-text-rgb), var(--ink-2));
+}
+
+/* Matches the hero's primary CTA. */
+.bandCta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: var(--space-8);
+    padding: var(--space-3) var(--space-8);
+    border-radius: var(--radius-sm);
+    background-color: var(--accent-strong);
+    color: var(--color-bg);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: filter 0.2s ease;
+}
+
+.bandCta:hover {
+    filter: brightness(1.08);
+}
+
+.bandCta:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 3px;
+}
+
+/* Lands with the band's top padding intact, and clear of the fixed mobile nav. */
+.scrollTarget {
+    scroll-margin-top: var(--space-4);
 }
 
 /* ── Services ── */
@@ -45,39 +141,11 @@
     min-width: 0;
 }
 
-/* A <legend> cannot itself be the flex row reliably, so it stays a plain block
-   and the shared header sits inside it. */
-.legend {
-    display: block;
-    width: 100%;
-    padding: 0;
-}
-
-/* Both column headers use this, so they share one baseline and one rule. The
-   explicit margin-top matters: the form's header is a <p>, which would
-   otherwise inherit the UA 1em default and sit 15px below its counterpart. */
-.sectionHead,
-.formHead {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-3);
-    width: 100%;
-    margin: 0 0 var(--space-6);
-    padding: 0 0 var(--space-4);
-    border-bottom: 1px solid rgba(var(--color-text-rgb), 0.12);
-}
-
 .stepNumber {
     font-size: var(--text-label);
     letter-spacing: 0.14em;
     color: var(--accent-strong);
     font-variant-numeric: tabular-nums;
-}
-
-.sectionLabel {
-    font-size: var(--text-small);
-    letter-spacing: 0.01em;
-    color: rgba(var(--color-text-rgb), var(--ink-3));
 }
 
 /* Per-field marker replaces a single "all fields required" note: it holds up
@@ -119,7 +187,7 @@
 .serviceMarker {
     width: 16px;
     height: 16px;
-    margin-top: 3px;
+    margin-top: var(--space-1);
     border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
     border-radius: 50%;
     position: relative;
@@ -137,7 +205,7 @@
 .serviceOption.selected .serviceMarker::after {
     content: '';
     position: absolute;
-    inset: 3px;
+    inset: var(--space-1);
     border-radius: 50%;
     background-color: var(--accent-strong);
 }
@@ -204,7 +272,7 @@
 .serviceItem {
     display: flex;
     align-items: baseline;
-    gap: 10px;
+    gap: var(--space-3);
     font-size: var(--text-small);
     font-weight: var(--weight-light);
     color: rgba(var(--color-text-rgb), var(--ink-3));
@@ -365,7 +433,7 @@
     margin: var(--space-2) 0 0;
     font-size: var(--text-small);
     letter-spacing: 0.04em;
-    color: #e88b8b;
+    color: var(--color-error);
 }
 
 .errorMessage {
@@ -379,20 +447,31 @@
 /* ── Mobile ── */
 @media screen and (max-width: 900px) {
     .container {
-        padding: var(--space-6) var(--gutter) var(--space-12);
+        padding: var(--space-12) var(--gutter) var(--space-12);
     }
 
     .pageHeader {
-        margin-bottom: var(--space-8);
+        margin-bottom: var(--space-12);
     }
 
     .pageHeading {
-        font-size: 1.8rem;
+        font-size: 2.1rem;
     }
 
-    .layout {
-        grid-template-columns: 1fr;
-        gap: var(--space-12);
+    .band {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: var(--space-6);
+        padding-block: var(--space-12);
+    }
+
+    .scrollTarget {
+        scroll-margin-top: var(--nav-height-mobile);
+    }
+
+    .bandMirrored > .bandIntro,
+    .bandMirrored > :not(.bandIntro) {
+        grid-column: auto;
+        grid-row: auto;
     }
 
     .submitBtn {

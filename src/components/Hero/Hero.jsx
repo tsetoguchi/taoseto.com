@@ -16,11 +16,8 @@ export const Hero = () => {
         <meta property="og:url" content="https://taoseto.com" />
       </Helmet>
       <div className={styles.container}>
-        {/* Sized to its contents so the staggered block centres as one unit
-            rather than each row centring independently. */}
         <div className={styles.assembly}>
           <div className={styles.content}>
-            <p className={styles.eyebrow}>Tokyo · Music & Technology</p>
             <h1 className={styles.name}>tao seto</h1>
             <p className={styles.description}>
               Computer Science and Music Technology graduate with 12+ years in
@@ -38,19 +35,21 @@ export const Hero = () => {
             </div>
           </div>
 
-          <a
-            href="https://kon.ac"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.linkWrapper}
-          >
-            {/* No visible label, so the alt text carries the link's name. */}
-            <img
-              src={heroImage}
-              alt="Konac — my music project"
-              className={styles.heroImg}
-            />
-          </a>
+          <div className={styles.visual}>
+            <a
+              href="https://kon.ac"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.linkWrapper}
+            >
+              {/* No visible label, so the alt text carries the link's name. */}
+              <img
+                src={heroImage}
+                alt="Konac — my music project"
+                className={styles.heroImg}
+              />
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -1,18 +1,15 @@
 @import "../../vars.css";
 
 /* Fills whatever height is left under the navbar rather than assuming a
-   viewport's worth, which overshot once the nav offset was counted. The
-   bottom padding clears the fixed contact bar. */
+   viewport's worth, which overshot once the nav offset was counted. */
 .section {
     position: relative;
     display: flex;
     flex: 1;
     min-height: 0;
-    padding-bottom: 132px;
+    padding-bottom: var(--contact-clearance);
 }
 
-/* Stacked and centred: the copy reads as a single column with the project
-   mark sitting under it, rather than competing with it side by side. */
 .container {
     position: relative;
     display: flex;
@@ -21,52 +18,40 @@
     justify-content: center;
     flex: 1;
     margin: 0;
-    padding: 0 var(--frame-pad);
+    padding: 0;
     z-index: 1;
 }
 
-/* Sized to its contents, so the stagger is preserved inside while the block
-   as a whole centres — leaving equal margins instead of one dead slab. */
+/* Two equal halves split at the viewport's centre line: copy on the left,
+   the Konac mark on the right, each centred within its own half. */
 .assembly {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: max-content;
-    max-width: 100%;
-    gap: var(--space-20);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+    width: 100%;
 }
 
 /* ── Text content ── */
-/* The descent starts at the page frame — the same line as the wordmark in
-   the nav — and accelerates rightward, so the diagonal has the full width to
-   travel across rather than 90px in the middle of the canvas. */
+/* --frame-pad would resolve 100% against this half-width grid cell, so the
+   viewport-based inset keeps the copy on the nav's left edge. */
 .content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     color: var(--color-text);
     z-index: 1;
-    max-width: 620px;
-}
-
-.eyebrow {
-    font-size: var(--text-label);
-    font-family: var(--font-default);
-    font-weight: var(--weight-regular);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(var(--color-text-rgb), var(--ink-3));
-    margin: 0 0 var(--space-4);
+    padding-left: var(--frame-pad-viewport);
+    padding-right: var(--space-12);
 }
 
 .name {
     font-size: var(--text-display);
     font-weight: var(--weight-light);
-    font-family: var(--font-default);
+    font-family: var(--font-display);
     color: var(--color-text);
-    margin: 0 0 var(--space-6);
-    margin-left: 60px;
+    margin: 0 0 var(--space-8);
     line-height: 1.05;
     letter-spacing: -0.01em;
 }
@@ -77,10 +62,9 @@
     font-weight: var(--weight-light);
     color: rgba(var(--color-text-rgb), var(--ink-2));
     line-height: 1.7;
-    /* Block stays centred in the column; the prose itself reads left-aligned. */
+    /* The block sits centred in the column; ragged-centre prose is hard to read. */
     text-align: left;
-    margin: 0 0 var(--space-8);
-    margin-left: 140px;
+    margin: 0 0 var(--space-12);
 }
 
 /* ── CTAs ── */
@@ -89,7 +73,7 @@
     flex-wrap: wrap;
     gap: var(--space-3);
     align-items: center;
-    margin-left: 240px;
+    justify-content: center;
 }
 
 /* Padding alone leaves the buttons a pixel short of a 44px touch target. */
@@ -137,16 +121,20 @@
 }
 
 /* ── Hero image ── */
+.visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12);
+}
+
 .linkWrapper {
     display: block;
-    width: 240px;
+    width: clamp(200px, 24vw, 320px);
     max-width: 100%;
     text-decoration: none;
     color: inherit;
     border-radius: var(--radius-sm);
-    /* One more interval of the same progression — 60, 80, 100, 130 — so the
-       mark reads as the end of the line rather than a separate object. */
-    margin-left: 370px;
 }
 
 .linkWrapper:focus-visible {
@@ -184,11 +172,11 @@
 
     .description {
         font-size: 1.125rem;
-        margin-bottom: var(--space-6);
+        margin-bottom: var(--space-8);
     }
 
     .linkWrapper {
-        width: 165px;
+        width: 220px;
     }
 }
 
@@ -203,37 +191,26 @@
     }
 
     .container {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         min-height: calc(100dvh - var(--nav-height-mobile));
-        padding: var(--space-12) var(--gutter) var(--space-24);
+        padding: var(--space-12) 0 var(--space-24);
         margin: 0;
     }
 
     .content {
-        align-items: center;
-        text-align: center;
+        justify-self: center;
+        padding-inline: var(--gutter);
         /* Unbounded, the paragraph runs ~95 characters per line at 768px. */
         max-width: min(100%, 48ch);
         margin-top: var(--space-8);
     }
 
-    .name,
-    .description,
-    .ctas {
-        margin-left: 0;
-    }
-
     .assembly {
-        width: 100%;
-        align-items: center;
+        grid-template-columns: 1fr;
         gap: var(--space-12);
     }
 
-    .linkWrapper {
-        margin-left: 0;
-        align-self: center;
+    .visual {
+        padding-block: var(--space-16);
     }
 
 
