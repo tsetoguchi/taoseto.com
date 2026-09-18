@@ -64,9 +64,9 @@
 }
 
 .description {
-    font-size: 1.25rem;
+    font-size: var(--text-lead);
     font-family: var(--font-default);
-    font-weight: var(--weight-light);
+    font-weight: var(--weight-regular);
     color: rgba(var(--color-text-rgb), var(--ink-2));
     line-height: 1.7;
     /* Narrower than the column, so the paragraph runs to more, shorter lines
@@ -173,7 +173,7 @@
     }
 
     .description {
-        font-size: 1.125rem;
+        font-size: var(--text-body);
         margin-bottom: var(--space-8);
     }
 
@@ -215,10 +215,6 @@
         margin-top: var(--space-8);
     }
 
-
-    .name {
-        font-size: 3.75rem;
-    }
 
     /* Stacked, the name already sits above the mark, so it reads as one line. */
     .nameLine {

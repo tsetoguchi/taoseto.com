@@ -57,12 +57,18 @@
     --frame-pad: max(var(--gutter), calc((100% - var(--content-max)) / 2));
 
     /* ── Type scale ── */
-    --text-display: 6rem;
-    --text-h1: 2.8rem;
-    --text-h2: 1.3rem;
+    /* Major third (1.25) off a 17px body, so each step reads as a distinct
+       level. Display and h1 are fluid, which retires per-breakpoint overrides. */
+    --text-display: clamp(3.75rem, 8vw, 6rem);
+    --text-h1: clamp(2.1rem, 4vw, 2.8rem);
+    --text-h3: 1.625rem;      /* 26px — project, company and band titles */
+    --text-lead: 1.3125rem;   /* 21px — intro paragraphs, mobile titles */
     --text-body: 1.0625rem;   /* 17px */
-    --text-small: 0.9375rem;  /* 15px */
+    --text-small: 0.875rem;   /* 14px */
     --text-label: 0.75rem;    /* 12px — informational floor */
+    /* Keeps running text inside the 45–75 character comfort band. Outfit's "0"
+       is wider than its average letter, so 60ch lands near 70 characters. */
+    --measure: 60ch;
 
     /* ── Weight ── */
     --weight-light: 300;
