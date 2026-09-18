@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
 
 import airyPoster from "../../../assets/projects/airy-poster.jpg";
@@ -102,11 +103,19 @@ export const ProjectsV2 = () => {
               <div className={styles.projectText}>
                 <h3 className={styles.projectTitle}>{project.title}</h3>
                 <p className={styles.projectDescription}>{project.description}</p>
-                {/* The stack is joined into one string so its entries are not
-                    read as run-together words. */}
                 <p className={styles.projectMeta}>
                   <span>{project.year}</span>
-                  <span>{project.stack.join(" · ")}</span>
+                  <span className={styles.projectStack}>
+                    {project.stack.map((tech, index) => (
+                      <Fragment key={tech}>
+                        {/* Spacing alone separates the entries on screen; the
+                            hidden comma keeps the link's name from running
+                            them together as one word. */}
+                        {index > 0 && <span className={styles.visuallyHidden}>, </span>}
+                        <span>{tech}</span>
+                      </Fragment>
+                    ))}
+                  </span>
                 </p>
               </div>
             </a>
