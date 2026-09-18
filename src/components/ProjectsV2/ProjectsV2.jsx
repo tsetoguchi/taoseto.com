@@ -21,14 +21,17 @@ const PROJECTS = [
     imagePosition: "left center",
     description:
       "A rhyme finder for writing lyrics. Six kinds of rhyme, syllable counts and scheme analysis, all updating as you type.",
-    meta: ["2026", "JavaScript", "lyriclike.com"],
+    year: "2026",
+    stack: ["JavaScript"],
   },
   {
     title: "airy",
     href: "https://github.com/tsetoguchi/airy",
     image: airyPoster,
-    description: "A real-time oscilloscope. It draws the signal while it plays, and that is all it does.",
-    meta: ["2026", "C++/JUCE"],
+    description:
+      "A real-time oscilloscope audio plugin. Visually pleasing and has an adjustable zoom knob.",
+    year: "2026",
+    stack: ["C++/JUCE"],
   },
   {
     title: "Currently VST",
@@ -36,7 +39,8 @@ const PROJECTS = [
     image: CurrentlyVST,
     description:
       "Built for DAWs that give you no clear time display. It puts the playhead's timecode on screen and sizes itself to whatever resolution it lands on.",
-    meta: ["2025", "C++/JUCE"],
+    year: "2025",
+    stack: ["C++/JUCE"],
   },
   {
     title: "Valolytics",
@@ -44,15 +48,17 @@ const PROJECTS = [
     image: Valorant,
     description:
       "Point it at a VLR tournament's match pages and it scrapes the results, rates every team by ELO, and weighs a given matchup.",
-    meta: ["2025", "Python"],
+    year: "2025",
+    stack: ["Python"],
   },
   {
     title: "The Slushie Machine",
     href: "https://github.com/tsetoguchi/The-Slushie-Machine",
     image: TheSlushieMachine,
     description:
-      "Delay, filter, chorus, limiter, imager and waveshaper, chained in series — where the order you put them in is the whole instrument.",
-    meta: ["2023", "C++/JUCE", "VST3"],
+      "An audio processing plugin that is comprised of a mysterious chain of effects. Heavily inspired by great sounding applications with simple GUIs.",
+    year: "2023",
+    stack: ["C++/JUCE", "VST3"],
   },
 ];
 
@@ -96,9 +102,12 @@ export const ProjectsV2 = () => {
               <div className={styles.projectText}>
                 <h3 className={styles.projectTitle}>{project.title}</h3>
                 <p className={styles.projectDescription}>{project.description}</p>
-                {/* Joined into one string so the facts are not read as three
-                    run-together words. */}
-                <p className={styles.projectMeta}>{project.meta.join(" · ")}</p>
+                {/* The stack is joined into one string so its entries are not
+                    read as run-together words. */}
+                <p className={styles.projectMeta}>
+                  <span>{project.year}</span>
+                  <span>{project.stack.join(" · ")}</span>
+                </p>
               </div>
             </a>
           ))}
