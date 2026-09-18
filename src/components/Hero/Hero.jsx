@@ -18,7 +18,12 @@ export const Hero = () => {
       <div className={styles.container}>
         <div className={styles.assembly}>
           <div className={styles.content}>
-            <h1 className={styles.name}>tao seto</h1>
+            {/* One word per line for a taller headline; the space between the
+                spans keeps the accessible name "tao seto" rather than "taoseto". */}
+            <h1 className={styles.name}>
+              <span className={styles.nameLine}>tao</span>{" "}
+              <span className={styles.nameLine}>seto</span>
+            </h1>
             <p className={styles.description}>
               Computer Science and Music Technology graduate with 12+ years in
               music production and 7+ years in tech. Bridging the gap between

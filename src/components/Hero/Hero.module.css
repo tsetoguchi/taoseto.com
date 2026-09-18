@@ -1,7 +1,8 @@
 @import "../../vars.css";
 
 /* Fills whatever height is left under the navbar rather than assuming a
-   viewport's worth, which overshot once the nav offset was counted. */
+   viewport's worth, which overshot once the nav offset was counted. The
+   bottom padding clears the fixed contact bar. */
 .section {
     position: relative;
     display: flex;
@@ -10,40 +11,39 @@
     padding-bottom: var(--contact-clearance);
 }
 
+/* Inset by the page frame, so the copy starts on the navbar wordmark's edge
+   and the mark ends on the navbar links' edge. */
 .container {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     flex: 1;
     margin: 0;
-    padding: 0;
+    padding: 0 var(--frame-pad);
     z-index: 1;
 }
 
-/* Two equal halves split at the viewport's centre line: copy on the left,
-   the Konac mark on the right, each centred within its own half. */
+/* Copy on the left, the Konac mark on the right, the two centred against each
+   other vertically. */
 .assembly {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    flex: 1;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: center;
+    column-gap: var(--space-16);
     width: 100%;
 }
 
 /* ── Text content ── */
-/* --frame-pad would resolve 100% against this half-width grid cell, so the
-   viewport-based inset keeps the copy on the nav's left edge. */
+/* Capped so the description keeps a readable measure. */
 .content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    align-items: flex-start;
+    max-width: 36rem;
+    text-align: left;
     color: var(--color-text);
     z-index: 1;
-    padding-left: var(--frame-pad-viewport);
-    padding-right: var(--space-12);
 }
 
 .name {
@@ -52,8 +52,15 @@
     font-family: var(--font-display);
     color: var(--color-text);
     margin: 0 0 var(--space-8);
-    line-height: 1.05;
+    line-height: 0.95;
     letter-spacing: -0.01em;
+}
+
+/* index.css sets Outfit on every element via `*`, so the spans must opt back
+   in to the heading's face rather than rely on inheritance. */
+.nameLine {
+    display: block;
+    font-family: inherit;
 }
 
 .description {
@@ -62,8 +69,9 @@
     font-weight: var(--weight-light);
     color: rgba(var(--color-text-rgb), var(--ink-2));
     line-height: 1.7;
-    /* The block sits centred in the column; ragged-centre prose is hard to read. */
-    text-align: left;
+    /* Narrower than the column, so the paragraph runs to more, shorter lines
+       and the copy stands taller beside the mark. */
+    max-width: 28rem;
     margin: 0 0 var(--space-12);
 }
 
@@ -73,7 +81,7 @@
     flex-wrap: wrap;
     gap: var(--space-3);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 /* Padding alone leaves the buttons a pixel short of a 44px touch target. */
@@ -123,14 +131,12 @@
 /* ── Hero image ── */
 .visual {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-12);
+    justify-content: flex-end;
 }
 
 .linkWrapper {
     display: block;
-    width: clamp(200px, 24vw, 320px);
+    width: clamp(240px, 30vw, 440px);
     max-width: 100%;
     text-decoration: none;
     color: inherit;
@@ -162,12 +168,8 @@
 /* Short desktop viewports: the home screen does not scroll, so the column
    tightens rather than running under the fixed contact bar. */
 @media screen and (min-width: 901px) and (max-height: 820px) {
-    .assembly {
-        gap: var(--space-12);
-    }
-
     .name {
-        font-size: 3.5rem;
+        font-size: 4.5rem;
     }
 
     .description {
@@ -176,7 +178,7 @@
     }
 
     .linkWrapper {
-        width: 220px;
+        width: clamp(220px, 26vw, 360px);
     }
 }
 
@@ -192,30 +194,29 @@
 
     .container {
         min-height: calc(100dvh - var(--nav-height-mobile));
-        padding: var(--space-12) 0 var(--space-24);
+        padding: var(--space-12) var(--gutter) var(--space-24);
         margin: 0;
     }
 
+    /* Stacked: copy first, the mark beneath it. */
+    .assembly {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: var(--space-12);
+    }
+
+    .visual {
+        justify-content: center;
+    }
+
     .content {
-        justify-self: center;
-        padding-inline: var(--gutter);
         /* Unbounded, the paragraph runs ~95 characters per line at 768px. */
         max-width: min(100%, 48ch);
         margin-top: var(--space-8);
     }
 
-    .assembly {
-        grid-template-columns: 1fr;
-        gap: var(--space-12);
-    }
-
-    .visual {
-        padding-block: var(--space-16);
-    }
-
 
     .name {
-        font-size: 3rem;
+        font-size: 3.75rem;
     }
 
     .description {
@@ -225,7 +226,6 @@
     /* The pair does not fit one line at 320px, so it wraps and each button
        stretches instead of overflowing the column. */
     .ctas {
-        justify-content: center;
         width: 100%;
     }
 

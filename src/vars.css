@@ -10,7 +10,7 @@
     --color-bg: #0A0A0A;
     --color-text-rgb: 245, 245, 245;
     /* Light-on-dark flipped, for sections set in reverse. */
-    --color-inverse-bg: #F5F5F5;
+    --color-inverse-bg: #e8e8e8;
     --color-inverse-text: #0A0A0A;
     --color-inverse-text-rgb: 10, 10, 10;
     /* Error text, pale on the dark ground and deep on the inverse one. */
@@ -55,12 +55,9 @@
     /* Side padding that lines up full-bleed elements (nav, hero, footer) with
        the left edge of centered, content-max-capped page content. */
     --frame-pad: max(var(--gutter), calc((100% - var(--content-max)) / 2));
-    /* The same inset measured from the viewport, for elements whose containing
-       block is narrower than the page (e.g. one half of a split layout). */
-    --frame-pad-viewport: max(var(--gutter), calc((100vw - var(--content-max)) / 2));
 
     /* ── Type scale ── */
-    --text-display: 4.5rem;
+    --text-display: 6rem;
     --text-h1: 2.8rem;
     --text-h2: 1.3rem;
     --text-body: 1.0625rem;   /* 17px */
