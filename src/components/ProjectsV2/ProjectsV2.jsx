@@ -50,7 +50,8 @@ const PROJECTS = [
     title: "The Slushie Machine",
     href: "https://github.com/tsetoguchi/The-Slushie-Machine",
     image: TheSlushieMachine,
-    description: "A mysterious effects chain.",
+    description:
+      "An audio processing plugin that is comprised of a mysterious chain of effects. Heavily inspired by great sounding applications with simple GUIs.",
     meta: ["2023", "C++/JUCE", "VST3"],
   },
 ];
