@@ -96,5 +96,6 @@
     .track {
         --cover-size: 56px;
         column-gap: var(--space-4);
+        padding-block: var(--space-6);
     }
 }

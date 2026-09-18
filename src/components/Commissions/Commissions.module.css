@@ -425,12 +425,17 @@
 
     .band {
         grid-template-columns: minmax(0, 1fr);
-        row-gap: var(--space-6);
+        row-gap: var(--space-12);
         padding-block: var(--space-12);
     }
 
     .bandIntro {
         position: static;
+    }
+
+    /* Matches the hero's CTAs on mobile. */
+    .bandCta {
+        padding: var(--space-3) var(--space-6);
     }
 
     .scrollTarget {
