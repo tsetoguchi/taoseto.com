@@ -28,7 +28,7 @@
   font-weight: var(--weight-light);
   color: var(--color-text);
   margin: 0;
-  line-height: 1.15;
+  line-height: var(--leading-heading);
 }
 
 /* ── Entries ── */
@@ -72,7 +72,7 @@
 .companyLink {
   color: inherit;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--duration-fast) ease;
 }
 
 .companyLink:hover {
@@ -116,7 +116,7 @@
 .companyName {
   font-size: var(--text-h3);
   font-weight: var(--weight-medium);
-  line-height: 1.2;
+  line-height: var(--leading-title);
   color: var(--color-text);
   margin: 0;
   letter-spacing: 0.01em;
@@ -158,7 +158,7 @@
 .bullet {
   font-size: var(--text-body);
   color: rgba(var(--color-text-rgb), var(--ink-2));
-  line-height: 1.7;
+  line-height: var(--leading-body);
 }
 
 /* ── Mobile ── */

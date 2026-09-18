@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     gap: var(--space-3);
-    border-top: 1px solid rgba(var(--color-text-rgb), 0.08);
+    border-top: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
     padding-top: var(--space-6);
     font-size: var(--text-small);
     color: rgba(var(--color-text-rgb), var(--ink-3));
@@ -41,7 +41,7 @@
     min-height: 44px;
     color: rgba(var(--color-text-rgb), var(--ink-3));
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color var(--duration-fast) ease;
 }
 
 .emailLink:focus-visible {
@@ -62,7 +62,7 @@
         padding: var(--space-1) var(--gutter);
         padding-bottom: max(var(--space-1), env(safe-area-inset-bottom));
         background-color: var(--color-bg);
-        z-index: 99;
+        z-index: var(--z-contact-bar);
     }
 
     .bar {

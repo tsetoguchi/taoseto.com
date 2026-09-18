@@ -52,7 +52,7 @@
     font-family: var(--font-display);
     color: var(--color-text);
     margin: 0 0 var(--space-8);
-    line-height: 0.95;
+    line-height: var(--leading-display);
     letter-spacing: -0.01em;
 }
 
@@ -68,7 +68,7 @@
     font-family: var(--font-default);
     font-weight: var(--weight-regular);
     color: rgba(var(--color-text-rgb), var(--ink-2));
-    line-height: 1.7;
+    line-height: var(--leading-body);
     /* Narrower than the column, so the paragraph runs to more, shorter lines
        and the copy stands taller beside the mark. */
     max-width: 28rem;
@@ -103,7 +103,7 @@
     background-color: var(--accent-strong);
     padding: var(--space-3) var(--space-8);
     border-radius: var(--radius-sm);
-    transition: filter 0.2s ease;
+    transition: filter var(--duration-fast) ease;
 }
 
 .ctaPrimary:hover {
@@ -117,15 +117,15 @@
     font-weight: var(--weight-regular);
     letter-spacing: 0.02em;
     color: rgba(var(--color-text-rgb), var(--ink-3));
-    border: 1px solid rgba(var(--color-text-rgb), 0.45);
+    border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
     padding: var(--space-3) var(--space-8);
     border-radius: var(--radius-sm);
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color var(--duration-fast) ease, border-color var(--duration-fast) ease;
 }
 
 .ctaSecondary:hover {
-    color: rgba(var(--color-text-rgb), 0.9);
-    border-color: rgba(var(--color-text-rgb), 0.7);
+    color: rgba(var(--color-text-rgb), var(--ink-1));
+    border-color: rgba(var(--color-text-rgb), var(--ink-2));
 }
 
 /* ── Hero image ── */
@@ -156,7 +156,7 @@
     height: auto;
     z-index: 1;
     opacity: 0.8;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--duration-base) ease;
 }
 
 .linkWrapper:hover .heroImg,

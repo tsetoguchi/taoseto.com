@@ -85,6 +85,27 @@
        that bottoms out at alpha 0.353, so 0.4 is the floor with headroom.
        Hairlines that merely separate content are decorative and sit lower. */
     --ink-edge: 0.4;
+    --ink-hairline: 0.08;   /* separators between rows */
+    --ink-fill: 0.04;       /* wells: inputs, artwork, hovered rows */
+    --ink-fill-active: 0.06;
+
+    /* ── Leading ── */
+    --leading-display: 0.95;
+    --leading-heading: 1.15;  /* h1-sized headings */
+    --leading-title: 1.2;     /* h3 and single-line titles */
+    --leading-snug: 1.5;      /* small, multi-line text */
+    --leading-body: 1.7;
+
+    /* ── Motion ── */
+    --duration-fast: 0.2s;    /* hover and focus feedback */
+    --duration-base: 0.3s;
+    /* Also the delay that hides the collapsed mobile menu, so the two match. */
+    --duration-slow: 0.4s;
+
+    /* ── Layers ── */
+    --z-nav: 2;
+    --z-contact-bar: 99;
+    --z-skip-link: 1000;
 
     /* ── Radius ── */
     --radius-sm: 4px;
