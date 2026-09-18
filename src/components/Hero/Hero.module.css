@@ -107,7 +107,7 @@
 }
 
 .ctaPrimary:hover {
-    filter: brightness(1.08);
+    filter: var(--hover-dim);
 }
 
 .ctaSecondary {
@@ -116,16 +116,16 @@
     font-size: var(--text-small);
     font-weight: var(--weight-regular);
     letter-spacing: 0.02em;
-    color: rgba(var(--color-text-rgb), var(--ink-3));
-    border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
+    color: rgba(var(--color-text-rgb), var(--ink-1));
+    border: 1px solid rgba(var(--color-text-rgb), var(--ink-2));
     padding: var(--space-3) var(--space-8);
     border-radius: var(--radius-sm);
     transition: color var(--duration-fast) ease, border-color var(--duration-fast) ease;
 }
 
 .ctaSecondary:hover {
-    color: rgba(var(--color-text-rgb), var(--ink-1));
-    border-color: rgba(var(--color-text-rgb), var(--ink-2));
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    border-color: rgba(var(--color-text-rgb), var(--ink-edge));
 }
 
 /* ── Hero image ── */

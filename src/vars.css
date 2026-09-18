@@ -91,6 +91,9 @@
     --ink-hairline: 0.08;   /* separators between rows */
     --ink-fill: 0.04;       /* wells: inputs, artwork, hovered rows */
     --ink-fill-active: 0.06;
+    /* Filled buttons rest at full brightness and dim on hover. Their dark label
+       on the bone fill stays well above 4.5:1 at this level. */
+    --hover-dim: brightness(0.85);
 
     /* ── Leading ── */
     --leading-display: 0.95;

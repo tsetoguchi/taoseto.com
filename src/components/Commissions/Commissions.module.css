@@ -101,7 +101,7 @@
 }
 
 .bandCta:hover {
-    filter: brightness(1.08);
+    filter: var(--hover-dim);
 }
 
 .bandCta:focus-visible {
@@ -384,7 +384,7 @@
 }
 
 .submitBtn:hover {
-    filter: brightness(1.08);
+    filter: var(--hover-dim);
 }
 
 .submitBtn:active {
