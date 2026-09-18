@@ -4,6 +4,11 @@ import styles from "./Commissions.module.css";
 import { getApiEndpoint } from "../../config";
 import { CommissionsPortfolio2 as CommissionsPortfolio } from "./CommissionsPortfolio2";
 
+const PAGE_TITLE = "Commissions · tao seto";
+const PAGE_URL = "https://taoseto.com/commissions";
+const PAGE_DESCRIPTION =
+  "Mixing, mastering, and music technology commissions from Tao Seto. Radio-ready mixdowns, commercial-grade masters, and priority turnaround.";
+
 // `id` is the value submitted to the backend, so it stays stable even when the
 // display name changes.
 const SERVICES = [
@@ -134,10 +139,14 @@ export const Commissions = () => {
   return (
     <section className={styles.container}>
       <Helmet>
-        <title>Commissions</title>
-        <meta name="description" content="Mixing, mastering, and music technology services by Tao Seto. Radio-ready mixdowns, commercial-grade masters, and priority turnaround." />
-        <meta property="og:title" content="Commissions" />
-        <meta property="og:url" content="https://taoseto.com/commissions" />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
+        <link rel="canonical" href={PAGE_URL} />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
+        <meta property="og:url" content={PAGE_URL} />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={PAGE_DESCRIPTION} />
       </Helmet>
       <header className={styles.pageHeader}>
         <h1 className={styles.pageHeading}>Commissions</h1>

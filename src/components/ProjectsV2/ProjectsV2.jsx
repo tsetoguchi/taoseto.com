@@ -7,6 +7,11 @@ import TheSlushieMachine from "../../../assets/projects/the_slushie_machine.webp
 import LyricLike from "../../../assets/projects/lyriclike.webp";
 import styles from "./ProjectsV2.module.css";
 
+const PAGE_TITLE = "Projects · tao seto";
+const PAGE_URL = "https://taoseto.com/projects";
+const PAGE_DESCRIPTION =
+  "Software and audio projects by Tao Seto: JUCE audio plugins, web apps, tools, and games.";
+
 const PROJECTS = [
   {
     title: "LyricLike.com",
@@ -55,13 +60,14 @@ export const ProjectsV2 = () => {
   return (
     <section className={styles.container}>
       <Helmet>
-        <title>Projects</title>
-        <meta
-          name="description"
-          content="Software and audio projects by Tao Seto — JUCE audio plugins, web apps, tools, and games."
-        />
-        <meta property="og:title" content="Projects" />
-        <meta property="og:url" content="https://taoseto.com/projects" />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
+        <link rel="canonical" href={PAGE_URL} />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
+        <meta property="og:url" content={PAGE_URL} />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={PAGE_DESCRIPTION} />
       </Helmet>
 
       <div className={styles.content}>
