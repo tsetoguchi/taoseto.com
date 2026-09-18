@@ -45,13 +45,14 @@
 }
 
 /* Colours in a band derive from --color-text(-rgb), so swapping those inverts
-   it. The bone accent and pale error red vanish on the light ground, so they
-   swap too. The border-image paints the full-bleed strip (see ExperienceV2). */
+   it. The bone accent, pale error red and control edge fall short on the light
+   ground, so they swap too. The border-image paints the full-bleed strip (see ExperienceV2). */
 .band:nth-child(even) {
     --color-text: var(--color-inverse-text);
     --color-text-rgb: var(--color-inverse-text-rgb);
     --accent-strong: var(--color-inverse-text);
     --color-error: var(--color-error-inverse);
+    --ink-edge: var(--ink-edge-inverse);
     border-image: linear-gradient(var(--color-inverse-bg), var(--color-inverse-bg))
         fill 0 / 0 / 0 100vmax;
 }
