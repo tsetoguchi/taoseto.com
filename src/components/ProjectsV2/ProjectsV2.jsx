@@ -21,7 +21,7 @@ const PROJECTS = [
     imagePosition: "left center",
     description:
       "A rhyme finder for writing lyrics. Six kinds of rhyme, syllable counts and scheme analysis, all updating as you type.",
-    meta: ["2026", "JavaScript", "lyriclike.com"],
+    meta: ["2026", "JavaScript"],
   },
   {
     title: "airy",
