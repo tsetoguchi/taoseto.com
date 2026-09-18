@@ -1,17 +1,11 @@
 @import "../../vars.css";
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
 .container {
   position: relative;
   background-color: var(--color-bg);
   min-height: 100vh;
   padding: var(--space-16) var(--frame-pad) var(--space-16);
   font-family: var(--font-default);
-  animation: fadeIn 0.4s ease-in;
 }
 
 .content {
