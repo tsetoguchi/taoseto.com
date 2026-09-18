@@ -1,6 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import styles from './ExperienceV2.module.css';
 
+const PAGE_TITLE = 'Experience · tao seto';
+const PAGE_URL = 'https://taoseto.com/experience';
+const PAGE_DESCRIPTION =
+  'Tao Seto’s work in music production, audio engineering, and software engineering, including Konac, Rhythmedia, and State Street.';
+
 // Company logos — add image files to assets/experience/ to enable
 const logos = import.meta.glob('../../../assets/experience/*.{webp,png,jpg,svg}', { eager: true });
 const getLogo = (name) => {
@@ -64,10 +69,14 @@ export const ExperienceV2 = () => {
   return (
     <section className={styles.container}>
       <Helmet>
-        <title>Experience</title>
-        <meta name="description" content="Tao Seto's professional experience in music production, audio engineering, and software engineering. Konac, Rhythmedia, State Street, and more." />
-        <meta property="og:title" content="Experience" />
-        <meta property="og:url" content="https://taoseto.com/experience" />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
+        <link rel="canonical" href={PAGE_URL} />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
+        <meta property="og:url" content={PAGE_URL} />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={PAGE_DESCRIPTION} />
       </Helmet>
 
       <div className={styles.content} id="content">
