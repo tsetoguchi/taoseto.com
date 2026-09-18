@@ -152,7 +152,10 @@
     grid-template-columns: 18px 1fr;
     gap: var(--space-4);
     align-items: start;
-    padding: var(--space-5) 0;
+    /* Inset content and pull the row out by the same amount, so the hover fill
+       and focus ring clear the radio while it stays level with the fields below. */
+    padding: var(--space-5) var(--space-4);
+    margin-inline: calc(-1 * var(--space-4));
     cursor: pointer;
     transition: background-color var(--duration-fast) ease;
 }
