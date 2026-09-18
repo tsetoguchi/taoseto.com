@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import styles from "./Hero.module.css";
-import heroImage from "../../../assets/hero/heroImage.png";
+import heroImage from "../../../assets/hero/heroImage_black.png";
 
 export const Hero = () => {
   return (

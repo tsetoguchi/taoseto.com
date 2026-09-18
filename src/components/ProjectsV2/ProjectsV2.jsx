@@ -12,6 +12,8 @@ const PROJECTS = [
     title: "LyricLike.com",
     href: "https://lyriclike.com/",
     image: LyricLike,
+    // Wider than the 2:1 frame; anchor left so the crop spares the logo.
+    imagePosition: "left center",
     description:
       "A rhyme finder for writing lyrics. Six kinds of rhyme, syllable counts and scheme analysis, all updating as you type.",
     meta: ["2026", "JavaScript", "lyriclike.com"],
@@ -81,6 +83,7 @@ export const ProjectsV2 = () => {
                   src={project.image}
                   alt={project.title}
                   className={styles.projectImage}
+                  style={{ objectPosition: project.imagePosition }}
                   loading="lazy"
                 />
               </div>

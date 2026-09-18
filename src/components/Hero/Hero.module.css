@@ -7,7 +7,6 @@
     display: flex;
     flex: 1;
     min-height: 0;
-    padding-bottom: var(--contact-clearance);
 }
 
 .container {
@@ -22,28 +21,31 @@
     z-index: 1;
 }
 
-/* Two equal halves split at the viewport's centre line: copy on the left,
-   the Konac mark on the right, each centred within its own half. */
+/* Split top to bottom: the copy on the dark ground, then a light lower half
+   holding the black Konac mark that runs on to the foot of the screen. */
 .assembly {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    flex: 1;
-    width: 100%;
-}
-
-/* ── Text content ── */
-/* --frame-pad would resolve 100% against this half-width grid cell, so the
-   viewport-based inset keeps the copy on the nav's left edge. */
-.content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
+    width: 100%;
+    padding-inline: var(--gutter);
+}
+
+/* ── Text content ── */
+/* Capped so the description keeps a readable measure on wide screens. The
+   block is centred on the page; everything inside it is left-aligned. */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: center;
-    text-align: center;
+    flex: 1;
+    width: min(100%, 40rem);
+    padding: var(--space-24) 0 var(--space-16);
+    text-align: left;
     color: var(--color-text);
     z-index: 1;
-    padding-left: var(--frame-pad-viewport);
-    padding-right: var(--space-12);
 }
 
 .name {
@@ -73,7 +75,7 @@
     flex-wrap: wrap;
     gap: var(--space-3);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 /* Padding alone leaves the buttons a pixel short of a 44px touch target. */
@@ -121,16 +123,24 @@
 }
 
 /* ── Hero image ── */
+/* The light ground is the bottom third of the screen, so the dark copy area
+   above it (navbar included) holds two thirds. The border-image paints it out
+   to both viewport edges in one paint (see ExperienceV2); the bottom padding
+   clears the fixed contact bar, which sits on this same ground. */
 .visual {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--space-12);
+    flex: 0 0 calc(100dvh / 3);
+    align-self: stretch;
+    padding: var(--space-6) 0 var(--contact-clearance);
+    border-image: linear-gradient(var(--color-inverse-bg), var(--color-inverse-bg))
+        fill 0 / 0 / 0 100vmax;
 }
 
 .linkWrapper {
     display: block;
-    width: clamp(200px, 24vw, 320px);
+    width: clamp(140px, 14vw, 200px);
     max-width: 100%;
     text-decoration: none;
     color: inherit;
@@ -162,8 +172,8 @@
 /* Short desktop viewports: the home screen does not scroll, so the column
    tightens rather than running under the fixed contact bar. */
 @media screen and (min-width: 901px) and (max-height: 820px) {
-    .assembly {
-        gap: var(--space-12);
+    .content {
+        padding: var(--space-16) 0 var(--space-12);
     }
 
     .name {
@@ -176,7 +186,7 @@
     }
 
     .linkWrapper {
-        width: 220px;
+        width: 150px;
     }
 }
 
@@ -192,25 +202,19 @@
 
     .container {
         min-height: calc(100dvh - var(--nav-height-mobile));
-        padding: var(--space-12) 0 var(--space-24);
+        padding: 0;
         margin: 0;
     }
 
     .content {
-        justify-self: center;
-        padding-inline: var(--gutter);
         /* Unbounded, the paragraph runs ~95 characters per line at 768px. */
         max-width: min(100%, 48ch);
         margin-top: var(--space-8);
-    }
-
-    .assembly {
-        grid-template-columns: 1fr;
-        gap: var(--space-12);
+        padding-top: var(--space-16);
     }
 
     .visual {
-        padding-block: var(--space-16);
+        padding: var(--space-6) 0 var(--space-16);
     }
 
 
@@ -225,7 +229,6 @@
     /* The pair does not fit one line at 320px, so it wraps and each button
        stretches instead of overflowing the column. */
     .ctas {
-        justify-content: center;
         width: 100%;
     }
 
