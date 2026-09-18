@@ -52,7 +52,7 @@ const SERVICES = [
 ];
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-// Service sits left of the form, so it leads the focus order.
+// Service is the first step above the form, so it leads the focus order.
 const FIELD_ORDER = ["service", "name", "email", "message"];
 const SERVICES_SECTION_ID = "services";
 
@@ -156,19 +156,14 @@ export const Commissions = () => {
         <meta name="twitter:title" content={PAGE_TITLE} />
         <meta name="twitter:description" content={PAGE_DESCRIPTION} />
       </Helmet>
-      <header className={styles.pageHeader}>
-        <h1 className={styles.pageHeading}>Commissions</h1>
-      </header>
-
       {/* Full-bleed bands in the same rhythm as Projects and Experience: a
           heading column on the left, the content on the right. */}
       <div className={styles.bands}>
-        <section
-          className={`${styles.band} ${styles.bandCentered}`}
-          aria-labelledby="work-heading"
-        >
+        {/* The page title heads the first band's column, so it reads as the
+            label for the releases rather than floating above both columns. */}
+        <section className={styles.band} aria-labelledby="page-heading">
           <div className={styles.bandIntro}>
-            <h2 id="work-heading" className={styles.bandTitle}>Selected work</h2>
+            <h1 id="page-heading" className={styles.pageHeading}>Commissions</h1>
             <p className={styles.bandText}>
               Recent releases I produced, mixed or mastered.
             </p>
@@ -183,7 +178,7 @@ export const Commissions = () => {
 
         <section
           id={SERVICES_SECTION_ID}
-          className={`${styles.band} ${styles.bandMirrored} ${styles.scrollTarget}`}
+          className={`${styles.band} ${styles.scrollTarget}`}
           aria-labelledby="services-heading"
         >
           {/* The step number is decorative: reading order already carries the

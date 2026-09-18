@@ -10,23 +10,22 @@
     font-family: var(--font-default);
 }
 
-/* ── Page header ── */
-.pageHeader {
-    margin-bottom: var(--space-20);
-}
-
+/* ── Page heading ── */
+/* Heads the first band's column rather than the page, so it lines up with the
+   top of the release list opposite. */
 .pageHeading {
     font-family: var(--font-display);
     font-size: var(--text-h1);
     font-weight: var(--weight-light);
     color: var(--color-text);
-    margin: 0;
+    margin: 0 0 var(--space-2);
     line-height: var(--leading-heading);
 }
 
 /* ── Bands ── */
 /* The same row as Projects: a heading column on the left, the content on the
-   right, and every second band set in reverse as a full-bleed strip. */
+   right, and every second band set in reverse colours as a full-bleed strip.
+   Every band shares one column split, so content starts at the same x. */
 .bands {
     display: flex;
     flex-direction: column;
@@ -57,28 +56,11 @@
         fill 0 / 0 / 0 100vmax;
 }
 
-/* The heading block sits level with the middle of a taller content column. */
-.bandCentered {
-    align-items: center;
-}
-
-/* Heading on the right, content on the left. Placement only: the heading stays
-   first in source order, so it is still read first and stacks on top. */
-.bandMirrored {
-    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-}
-
-.bandMirrored > .bandIntro {
-    grid-column: 2;
-    grid-row: 1;
-}
-
-.bandMirrored > :not(.bandIntro) {
-    grid-column: 1;
-    grid-row: 1;
-}
-
+/* Sticky so the heading stays beside a content column taller than itself. The
+   navbar is in flow on desktop, so the offset only needs breathing room. */
 .bandIntro {
+    position: sticky;
+    top: var(--space-16);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -156,7 +138,7 @@
 }
 
 /* Hairline-separated rows rather than a card grid, so the column reads as a
-   list of choices and mirrors the form's rows opposite it. */
+   list of choices. */
 .serviceList {
     display: flex;
     flex-direction: column;
@@ -298,7 +280,7 @@
 }
 
 /* No rules in this column: the fields carry their own edges, so a hairline
-   here would compete with the ones separating service rows opposite. */
+   here would compete with them. */
 .form {
     display: flex;
     flex-direction: column;
@@ -451,24 +433,18 @@
         padding: var(--space-12) var(--gutter) var(--space-12);
     }
 
-    .pageHeader {
-        margin-bottom: var(--space-12);
-    }
-
     .band {
         grid-template-columns: minmax(0, 1fr);
         row-gap: var(--space-6);
         padding-block: var(--space-12);
     }
 
-    .scrollTarget {
-        scroll-margin-top: var(--nav-height-mobile);
+    .bandIntro {
+        position: static;
     }
 
-    .bandMirrored > .bandIntro,
-    .bandMirrored > :not(.bandIntro) {
-        grid-column: auto;
-        grid-row: auto;
+    .scrollTarget {
+        scroll-margin-top: var(--nav-height-mobile);
     }
 
     .submitBtn {
