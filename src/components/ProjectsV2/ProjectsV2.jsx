@@ -22,7 +22,7 @@ const PROJECTS = [
     description:
       "A rhyme finder for writing lyrics. Six kinds of rhyme, syllable counts and scheme analysis, all updating as you type.",
     year: "2026",
-    stack: ["JavaScript", "Cloudflare Pages + D1", "CMU Pronouncing Dictionary"],
+    stack: ["JavaScript", "Cloudflare Pages + D1"],
   },
   {
     title: "airy",
@@ -31,7 +31,7 @@ const PROJECTS = [
     description:
       "A real-time oscilloscope audio plugin. Visually pleasing and has an adjustable zoom knob.",
     year: "2026",
-    stack: ["C++/JUCE", "JUCE DSP (FFT)"],
+    stack: ["C++", "JUCE DSP"],
   },
   {
     title: "Currently VST",
@@ -40,7 +40,7 @@ const PROJECTS = [
     description:
       "Built for DAWs that give you no clear time display. It puts the playhead's timecode on screen and sizes itself to whatever resolution it lands on.",
     year: "2025",
-    stack: ["C++/JUCE", "AudioPlayHead API"],
+    stack: ["C++", "JUCE", "AudioPlayHead API"],
   },
   {
     title: "Valolytics",
@@ -49,7 +49,7 @@ const PROJECTS = [
     description:
       "Point it at a VLR tournament's match pages and it scrapes the results, rates every team by ELO, and weighs a given matchup.",
     year: "2025",
-    stack: ["Python", "selectolax", "pandas", "Tkinter"],
+    stack: ["Python", "selectolax", "pandas"],
   },
   {
     title: "The Slushie Machine",
@@ -58,7 +58,7 @@ const PROJECTS = [
     description:
       "An audio processing plugin that is comprised of a mysterious chain of effects. Heavily inspired by great sounding applications with simple GUIs.",
     year: "2023",
-    stack: ["C++/JUCE", "JUCE DSP", "VST3"],
+    stack: ["C++", "JUCE DSP", "VST3"],
   },
 ];
 
