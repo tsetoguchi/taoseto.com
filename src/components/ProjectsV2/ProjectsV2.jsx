@@ -51,7 +51,7 @@ const PROJECTS = [
     href: "https://github.com/tsetoguchi/The-Slushie-Machine",
     image: TheSlushieMachine,
     description:
-      "Delay, filter, chorus, limiter, imager and waveshaper, chained in series — where the order you put them in is the whole instrument.",
+      "Delay, filter, chorus, limiter, imager and waveshaper, chained in series. The order you put them in is the whole instrument.",
     meta: ["2023", "C++/JUCE", "VST3"],
   },
 ];
