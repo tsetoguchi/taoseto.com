@@ -9,6 +9,17 @@ const PAGE_URL = "https://taoseto.com/commissions";
 const PAGE_DESCRIPTION =
   "Mixing, mastering, and music technology commissions from Tao Seto. Radio-ready mixdowns, commercial-grade masters, and priority turnaround.";
 
+const SUBMIT_FAILURE_MESSAGE =
+  "Your inquiry couldn't be sent. Please try again, or email commissions@taoseto.com.";
+// The backend's messages for these statuses are written for visitors; anything
+// else (a 5xx, a network drop) would only leak internals.
+const STATUSES_WITH_VISITOR_COPY = [400, 429];
+
+const describeSubmitFailure = (status, serverMessage) =>
+  STATUSES_WITH_VISITOR_COPY.includes(status) && serverMessage
+    ? serverMessage
+    : SUBMIT_FAILURE_MESSAGE;
+
 // `id` is the value submitted to the backend, so it stays stable even when the
 // display name changes.
 const SERVICES = [
@@ -119,18 +130,15 @@ export const Commissions = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      const data = await response.json();
-      if (data.success) {
+      const data = await response.json().catch(() => ({}));
+      if (response.ok && data.success) {
         setShowSuccess(true);
         setFormData({ name: "", email: "", service: "", message: "" });
-      } else {
-        throw new Error(data.error || "Failed to send message");
+        return;
       }
-    } catch (error) {
-      setErrorMessage(
-        error.message || "There was an error sending your message. Please try again."
-      );
+      setErrorMessage(describeSubmitFailure(response.status, data.error));
+    } catch {
+      setErrorMessage(SUBMIT_FAILURE_MESSAGE);
     } finally {
       setIsSubmitting(false);
     }
