@@ -24,8 +24,9 @@ export const Hero = () => {
       <div className={styles.container}>
         <div className={styles.assembly}>
           <div className={styles.content}>
-            {/* One word per line for a taller headline; the space between the
-                spans keeps the accessible name {PAGE_TITLE} rather than "taoseto". */}
+            {/* One word per line on desktop for a taller headline; the space
+                between the spans keeps the accessible name {PAGE_TITLE} rather
+                than "taoseto", and is the gap when mobile joins them. */}
             <h1 className={styles.name}>
               <span className={styles.nameLine}>tao</span>{" "}
               <span className={styles.nameLine}>seto</span>

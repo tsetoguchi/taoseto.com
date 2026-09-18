@@ -198,10 +198,11 @@
         margin: 0;
     }
 
-    /* Stacked: copy first, the mark beneath it. */
+    /* Stacked: copy first, the mark beneath it, set well apart so the two
+       don't crowd each other. */
     .assembly {
         grid-template-columns: minmax(0, 1fr);
-        row-gap: var(--space-12);
+        row-gap: calc(var(--space-24) + var(--space-8));
     }
 
     .visual {
@@ -219,25 +220,24 @@
         font-size: 3.75rem;
     }
 
+    /* Stacked, the name already sits above the mark, so it reads as one line. */
+    .nameLine {
+        display: inline;
+    }
+
     .description {
         font-size: var(--text-body);
     }
 
-    /* The pair does not fit one line at 320px, so it wraps and each button
-       stretches instead of overflowing the column. */
-    .ctas {
-        width: 100%;
-    }
-
+    /* Sized to their labels rather than stretched across the column, so the
+       pair reads as compact buttons instead of full-width bars. */
     .ctaPrimary,
     .ctaSecondary {
-        flex: 1 1 auto;
-        text-align: center;
         padding: var(--space-3) var(--space-6);
     }
 
     .linkWrapper {
-        width: 62%;
+        width: 52%;
     }
 
     .heroImg {
