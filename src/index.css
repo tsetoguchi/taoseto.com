@@ -79,9 +79,9 @@ input, textarea, select {
   color: transparent;
 }
 
-/* Honour the OS "reduce motion" setting: the hero logo floats indefinitely
-   and every route change fades, both of which can trigger vestibular
-   symptoms. Motion is removed rather than shortened. */
+/* Honour the OS "reduce motion" setting: the hero logo floats indefinitely,
+   which can trigger vestibular symptoms. Motion is removed rather than
+   shortened. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
