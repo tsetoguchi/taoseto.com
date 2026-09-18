@@ -60,9 +60,9 @@
 
 .ctaPrimary {
   text-decoration: none;
-  font-size: var(--text-small);
+  font-size: var(--text-body);
   font-weight: var(--weight-medium);
-  letter-spacing: 0.02em;
+  letter-spacing: normal;
   color: var(--color-bg);
   background-color: var(--accent-strong);
   padding: var(--space-3) var(--space-8);
@@ -76,9 +76,9 @@
 
 .ctaSecondary {
   text-decoration: none;
-  font-size: var(--text-small);
-  font-weight: var(--weight-regular);
-  letter-spacing: 0.02em;
+  font-size: var(--text-body);
+  font-weight: var(--weight-medium);
+  letter-spacing: normal;
   color: rgba(var(--color-text-rgb), var(--ink-1));
   border: 1px solid rgba(var(--color-text-rgb), var(--ink-2));
   padding: var(--space-3) var(--space-8);

@@ -93,9 +93,9 @@
     border-radius: var(--radius-sm);
     background-color: var(--accent-strong);
     color: var(--color-bg);
-    font-size: var(--text-small);
-    font-weight: var(--weight-semibold);
-    letter-spacing: 0.02em;
+    font-size: var(--text-body);
+    font-weight: var(--weight-medium);
+    letter-spacing: normal;
     text-decoration: none;
     transition: filter var(--duration-fast) ease;
 }
@@ -375,9 +375,9 @@
     border: 0;
     color: var(--color-bg);
     font-family: var(--font-default);
-    font-size: var(--text-small);
-    font-weight: var(--weight-semibold);
-    letter-spacing: 0.02em;
+    font-size: var(--text-body);
+    font-weight: var(--weight-medium);
+    letter-spacing: normal;
     cursor: pointer;
     border-radius: var(--radius-sm);
     transition: filter var(--duration-fast) ease, opacity var(--duration-fast) ease;
