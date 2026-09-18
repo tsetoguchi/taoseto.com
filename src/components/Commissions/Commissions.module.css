@@ -252,25 +252,12 @@
     margin-top: var(--space-2);
 }
 
+/* No markers: each entry sits on its own line, which already reads as a list. */
 .serviceItem {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-3);
     font-size: var(--text-small);
     font-weight: var(--weight-regular);
     color: rgba(var(--color-text-rgb), var(--ink-3));
     line-height: var(--leading-snug);
-}
-
-.serviceItem::before {
-    content: '';
-    width: 12px;
-    height: 1px;
-    background-color: rgba(var(--color-text-rgb), 0.25);
-    flex-shrink: 0;
-    /* Baseline alignment would sit the 1px rule on the text baseline; nudge it
-       up to the middle of the line. */
-    transform: translateY(-5px);
 }
 
 /* ── Form section ── */
