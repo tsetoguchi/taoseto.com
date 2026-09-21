@@ -52,7 +52,10 @@ export const MyNavbar = () => {
         aria-expanded={isMenuOpen}
         onClick={() => setIsMenuOpen((open) => !open)}
       >
-        <span className={styles.togglerIcon} aria-hidden="true" />
+        <span
+          className={`${styles.togglerIcon}${isMenuOpen ? ` ${styles.togglerIconOpen}` : ""}`}
+          aria-hidden="true"
+        />
       </button>
 
       <div
@@ -76,7 +79,9 @@ export const MyNavbar = () => {
                 {link.label}
               </NavLink>
             ))}
+          </nav>
 
+          <div className={styles.socialRow}>
             {SOCIAL_LINKS.map((link) => (
               <a
                 key={link.href}
@@ -90,7 +95,7 @@ export const MyNavbar = () => {
                 <FontAwesomeIcon icon={link.icon} />
               </a>
             ))}
-          </nav>
+          </div>
         </div>
       </div>
     </header>

@@ -113,7 +113,9 @@
     --duration-slow: 0.4s;    /* decorative motion nobody waits on */
 
     /* ── Layers ── */
-    --z-nav: 2;
+    /* Above --z-contact-bar so the mobile menu's full-screen overlay (a
+       descendant of the nav) covers the fixed contact bar when open. */
+    --z-nav: 100;
     --z-contact-bar: 99;
     --z-skip-link: 1000;
 

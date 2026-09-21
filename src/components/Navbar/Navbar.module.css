@@ -45,14 +45,19 @@
 
 .collapseInner {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
     flex: 1;
 }
 
 .menuItems {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    flex: 1;
+}
+
+.socialRow {
+    display: flex;
+    align-items: center;
 }
 
 /* min-width matters for the icon-only social links, which are otherwise
@@ -122,6 +127,10 @@
     background-size: 100%;
 }
 
+.togglerIconOpen {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(245,245,245,0.9)' stroke-linecap='round' stroke-width='2.5' d='M6 6l18 18M24 6L6 24'/%3e%3c/svg%3e");
+}
+
 @media screen and (max-width: 991px) {
     .navbar {
         position: fixed;
@@ -133,50 +142,82 @@
 
     .toggler {
         display: flex;
+        /* Stays above the full-screen overlay below, which is a later sibling
+           and would otherwise paint over it. */
+        position: relative;
+        z-index: 1;
     }
 
-    /* 0fr → 1fr animates to the menu's natural height without hard-coding it. */
+    /* Full-screen overlay rather than an in-flow collapse: opacity/visibility
+       cross-fade instead of a height animation. */
     .collapse {
-        flex: 0 0 100%;
-        display: grid;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows var(--duration-base) cubic-bezier(0.4, 0, 0.2, 1);
+        position: fixed;
+        inset: 0;
+        flex: none;
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        background-color: var(--color-nav);
+        transition:
+            opacity var(--duration-base) ease,
+            visibility 0s linear var(--duration-base);
     }
 
     .collapse.isOpen {
-        grid-template-rows: 1fr;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity var(--duration-base) ease;
     }
 
     .collapseInner {
-        overflow: hidden;
-        min-height: 0;
-        /* Kept out of the tab order while collapsed, but only after the
-           closing animation has finished. */
-        visibility: hidden;
-        transition: visibility 0s linear var(--duration-base);
-    }
-
-    .collapse.isOpen .collapseInner {
-        visibility: visible;
-        transition-delay: 0s;
-    }
-
-    /* Icon-only links are wider than their glyph to stay tappable, so the
-       glyph is pinned right rather than centred in that box. */
-    .navLink {
-        justify-content: flex-end;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        /* Clears the fixed toggler row so the first item starts below it. */
+        padding-top: var(--nav-height-mobile);
     }
 
     .menuItems {
-        flex-direction: column;
-        align-items: flex-end;
         flex: 1;
-        gap: var(--space-3);
-        border-radius: var(--radius-lg);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
-        /* No right padding: each link carries its own, so the text and icons
-           land on the same right edge as the hamburger above them. */
-        padding: var(--space-6) 0 var(--space-6) var(--space-8);
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        /* Centres the compact block of rows in the space above the social
+           row, rather than stretching each row to fill the whole height. */
+        justify-content: center;
+        gap: var(--space-12);
+        width: 100%;
+    }
+
+    /* Fixed-height rows stacked into full-width rows. Full opacity: unlike
+       the desktop row, there's no current-page link nearby to dim against. */
+    .menuItems .navLink {
+        flex: none;
+        min-width: 0;
+        min-height: var(--space-24);
+        justify-content: center;
+        font-size: var(--text-lead);
+        letter-spacing: 0.02em;
+        opacity: 1;
+    }
+
+    .socialRow {
+        justify-content: center;
+        gap: var(--space-6);
+        padding: var(--space-6) 0 var(--space-8);
+        /* Bottom clearance a step taller than the top, so the row sits a
+           little higher above the edge rather than hugging it. */
+        padding-bottom: max(var(--space-8), env(safe-area-inset-bottom));
+    }
+
+    .socialRow .navLink {
+        flex: none;
+        min-width: var(--space-12);
+        min-height: var(--space-12);
+        justify-content: center;
+        opacity: 1;
+        font-size: var(--text-h3);
     }
 }
