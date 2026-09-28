@@ -75,3 +75,8 @@
         display: none;
     }
 }
+
+/* Last in the file so it overrides the pinned rules at every width. */
+.inFlow {
+    position: static;
+}

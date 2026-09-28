@@ -92,9 +92,11 @@ export const ProjectsV2 = () => {
               className={styles.project}
             >
               <div className={styles.media}>
+                {/* The title below already names the link, so the image stays
+                    silent rather than repeating it. */}
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt=""
                   className={styles.projectImage}
                   style={{ objectPosition: project.imagePosition }}
                   loading="lazy"
