@@ -43,6 +43,12 @@
     padding-top: 0;
 }
 
+/* The container's padding already clears the footer, as it clears the navbar
+   above the first band; stacking the band's own on top left a dead gap. */
+.band:last-child {
+    padding-bottom: 0;
+}
+
 /* Colours in a band derive from --color-text(-rgb), so swapping those inverts
    it. The bone accent, pale error red and control edge fall short on the light
    ground, so they swap too. The border-image paints the full-bleed strip (see ExperienceV2). */
