@@ -49,7 +49,8 @@ export const CommissionsPortfolio2 = () => {
         <li key={track.id} className={styles.track}>
           <div className={styles.artwork}>
             {track.coverArt ? (
-              <img src={track.coverArt} alt={`${track.title} cover`} className={styles.artworkImg} />
+              // Empty alt: the title beside it already names the release.
+              <img src={track.coverArt} alt="" className={styles.artworkImg} />
             ) : (
               <div className={styles.artworkPlaceholder} />
             )}

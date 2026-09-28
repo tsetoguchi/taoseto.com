@@ -227,17 +227,13 @@
     gap: var(--space-2);
 }
 
+/* Full strength at rest so the names stand apart from their summaries; the
+   filled ring alone marks the selection. */
 .serviceName {
     font-size: var(--text-body);
     font-weight: var(--weight-medium);
-    color: rgba(var(--color-text-rgb), var(--ink-3));
-    letter-spacing: 0.01em;
-    transition: color var(--duration-fast) ease;
-}
-
-.serviceOption:hover .serviceName,
-.serviceOption.selected .serviceName {
     color: var(--color-text);
+    letter-spacing: 0.01em;
 }
 
 .serviceSummary {
@@ -252,7 +248,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    margin-top: var(--space-2);
 }
 
 /* No markers: each entry sits on its own line, which already reads as a list. */
@@ -335,11 +330,14 @@
 }
 
 /* Chrome paints autofilled fields near-white, which on this palette hides the
-   value entirely. The inset shadow repaints the well behind the text. */
+   value entirely. The inset shadow repaints the well behind the text, mixed to
+   match the unfilled fields. */
 .input:-webkit-autofill,
 .nameInput:-webkit-autofill,
 .textarea:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #14120f inset;
+    -webkit-box-shadow: 0 0 0 1000px
+        color-mix(in srgb, var(--color-text) calc(var(--ink-fill) * 100%), var(--color-bg))
+        inset;
     -webkit-text-fill-color: var(--color-text);
     caret-color: var(--color-text);
 }
