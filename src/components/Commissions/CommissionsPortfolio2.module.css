@@ -3,15 +3,14 @@
 /* ── Tracklist ── */
 /* Rows rather than a tile grid, with hairlines only between rows so the list
    reads like the service choices further down the page. */
-/* The rows only need about half the band's content column, so the list sits
-   against the right edge rather than leaving a wide gap to the right. */
+/* The rows only need about half the band's content column; the list starts at
+   the column edge so it lines up with the services and form in the bands below. */
 .list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    justify-self: end;
     width: min(100%, 480px);
 }
 
@@ -89,7 +88,6 @@
 /* ── Responsive ── */
 @media screen and (max-width: 900px) {
     .list {
-        justify-self: stretch;
         width: auto;
     }
 

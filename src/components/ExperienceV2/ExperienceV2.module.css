@@ -122,10 +122,11 @@
   letter-spacing: 0.01em;
 }
 
+/* Role and period differ in size and ink so the two lines read as separate
+   facts rather than one block. */
 .role {
-  font-size: var(--text-small);
-  letter-spacing: 0.02em;
-  color: rgba(var(--color-text-rgb), var(--ink-3));
+  font-size: var(--text-body);
+  color: rgba(var(--color-text-rgb), var(--ink-2));
   margin: 0;
 }
 
@@ -133,6 +134,7 @@
   font-size: var(--text-small);
   letter-spacing: 0.04em;
   color: rgba(var(--color-text-rgb), var(--ink-3));
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── Right column: company, role, period, then bullets ── */

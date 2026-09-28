@@ -73,7 +73,7 @@ function AppContent() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      {location.pathname === '/' && <Contact className={styles.contact} />}
+      <Contact />
     </div>
   );
 }
