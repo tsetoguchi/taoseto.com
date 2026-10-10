@@ -32,7 +32,7 @@
 }
 
 /* ── Entries ── */
-/* Open rows, with every second one set in reverse as a full-bleed band. */
+/* Open rows, divided by hairlines. */
 .entries {
   display: flex;
   flex-direction: column;
@@ -58,15 +58,10 @@
   padding-top: 0;
 }
 
-/* Every colour in an entry derives from --color-text(-rgb), so swapping those
-   inverts the text, logo tile and links together. The border-image fills the
-   box and outsets sideways to the viewport edges in one paint, which avoids
-   the seam a background + box-shadow pair leaves at fractional heights. */
-.entry:nth-child(even) {
-  --color-text: var(--color-inverse-text);
-  --color-text-rgb: var(--color-inverse-text-rgb);
-  border-image: linear-gradient(var(--color-inverse-bg), var(--color-inverse-bg))
-    fill 0 / 0 / 0 100vmax;
+/* Every entry stays on the black ground; a hairline, like the footer's,
+   marks where one entry ends and the next begins (as on Commissions). */
+.entry + .entry {
+  border-top: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
 }
 
 .companyLink {
