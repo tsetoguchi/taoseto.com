@@ -1,7 +1,7 @@
 @import "../../vars.css";
 
 /* ── Card row ── */
-/* Equal-height cards so the "Choose" buttons line up along one baseline. */
+/* Equal-height cards so the row reads as one even band. */
 .cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -107,36 +107,6 @@
 .check {
     font-size: 12px;
     color: rgba(var(--color-text-rgb), var(--ink-3));
-}
-
-/* ── Choose button ── */
-/* The quiet pill: the page's one bright button stays "Send inquiry". */
-.chooseButton {
-    min-height: 44px;
-    padding: var(--space-2) var(--space-5);
-    border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
-    border-radius: var(--radius-pill);
-    background: transparent;
-    color: var(--color-text);
-    font: inherit;
-    font-size: var(--text-small);
-    font-weight: var(--weight-medium);
-    cursor: pointer;
-    transition: border-color var(--duration-fast) ease;
-}
-
-.chooseButton:hover {
-    border-color: rgba(var(--color-text-rgb), var(--ink-2));
-}
-
-.chooseButton:focus-visible {
-    outline: 2px solid var(--accent-strong);
-    outline-offset: 3px;
-}
-
-.chooseButton:disabled {
-    cursor: default;
-    opacity: 0.5;
 }
 
 /* ── Responsive ── */

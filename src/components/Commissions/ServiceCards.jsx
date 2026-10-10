@@ -17,8 +17,7 @@ const renderIncludes = (items) => (
 );
 
 // Native radios keep one choice enforced and let the arrow keys move between
-// cards. The button sits outside the <label>: a label may not hold a second
-// interactive control.
+// cards.
 const renderCard = (service, index, props) => {
   const isSelected = props.selectedId === service.id;
   return (
@@ -46,14 +45,6 @@ const renderCard = (service, index, props) => {
         <span className={styles.name}>{service.name}</span>
       </label>
       {renderIncludes(service.includes)}
-      <button
-        type="button"
-        className={styles.chooseButton}
-        onClick={() => props.onChoose(service.id)}
-        disabled={props.isDisabled}
-      >
-        Choose {service.name}
-      </button>
     </div>
   );
 };

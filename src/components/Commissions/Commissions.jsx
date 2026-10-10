@@ -88,14 +88,6 @@ export const Commissions = () => {
     clearFieldError("service");
   };
 
-  // "Choose" is the shortcut past the cards: pick, then go straight to the
-  // first field that still needs typing.
-  const chooseService = (serviceId) => {
-    selectService(serviceId);
-    document.getElementById(DETAILS_SECTION_ID)?.scrollIntoView({ block: "start" });
-    document.getElementById("name")?.focus({ preventScroll: true });
-  };
-
   // Errors clear as the field is corrected rather than on a timer.
   const clearFieldError = (field) => {
     setFieldErrors((prev) => {
@@ -236,7 +228,6 @@ export const Commissions = () => {
               services={SERVICES}
               selectedId={formData.service}
               onSelect={selectService}
-              onChoose={chooseService}
               isDisabled={isSubmitting}
             />
             {fieldErrors.service && (
