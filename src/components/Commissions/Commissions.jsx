@@ -221,10 +221,10 @@ export const Commissions = () => {
         >
           <div className={styles.bandIntro}>
             <h2 id="services-heading" className={styles.bandTitle}>
-              What you need
+              Services
               <span className={styles.requiredMark} aria-hidden="true"> *</span>
             </h2>
-            <p className={styles.bandText}>Pick the service closest to your project.</p>
+            <p className={styles.bandText}>Pick the one closest to your project.</p>
           </div>
 
           <fieldset
