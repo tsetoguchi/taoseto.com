@@ -1,42 +1,42 @@
 @import "../../vars.css";
 
-/* ── Tracklist ── */
-/* Rows rather than a tile grid, with hairlines only between rows so the list
-   reads like the service choices further down the page. */
-/* The rows only need about half the band's content column; the list starts at
-   the column edge so it lines up with the services and form in the bands below. */
+/* ── Release grid ── */
+/* Cover art leads, as on engineers' credit pages: a grid of large covers with
+   a short credit under each, so the work is seen before it is read about. */
+/* Flex-wrap rather than a grid so a short last row sits centred under the
+   full rows instead of hugging the left edge. */
 .list {
+    --columns: 3;
+    --column-gap: var(--space-5);
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
-    width: min(100%, 480px);
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-8) var(--column-gap);
+    width: min(100%, 720px);
 }
 
 .track {
-    display: grid;
-    grid-template-columns: var(--cover-size) minmax(0, 1fr);
-    align-items: center;
-    column-gap: var(--space-5);
-    padding-block: var(--space-4);
-    --cover-size: 72px;
-}
-
-.track:first-child {
-    padding-top: 0;
-}
-
-.track + .track {
-    border-top: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-width: 0;
+    width: calc(
+        (100% - (var(--columns) - 1) * var(--column-gap)) / var(--columns)
+    );
+    text-align: left;
 }
 
 /* ── Artwork ── */
 .artwork {
-    width: var(--cover-size);
+    width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-lg);
     overflow: hidden;
+    /* Clips the layered image to the rounded corners cleanly while it scales. */
+    isolation: isolate;
     background-color: rgba(var(--color-text-rgb), var(--ink-fill));
 }
 
@@ -45,6 +45,17 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform var(--duration-slow) ease;
+    /* Kept on its own layer so the zoom doesn't re-rasterise mid-transition
+       and snap sharp at the end, which read as a jitter on hover. */
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* The same slight zoom as the Projects screenshots, so hover reads alike. */
+.hoverable:hover .artworkImg,
+.hoverable:focus-visible .artworkImg {
+    transform: scale(1.02);
 }
 
 .artworkPlaceholder {
@@ -58,6 +69,122 @@
         transparent 12px
     );
     border: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
+}
+
+/* ── Hover caption ── */
+/* Artist and title over the foot of the cover, as on credit-wall sites. */
+.hoverable {
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    background-color: rgba(var(--color-inverse-text-rgb), 0.7);
+    transition: opacity var(--duration-fast) ease;
+}
+
+.captionArtist,
+.captionTitle {
+    color: var(--color-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.captionArtist {
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+}
+
+.captionTitle {
+    font-size: var(--text-small);
+    line-height: var(--leading-title);
+}
+
+/* ── Preview playback ── */
+/* The cover itself opens the player, so the grid needs no extra controls. */
+.playable {
+    display: block;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+}
+
+.playable:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 3px;
+}
+
+.playOverlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background-color: rgba(var(--color-inverse-text-rgb), 0.25);
+    transition: opacity var(--duration-fast) ease;
+}
+
+.playIcon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    font-size: 16px;
+    color: var(--color-inverse-text);
+    background-color: var(--accent-strong);
+}
+
+/* Hidden until hover or focus where a pointer can hover; touch screens have
+   no hover, so there the button always shows and the cover reads as tappable. */
+@media (hover: hover) {
+    .playOverlay,
+    .caption {
+        opacity: 0;
+    }
+
+    .playable:focus-visible .playOverlay,
+    .hoverable:hover .playOverlay,
+    .hoverable:hover .caption,
+    .hoverable:focus-visible .caption {
+        opacity: 1;
+    }
+}
+
+/* With a pointer the hover caption carries the credit, so the text under the
+   cover is hidden visually but kept for screen readers (the caption is not). */
+@media (hover: hover) {
+    .list {
+        row-gap: var(--space-5);
+    }
+
+    .info {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+}
+
+/* Touch screens get no caption: the credit under the cover already shows. */
+@media (hover: none) {
+    .playOverlay {
+        background-color: transparent;
+    }
+
+    .caption {
+        display: none;
+    }
 }
 
 /* ── Track info ── */
@@ -88,12 +215,8 @@
 /* ── Responsive ── */
 @media screen and (max-width: 900px) {
     .list {
-        width: auto;
-    }
-
-    .track {
-        --cover-size: 56px;
-        column-gap: var(--space-4);
-        padding-block: var(--space-6);
+        --columns: 2;
+        --column-gap: var(--space-4);
+        row-gap: var(--space-6);
     }
 }

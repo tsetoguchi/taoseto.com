@@ -71,10 +71,13 @@
     --measure: 60ch;
 
     /* ── Weight ── */
+    /* Outfit is set a step lighter than its nominal weights for a thinner
+       voice; each role keeps its name. Ibarra Real Nova has no cut below 400,
+       so display headings stay as they are. */
     --weight-light: 300;
-    --weight-regular: 400;
-    --weight-medium: 500;
-    --weight-semibold: 600;
+    --weight-regular: 300;
+    --weight-medium: 400;
+    --weight-semibold: 500;
 
     /* ── Ink (text opacity steps over --color-bg) ── */
     --ink-1: 0.92;   /* primary */
@@ -121,6 +124,7 @@
 
     /* ── Radius ── */
     --radius-sm: 4px;
+    --radius-pill: 999px;   /* buttons: fully rounded ends at any height */
     --radius-md: 8px;
     --radius-lg: 12px;
 

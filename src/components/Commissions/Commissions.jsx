@@ -9,6 +9,10 @@ const PAGE_URL = "https://taoseto.com/commissions";
 const PAGE_DESCRIPTION =
   "Mixing, mastering, and music technology commissions from Tao Seto. Radio-ready mixdowns, commercial-grade masters, and priority turnaround.";
 
+// ~74M as of Oct 2026: 59M TikTok views, 5.6M Spotify streams and ~9.1M
+// YouTube views across uploads. Rounded down so the claim stays defensible.
+const TAGLINE = "Producer & engineer behind 70M+ collective views and streams";
+
 const SUBMIT_FAILURE_MESSAGE =
   "Your inquiry couldn't be sent. Please try again, or email commissions@taoseto.com.";
 // The backend's messages for these statuses are written for visitors; anything
@@ -159,21 +163,27 @@ export const Commissions = () => {
       {/* Full-bleed bands in the same rhythm as Projects and Experience: a
           heading column on the left, the content on the right. */}
       <div className={styles.bands}>
-        {/* The page title heads the first band's column, so it reads as the
-            label for the releases rather than floating above both columns. */}
-        <section className={styles.band} aria-labelledby="page-heading">
+        {/* The opening band is centred and stacked, title over the covers, as
+            on a credits wall; the bands below keep the two-column split. */}
+        <section
+          className={`${styles.band} ${styles.bandCentered}`}
+          aria-labelledby="page-heading"
+        >
           <div className={styles.bandIntro}>
             <h1 id="page-heading" className={styles.pageHeading}>Commissions</h1>
-            <p className={styles.bandText}>
-              Recent releases I produced, mixed or mastered.
-            </p>
-            {/* A link rather than a button: it moves to a place on the page, and
-                the global smooth scroll (off under reduced motion) animates it. */}
-            <a href={`#${SERVICES_SECTION_ID}`} className={styles.bandCta}>
-              Start a commission
-            </a>
+            <p className={styles.tagline}>{TAGLINE}</p>
           </div>
-          <CommissionsPortfolio />
+          {/* Left-aligned to the grid's own edge, so the heading labels the
+              covers rather than joining the centred title above. */}
+          <section className={styles.credits} aria-labelledby="credits-heading">
+            <h2 id="credits-heading" className={styles.bandTitle}>Credits</h2>
+            <CommissionsPortfolio />
+          </section>
+          {/* A link rather than a button: it moves to a place on the page, and
+              the global smooth scroll (off under reduced motion) animates it. */}
+          <a href={`#${SERVICES_SECTION_ID}`} className={styles.bandCta}>
+            Start a commission
+          </a>
         </section>
 
         <section
