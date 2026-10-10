@@ -31,7 +31,7 @@
 
 /* ── Project rows ── */
 /* Open rows rather than boxed cards: the text on the left, the screenshot
-   beside it, and every second row set in reverse as a full-bleed band. */
+   beside it. */
 .projects {
   display: flex;
   flex-direction: column;
@@ -51,14 +51,10 @@
   padding-top: 0;
 }
 
-/* Every colour in a row derives from --color-text(-rgb), so swapping those
-   inverts it. The border-image fills the box and outsets sideways to the
-   viewport edges in one paint (see ExperienceV2 for why not box-shadow). */
-.project:nth-child(even) {
-  --color-text: var(--color-inverse-text);
-  --color-text-rgb: var(--color-inverse-text-rgb);
-  border-image: linear-gradient(var(--color-inverse-bg), var(--color-inverse-bg))
-    fill 0 / 0 / 0 100vmax;
+/* Every row stays on the black ground; a hairline, like the footer's,
+   marks where one row ends and the next begins (as on Commissions). */
+.project + .project {
+  border-top: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
 }
 
 .project:focus-visible {
@@ -136,12 +132,6 @@
   font-size: var(--text-small);
   letter-spacing: 0.04em;
   color: rgba(var(--color-text-rgb), var(--ink-2));
-}
-
-/* Small dark text on the light band reads fainter than the same ink on
-   black, so the reversed rows step up one level to look the same. */
-.project:nth-child(even) .projectMeta {
-  color: rgba(var(--color-text-rgb), var(--ink-1));
 }
 
 /* The gap has to read clearly wider than a word space, so two-word entries
