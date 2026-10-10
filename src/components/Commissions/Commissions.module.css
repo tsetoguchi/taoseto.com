@@ -81,6 +81,43 @@
     color: var(--color-text);
 }
 
+.tagline {
+    margin: 0;
+    font-size: var(--text-lead);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-snug);
+    text-wrap: balance;
+    color: rgba(var(--color-text-rgb), var(--ink-2));
+}
+
+/* ── Centred opening band ── */
+.bandCentered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-12);
+    text-align: center;
+}
+
+.bandCentered .bandIntro {
+    position: static;
+    align-items: center;
+}
+
+/* Same width as the cover grid, so the heading starts at the grid's edge. */
+.credits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    width: min(100%, 720px);
+    text-align: left;
+}
+
+/* The band's gap already spaces the button from the grid. */
+.bandCentered .bandCta {
+    margin-top: 0;
+}
+
 .bandText {
     margin: 0;
     max-width: var(--measure);
@@ -96,7 +133,7 @@
     min-height: 44px;
     margin-top: var(--space-8);
     padding: var(--space-3) var(--space-8);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-pill);
     background-color: var(--accent-strong);
     color: var(--color-bg);
     font-size: var(--text-body);
@@ -373,7 +410,7 @@
     font-weight: var(--weight-medium);
     letter-spacing: normal;
     cursor: pointer;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-pill);
     transition: filter var(--duration-fast) ease, opacity var(--duration-fast) ease;
 }
 

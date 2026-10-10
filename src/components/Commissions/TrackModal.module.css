@@ -1,0 +1,200 @@
+@import "../../vars.css";
+
+/* ── Dialog shell ── */
+/* The <dialog> itself is a bare, full-viewport hit area so a click outside
+   the panel lands on it and closes; the panel carries the visuals. */
+.dialog {
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: var(--space-4);
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-default);
+    /* Rendered inside the centred opening band; reset what it would pass on. */
+    text-align: left;
+    place-items: center;
+}
+
+.dialog[open] {
+    display: grid;
+}
+
+.dialog::backdrop {
+    background-color: rgba(var(--color-inverse-text-rgb), 0.8);
+}
+
+.panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: center;
+    width: min(100%, 720px);
+    padding: var(--space-8);
+    border: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg);
+}
+
+.closeButton {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: rgba(var(--color-text-rgb), var(--ink-2));
+    font-size: 20px;
+    cursor: pointer;
+    transition: color var(--duration-fast) ease;
+}
+
+.closeButton:hover {
+    color: var(--color-text);
+}
+
+/* ── Cover ── */
+.cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+}
+
+/* ── Details ── */
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    min-width: 0;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.artist {
+    margin: 0;
+    font-size: var(--text-body);
+    color: rgba(var(--color-text-rgb), var(--ink-2));
+}
+
+.title {
+    margin: 0;
+    font-size: var(--text-h3);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-title);
+    text-wrap: balance;
+}
+
+.role {
+    margin: var(--space-4) 0 0;
+}
+
+.roleLabel {
+    font-size: var(--text-small);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+}
+
+.roleValue {
+    margin: var(--space-1) 0 0;
+    font-size: var(--text-body);
+    color: var(--color-text);
+}
+
+/* ── Player ── */
+.player {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.playButton {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--accent-strong);
+    color: var(--color-inverse-text);
+    font-size: 16px;
+    cursor: pointer;
+    transition: filter var(--duration-fast) ease;
+}
+
+.playButton:hover {
+    filter: var(--hover-dim);
+}
+
+/* The track is painted from --fill so the played part reads at a glance. */
+.seek {
+    width: 100%;
+    height: 4px;
+    margin: 0;
+    appearance: none;
+    border-radius: 2px;
+    background: linear-gradient(
+        to right,
+        var(--accent-strong) calc(var(--fill) * 100%),
+        rgba(var(--color-text-rgb), var(--ink-hairline)) 0
+    );
+    cursor: pointer;
+}
+
+.seek::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--accent-strong);
+}
+
+.seek::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--accent-strong);
+}
+
+.time {
+    font-size: var(--text-small);
+    font-variant-numeric: tabular-nums;
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+}
+
+.closeButton:focus-visible,
+.playButton:focus-visible,
+.seek:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 3px;
+}
+
+/* ── Mobile ── */
+@media screen and (max-width: 600px) {
+    .panel {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-6);
+        padding: var(--space-6);
+    }
+
+    .cover {
+        width: min(100%, 240px);
+        justify-self: center;
+    }
+}
