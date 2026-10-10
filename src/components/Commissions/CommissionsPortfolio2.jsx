@@ -11,18 +11,16 @@ import { TrackModal } from "./TrackModal";
 // - artist: null    →  renders as "Private client"
 // - coverArt: null  →  renders a placeholder
 // - preview: null   →  the cover doesn't open the player
-// Every track points at the stand-in clip until the real previews are cut.
-const PLACEHOLDER_PREVIEW = "/audio/commissions/clips/placeholder.wav";
 const PRIVATE_ARTIST_LABEL = "Private client";
 
 const TRACKS = [
   {
     id: 1,
-    title: "ZEDD - Inside Out (Remix)",
-    artist: "Konac",
+    title: "Inside Out (Konac Remix)",
+    artist: "ZEDD",
     service: "Production, Mixing & Mastering",
     coverArt: "/audio/commissions/covers/track1.png",
-    preview: PLACEHOLDER_PREVIEW,
+    preview: "/audio/commissions/clips/track1.mp3",
   },
   {
     id: 2,
@@ -30,15 +28,23 @@ const TRACKS = [
     artist: "Konac & Cenji",
     service: "Production, Mixing & Mastering",
     coverArt: "/audio/commissions/covers/track2.png",
-    preview: PLACEHOLDER_PREVIEW,
+    preview: "/audio/commissions/clips/track2.mp3",
   },
   {
-    id: 3,
-    title: "Home",
+    id: 7,
+    title: "Flutter (feat. Cenji)",
     artist: "Konac",
     service: "Production, Mixing & Mastering",
-    coverArt: "/audio/commissions/covers/track3.jpg",
-    preview: PLACEHOLDER_PREVIEW,
+    coverArt: "/audio/commissions/covers/track7.jpg",
+    preview: "/audio/commissions/clips/track7.mp3",
+  },
+  {
+    id: 6,
+    title: "Love Me Harder (Konac Remix)",
+    artist: "Ariana Grande ft. The Weeknd",
+    service: "Production, Mixing & Mastering",
+    coverArt: "/audio/commissions/covers/track6.jpg",
+    preview: "/audio/commissions/clips/track6.mp3",
   },
   {
     id: 4,
@@ -46,15 +52,23 @@ const TRACKS = [
     artist: "Krizin",
     service: "Mastering",
     coverArt: "/audio/commissions/covers/track4.jpg",
-    preview: PLACEHOLDER_PREVIEW,
+    preview: null,
   },
   {
-    id: 5,
-    title: "Won't Let Go (feat. juu)",
+    id: 8,
+    title: "More Colors (Krizin Remix)",
+    artist: "Kidswaste",
+    service: "Mastering",
+    coverArt: "/audio/commissions/covers/track8.jpg",
+    preview: "/audio/commissions/clips/track8.mp3",
+  },
+  {
+    id: 3,
+    title: "Home",
     artist: "Konac",
     service: "Production, Mixing & Mastering",
-    coverArt: "/audio/commissions/covers/track5.jpg",
-    preview: PLACEHOLDER_PREVIEW,
+    coverArt: "/audio/commissions/covers/track3.jpg",
+    preview: "/audio/commissions/clips/track3.mp3",
   },
 ];
 

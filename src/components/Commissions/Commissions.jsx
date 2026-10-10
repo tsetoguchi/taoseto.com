@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import styles from "./Commissions.module.css";
 import { getApiEndpoint } from "../../config";
 import { CommissionsPortfolio2 as CommissionsPortfolio } from "./CommissionsPortfolio2";
+import { ServiceCards } from "./ServiceCards";
 
 const PAGE_TITLE = "Commissions · tao seto";
 const PAGE_URL = "https://taoseto.com/commissions";
@@ -30,24 +31,26 @@ const SERVICES = [
   {
     id: "Mixing",
     name: "Mixing",
-    summary:
-      "Balance, processing and stereo staging on a finished arrangement. You get the mixdown plus the instrumental and stems, and five rounds of revisions.",
+    includes: [
+      "Balance, processing & stereo staging",
+      "Mixdown, instrumental & stems",
+      "5 rounds of revisions",
+    ],
   },
   {
     id: "Mastering",
     name: "Mastering",
-    summary: "Final loudness, tone and format for release. Three rounds.",
+    includes: ["Final loudness, tone & format for release", "3 rounds of revisions"],
   },
   {
     id: "Mixing & Mastering",
     name: "Mixing & Mastering",
-    summary: "Both, with the mastering included and priority turnaround.",
+    includes: ["Everything in Mixing", "Mastering included", "Priority turnaround"],
   },
   {
     id: "Other",
     name: "Something else",
-    summary: "Anything else in the production chain:",
-    items: [
+    includes: [
       "Beat & track production",
       "Pre-production arrangement",
       "Post-production editing & cleanup",
@@ -59,6 +62,8 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Service is the first step above the form, so it leads the focus order.
 const FIELD_ORDER = ["service", "name", "email", "message"];
 const SERVICES_SECTION_ID = "services";
+const CREDITS_SECTION_ID = "credits";
+const DETAILS_SECTION_ID = "details";
 
 export const Commissions = () => {
   const [formData, setFormData] = useState({
@@ -76,6 +81,11 @@ export const Commissions = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     clearFieldError(name);
+  };
+
+  const selectService = (serviceId) => {
+    setFormData((prev) => ({ ...prev, service: serviceId }));
+    clearFieldError("service");
   };
 
   // Errors clear as the field is corrected rather than on a timer.
@@ -160,11 +170,9 @@ export const Commissions = () => {
         <meta name="twitter:title" content={PAGE_TITLE} />
         <meta name="twitter:description" content={PAGE_DESCRIPTION} />
       </Helmet>
-      {/* Full-bleed bands in the same rhythm as Projects and Experience: a
-          heading column on the left, the content on the right. */}
+      {/* Each band takes its own shape (centred hero, wide credits, centred
+          card row, split form) on one shared rhythm of padding and width. */}
       <div className={styles.bands}>
-        {/* The opening band is centred and stacked, title over the covers, as
-            on a credits wall; the bands below keep the two-column split. */}
         <section
           className={`${styles.band} ${styles.bandCentered}`}
           aria-labelledby="page-heading"
@@ -173,91 +181,67 @@ export const Commissions = () => {
             <h1 id="page-heading" className={styles.pageHeading}>Commissions</h1>
             <p className={styles.tagline}>{TAGLINE}</p>
           </div>
-          {/* Left-aligned to the grid's own edge, so the heading labels the
-              covers rather than joining the centred title above. */}
-          <section className={styles.credits} aria-labelledby="credits-heading">
+          {/* Links rather than buttons: they move to a place on the page, and
+              the global smooth scroll (off under reduced motion) animates it. */}
+          <div className={styles.heroActions}>
+            <a href={`#${SERVICES_SECTION_ID}`} className={styles.bandCta}>
+              Start a commission
+            </a>
+            <a href={`#${CREDITS_SECTION_ID}`} className={styles.bandCtaSecondary}>
+              Listen
+            </a>
+          </div>
+        </section>
+
+        {/* Left-aligned to the grid's own edge, so the heading labels the
+            covers rather than joining the centred title above. */}
+        <section
+          id={CREDITS_SECTION_ID}
+          className={`${styles.band} ${styles.bandCentered} ${styles.scrollTarget}`}
+          aria-labelledby="credits-heading"
+        >
+          <div className={styles.credits}>
             <h2 id="credits-heading" className={styles.bandTitle}>Credits</h2>
             <CommissionsPortfolio />
-          </section>
-          {/* A link rather than a button: it moves to a place on the page, and
-              the global smooth scroll (off under reduced motion) animates it. */}
-          <a href={`#${SERVICES_SECTION_ID}`} className={styles.bandCta}>
-            Start a commission
-          </a>
+          </div>
         </section>
 
         <section
           id={SERVICES_SECTION_ID}
-          className={`${styles.band} ${styles.scrollTarget}`}
+          className={`${styles.band} ${styles.bandCentered} ${styles.scrollTarget}`}
           aria-labelledby="services-heading"
         >
-          {/* The step number is decorative: reading order already carries the
-              sequence, and "01 What you need" reads badly as a group label. */}
           <div className={styles.bandIntro}>
-            <span className={styles.stepNumber} aria-hidden="true">01</span>
             <h2 id="services-heading" className={styles.bandTitle}>
-              What you need
+              Services
               <span className={styles.requiredMark} aria-hidden="true"> *</span>
             </h2>
-            <p className={styles.bandText}>Pick the service closest to your project.</p>
+            <p className={styles.bandText}>Pick the one closest to your project.</p>
           </div>
 
-          {/* A grid item cannot be a <legend>, so the heading names the group. */}
           <fieldset
             className={styles.servicesSection}
             aria-labelledby="services-heading"
             aria-describedby={fieldErrors.service ? "service-error" : undefined}
           >
-            <div className={styles.serviceList}>
-              {SERVICES.map((service, index) => (
-                <label
-                  key={service.id}
-                  className={[
-                    styles.serviceOption,
-                    formData.service === service.id ? styles.selected : "",
-                  ].join(" ")}
-                >
-                  {/* Native radios so one choice is enforced and the arrow keys
-                      move between options without a roving tabindex. */}
-                  <input
-                    type="radio"
-                    name="service"
-                    /* The group's first control is what an unanswered "select a
-                       service" error focuses. */
-                    id={index === 0 ? "service" : undefined}
-                    value={service.id}
-                    checked={formData.service === service.id}
-                    onChange={handleChange}
-                    disabled={isSubmitting}
-                    className={styles.serviceRadio}
-                  />
-                  {/* Selection shows as a filled ring — a shape change, not only
-                      a colour change, so it survives colour-blindness. */}
-                  <span className={styles.serviceMarker} aria-hidden="true" />
-                  <span className={styles.serviceBody}>
-                    <span className={styles.serviceName}>{service.name}</span>
-                    <span className={styles.serviceSummary}>{service.summary}</span>
-                    {service.items && (
-                      <span className={styles.serviceItems}>
-                        {service.items.map((item) => (
-                          <span key={item} className={styles.serviceItem}>{item}</span>
-                        ))}
-                      </span>
-                    )}
-                  </span>
-                </label>
-              ))}
-            </div>
-
+            <ServiceCards
+              services={SERVICES}
+              selectedId={formData.service}
+              onSelect={selectService}
+              isDisabled={isSubmitting}
+            />
             {fieldErrors.service && (
               <p id="service-error" className={styles.fieldError}>{fieldErrors.service}</p>
             )}
           </fieldset>
         </section>
 
-        <section className={styles.band} aria-labelledby="details-heading">
+        <section
+          id={DETAILS_SECTION_ID}
+          className={`${styles.band} ${styles.scrollTarget}`}
+          aria-labelledby="details-heading"
+        >
           <div className={styles.bandIntro}>
-            <span className={styles.stepNumber} aria-hidden="true">02</span>
             <h2 id="details-heading" className={styles.bandTitle}>Your details</h2>
             <p className={styles.bandText}>
               Tell me about the project and I’ll reply by email.

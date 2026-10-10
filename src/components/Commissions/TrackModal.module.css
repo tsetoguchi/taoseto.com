@@ -14,9 +14,16 @@
     background: transparent;
     color: var(--color-text);
     font-family: var(--font-default);
-    /* Rendered inside the centred opening band; reset what it would pass on. */
+    /* Rendered inside a centred band; reset what it would pass on. */
     text-align: left;
     place-items: center;
+}
+
+/* Fades in at the site's opening speed, like the mobile menu's overlay.
+   Reduced motion is handled globally in index.css. */
+.dialog[open],
+.dialog[open]::backdrop {
+    animation: fadeIn var(--duration-base) ease;
 }
 
 .dialog[open] {
@@ -27,17 +34,33 @@
     background-color: rgba(var(--color-inverse-text-rgb), 0.8);
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+}
+
+/* Cover and details share one height: the title block hangs from the top and
+   the player sits on the cover's bottom edge, like a record sleeve. */
 .panel {
     position: relative;
     display: grid;
-    grid-template-columns: 240px minmax(0, 1fr);
-    gap: var(--space-8);
-    align-items: center;
-    width: min(100%, 720px);
+    grid-template-columns: 360px minmax(0, 1fr);
+    gap: var(--space-12);
+    width: min(100%, 960px);
+    max-height: 100%;
+    overflow-y: auto;
     padding: var(--space-8);
     border: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
     border-radius: var(--radius-lg);
-    background-color: var(--color-bg);
+    /* The service cards' raised fill, laid over solid black so the page behind
+       doesn't show through. */
+    background:
+        linear-gradient(
+            rgba(var(--color-text-rgb), var(--ink-fill)),
+            rgba(var(--color-text-rgb), var(--ink-fill))
+        ),
+        var(--color-bg);
 }
 
 .closeButton {
@@ -50,10 +73,10 @@
     height: 44px;
     padding: 0;
     border: 0;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-pill);
     background: transparent;
     color: rgba(var(--color-text-rgb), var(--ink-2));
-    font-size: 20px;
+    font-size: var(--text-lead);
     cursor: pointer;
     transition: color var(--duration-fast) ease;
 }
@@ -71,18 +94,34 @@
     border-radius: var(--radius-lg);
 }
 
+/* Same hatching as the grid's empty cover, for a track still waiting on art. */
+.coverPlaceholder {
+    border: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(var(--color-text-rgb), var(--ink-fill)) 0px,
+        rgba(var(--color-text-rgb), var(--ink-fill)) 1px,
+        transparent 1px,
+        transparent 12px
+    );
+}
+
 /* ── Details ── */
 .body {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: var(--space-8);
     min-width: 0;
+    padding-top: var(--space-4);
 }
 
 .details {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+    /* Keeps a long title clear of the close button. */
+    padding-right: var(--space-12);
 }
 
 .artist {
@@ -91,16 +130,18 @@
     color: rgba(var(--color-text-rgb), var(--ink-2));
 }
 
+/* The one display moment in the modal: the title set like the page headings. */
 .title {
     margin: 0;
-    font-size: var(--text-h3);
-    font-weight: var(--weight-medium);
-    line-height: var(--leading-title);
+    font-family: var(--font-display);
+    font-size: var(--text-h1);
+    font-weight: var(--weight-light);
+    line-height: var(--leading-heading);
     text-wrap: balance;
 }
 
 .role {
-    margin: var(--space-4) 0 0;
+    margin: var(--space-6) 0 0;
 }
 
 .roleLabel {
@@ -116,23 +157,43 @@
 
 /* ── Player ── */
 .player {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.seekRow {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.times {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-small);
+    font-variant-numeric: tabular-nums;
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+}
+
+.controls {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: var(--space-4);
 }
 
 .playButton {
     display: grid;
     place-items: center;
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     padding: 0;
     border: 0;
     border-radius: 50%;
     background-color: var(--accent-strong);
     color: var(--color-inverse-text);
-    font-size: 16px;
+    font-size: var(--text-body);
     cursor: pointer;
     transition: filter var(--duration-fast) ease;
 }
@@ -141,13 +202,39 @@
     filter: var(--hover-dim);
 }
 
-/* The track is painted from --fill so the played part reads at a glance. */
-.seek {
+.volume {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.muteButton {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: rgba(var(--color-text-rgb), var(--ink-2));
+    font-size: var(--text-body);
+    cursor: pointer;
+    transition: color var(--duration-fast) ease;
+}
+
+.muteButton:hover {
+    color: var(--color-text);
+}
+
+/* ── Ranges (seek and volume) ── */
+/* One track style for both: the set part in bone, the rest a hairline. */
+.range {
     width: 100%;
     height: 4px;
     margin: 0;
     appearance: none;
-    border-radius: 2px;
+    border-radius: var(--radius-pill);
     background: linear-gradient(
         to right,
         var(--accent-strong) calc(var(--fill) * 100%),
@@ -156,7 +243,7 @@
     cursor: pointer;
 }
 
-.seek::-webkit-slider-thumb {
+.range::-webkit-slider-thumb {
     appearance: none;
     width: 14px;
     height: 14px;
@@ -164,7 +251,7 @@
     background-color: var(--accent-strong);
 }
 
-.seek::-moz-range-thumb {
+.range::-moz-range-thumb {
     width: 14px;
     height: 14px;
     border: 0;
@@ -172,29 +259,53 @@
     background-color: var(--accent-strong);
 }
 
-.time {
-    font-size: var(--text-small);
-    font-variant-numeric: tabular-nums;
-    color: rgba(var(--color-text-rgb), var(--ink-3));
+.fader {
+    width: 112px;
 }
 
 .closeButton:focus-visible,
 .playButton:focus-visible,
-.seek:focus-visible {
+.muteButton:focus-visible,
+.range:focus-visible {
     outline: 2px solid var(--accent-strong);
     outline-offset: 3px;
 }
 
-/* ── Mobile ── */
+/* Touch devices set level with their own buttons, and iOS ignores a page's
+   volume, so only the mute toggle stays. */
+@media (pointer: coarse) {
+    .fader {
+        display: none;
+    }
+}
+
+/* ── Smaller screens ── */
+@media screen and (max-width: 900px) {
+    .panel {
+        grid-template-columns: 260px minmax(0, 1fr);
+        gap: var(--space-8);
+    }
+}
+
 @media screen and (max-width: 600px) {
+    /* The extra top padding gives the close button its own row, clear of the
+       cover. */
     .panel {
         grid-template-columns: minmax(0, 1fr);
         gap: var(--space-6);
-        padding: var(--space-6);
+        padding: var(--space-16) var(--space-6) var(--space-6);
     }
 
     .cover {
-        width: min(100%, 240px);
+        width: min(100%, 320px);
         justify-self: center;
+    }
+
+    .body {
+        padding-top: 0;
+    }
+
+    .details {
+        padding-right: 0;
     }
 }

@@ -24,8 +24,7 @@
 
 /* ── Bands ── */
 /* The same row as Projects: a heading column on the left, the content on the
-   right, and every second band set in reverse colours as a full-bleed strip.
-   Every band shares one column split, so content starts at the same x. */
+   right. Every band shares one column split, so content starts at the same x. */
 .bands {
     display: flex;
     flex-direction: column;
@@ -49,17 +48,10 @@
     padding-bottom: 0;
 }
 
-/* Colours in a band derive from --color-text(-rgb), so swapping those inverts
-   it. The bone accent, pale error red and control edge fall short on the light
-   ground, so they swap too. The border-image paints the full-bleed strip (see ExperienceV2). */
-.band:nth-child(even) {
-    --color-text: var(--color-inverse-text);
-    --color-text-rgb: var(--color-inverse-text-rgb);
-    --accent-strong: var(--color-inverse-text);
-    --color-error: var(--color-error-inverse);
-    --ink-edge: var(--ink-edge-inverse);
-    border-image: linear-gradient(var(--color-inverse-bg), var(--color-inverse-bg))
-        fill 0 / 0 / 0 100vmax;
+/* Every band stays on the black ground; a hairline, like the footer's,
+   marks where one band ends and the next begins. */
+.band + .band {
+    border-top: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
 }
 
 /* Sticky so the heading stays beside a content column taller than itself. The
@@ -109,13 +101,45 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
-    width: min(100%, 720px);
+    width: min(100%, 960px);
     text-align: left;
 }
 
-/* The band's gap already spaces the button from the grid. */
-.bandCentered .bandCta {
+.heroActions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+/* The band's gap already spaces the buttons from the tagline. */
+.heroActions .bandCta {
     margin-top: 0;
+}
+
+/* Matches the hero's secondary CTA: an outline pill beside the filled one. */
+.bandCtaSecondary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: var(--space-3) var(--space-8);
+    border: 1px solid rgba(var(--color-text-rgb), var(--ink-2));
+    border-radius: var(--radius-pill);
+    color: rgba(var(--color-text-rgb), var(--ink-1));
+    font-size: var(--text-body);
+    font-weight: var(--weight-medium);
+    text-decoration: none;
+    transition: color var(--duration-fast) ease, border-color var(--duration-fast) ease;
+}
+
+.bandCtaSecondary:hover {
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    border-color: rgba(var(--color-text-rgb), var(--ink-edge));
+}
+
+.bandCtaSecondary:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 3px;
 }
 
 .bandText {
@@ -165,140 +189,15 @@
     margin: 0;
     padding: 0;
     min-width: 0;
-}
-
-.stepNumber {
-    font-size: var(--text-label);
-    letter-spacing: 0.14em;
-    color: var(--accent-strong);
-    font-variant-numeric: tabular-nums;
+    /* The centred band would otherwise shrink the card row to its content. */
+    width: 100%;
+    text-align: left;
 }
 
 /* Per-field marker replaces a single "all fields required" note: it holds up
    under scanning instead of depending on the reader having seen it earlier. */
 .requiredMark {
     color: rgba(var(--color-text-rgb), var(--ink-3));
-}
-
-/* Hairline-separated rows rather than a card grid, so the column reads as a
-   list of choices. */
-.serviceList {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Rules appear only between rows — never closing the top or bottom of the
-   group — so a hairline always means "next option" and nothing else. */
-.serviceOption {
-    position: relative;
-    display: grid;
-    grid-template-columns: 18px 1fr;
-    gap: var(--space-4);
-    align-items: start;
-    /* Inset content and pull the row out by the same amount, so the hover fill
-       and focus ring clear the radio while it stays level with the fields below. */
-    padding: var(--space-5) var(--space-4);
-    margin-inline: calc(-1 * var(--space-4));
-    cursor: pointer;
-    transition: background-color var(--duration-fast) ease;
-}
-
-.serviceOption + .serviceOption {
-    border-top: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
-}
-
-.serviceOption:hover {
-    background-color: rgba(var(--color-text-rgb), var(--ink-fill));
-}
-
-/* 0.4 clears the 3:1 that identifies a control (WCAG 1.4.11); the ring fills
-   on selection, so the state is a shape change and not colour alone. */
-.serviceMarker {
-    width: 16px;
-    height: 16px;
-    margin-top: var(--space-1);
-    border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
-    border-radius: 50%;
-    position: relative;
-    transition: border-color var(--duration-fast) ease;
-}
-
-.serviceOption:hover .serviceMarker {
-    border-color: rgba(var(--color-text-rgb), var(--ink-2));
-}
-
-.serviceOption.selected .serviceMarker {
-    border-color: var(--accent-strong);
-}
-
-.serviceOption.selected .serviceMarker::after {
-    content: '';
-    position: absolute;
-    inset: var(--space-1);
-    border-radius: 50%;
-    background-color: var(--accent-strong);
-}
-
-/* The native control is hidden but still focusable, so the row shows the ring
-   on its behalf. */
-.serviceRadio {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-    margin: 0;
-    pointer-events: none;
-}
-
-.serviceOption:has(.serviceRadio:focus-visible) {
-    outline: 2px solid var(--accent-strong);
-    outline-offset: -2px;
-}
-
-/* :has() fallback: on browsers without it, ring the marker via a sibling
-   combinator instead of leaving keyboard focus with no visible indicator. */
-@supports not selector(:has(a)) {
-    .serviceRadio:focus-visible ~ .serviceMarker {
-        outline: 2px solid var(--accent-strong);
-        outline-offset: 2px;
-    }
-}
-
-.serviceBody {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-}
-
-/* Full strength at rest so the names stand apart from their summaries; the
-   filled ring alone marks the selection. */
-.serviceName {
-    font-size: var(--text-body);
-    font-weight: var(--weight-medium);
-    color: var(--color-text);
-    letter-spacing: 0.01em;
-}
-
-.serviceSummary {
-    font-size: var(--text-small);
-    font-weight: var(--weight-regular);
-    color: rgba(var(--color-text-rgb), var(--ink-3));
-    line-height: var(--leading-snug);
-    max-width: 46ch;
-}
-
-.serviceItems {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-}
-
-/* No markers: each entry sits on its own line, which already reads as a list. */
-.serviceItem {
-    font-size: var(--text-small);
-    font-weight: var(--weight-regular);
-    color: rgba(var(--color-text-rgb), var(--ink-3));
-    line-height: var(--leading-snug);
 }
 
 /* ── Form section ── */
@@ -344,7 +243,7 @@
     padding: var(--space-3) var(--space-4);
     background-color: rgba(var(--color-text-rgb), var(--ink-fill));
     border: 1px solid rgba(var(--color-text-rgb), var(--ink-edge));
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-lg);
     outline: none;
     color: var(--color-text);
     font-family: var(--font-default);

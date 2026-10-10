@@ -5,8 +5,9 @@
    a short credit under each, so the work is seen before it is read about. */
 /* Flex-wrap rather than a grid so a short last row sits centred under the
    full rows instead of hugging the left edge. */
+/* Four across: seven covers sit as a row of four over a centred row of three. */
 .list {
-    --columns: 3;
+    --columns: 4;
     --column-gap: var(--space-5);
     list-style: none;
     margin: 0;
@@ -15,7 +16,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--space-8) var(--column-gap);
-    width: min(100%, 720px);
+    width: min(100%, 960px);
 }
 
 .track {
