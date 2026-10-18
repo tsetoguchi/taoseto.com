@@ -31,6 +31,7 @@ const SERVICES = [
   {
     id: "Mixing",
     name: "Mixing",
+    price: { amount: "$1,000", note: "flat" },
     includes: [
       "Balance, processing & stereo staging",
       "Mixdown, instrumental & stems",
@@ -40,16 +41,20 @@ const SERVICES = [
   {
     id: "Mastering",
     name: "Mastering",
+    price: { amount: "$100", note: "flat" },
     includes: ["Final loudness, tone & format for release", "3 rounds of revisions"],
   },
   {
     id: "Mixing & Mastering",
     name: "Mixing & Mastering",
-    includes: ["Everything in Mixing", "Mastering included", "Priority turnaround"],
+    price: { amount: "$1,000", note: "flat" },
+    lead: "Everything in Mixing, and:",
+    includes: ["Mastering included", "Priority turnaround"],
   },
   {
     id: "Other",
     name: "Something else",
+    price: { amount: "Custom", note: "quote" },
     includes: [
       "Beat & track production",
       "Pre-production arrangement",
