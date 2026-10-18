@@ -83,6 +83,52 @@
     color: var(--color-text);
 }
 
+/* ── Price ── */
+.heading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+/* The number carries the card, after x.ai/pricing: big amount, small note. */
+.price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin: 0;
+}
+
+/* Between the h3 and h1 steps: still the loudest line, without shouting. */
+.amount {
+    --amount-size: 2rem;
+    font-size: var(--amount-size);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-heading);
+    color: var(--color-text);
+}
+
+.priceNote {
+    font-size: var(--text-small);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+}
+
+/* ── Details ── */
+/* A hairline splits the price from what it buys. */
+.details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding-top: var(--space-6);
+    border-top: 1px solid rgba(var(--color-text-rgb), var(--ink-hairline));
+}
+
+.lead {
+    margin: 0;
+    font-size: var(--text-small);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+}
+
 /* ── Includes ── */
 .includes {
     flex: 1;

@@ -16,6 +16,13 @@ const renderIncludes = (items) => (
   </ul>
 );
 
+const renderPrice = (price) => (
+  <p className={styles.price}>
+    <span className={styles.amount}>{price.amount}</span>
+    <span className={styles.priceNote}>{price.note}</span>
+  </p>
+);
+
 // Native radios keep one choice enforced and let the arrow keys move between
 // cards.
 const renderCard = (service, index, props) => {
@@ -27,24 +34,30 @@ const renderCard = (service, index, props) => {
       // Pointer convenience only; keyboard users select through the radio.
       onClick={() => !props.isDisabled && props.onSelect(service.id)}
     >
-      <label className={styles.choice}>
-        <input
-          type="radio"
-          name="service"
-          /* The first radio is what an unanswered "select a service" error
-             focuses. */
-          id={index === 0 ? "service" : undefined}
-          value={service.id}
-          checked={isSelected}
-          onChange={() => props.onSelect(service.id)}
-          disabled={props.isDisabled}
-          className={styles.radio}
-        />
-        {/* Selection fills the ring, a shape change and not only colour. */}
-        <span className={styles.marker} aria-hidden="true" />
-        <span className={styles.name}>{service.name}</span>
-      </label>
-      {renderIncludes(service.includes)}
+      <div className={styles.heading}>
+        <label className={styles.choice}>
+          <input
+            type="radio"
+            name="service"
+            /* The first radio is what an unanswered "select a service" error
+               focuses. */
+            id={index === 0 ? "service" : undefined}
+            value={service.id}
+            checked={isSelected}
+            onChange={() => props.onSelect(service.id)}
+            disabled={props.isDisabled}
+            className={styles.radio}
+          />
+          {/* Selection fills the ring, a shape change and not only colour. */}
+          <span className={styles.marker} aria-hidden="true" />
+          <span className={styles.name}>{service.name}</span>
+        </label>
+        {renderPrice(service.price)}
+      </div>
+      <div className={styles.details}>
+        {service.lead && <p className={styles.lead}>{service.lead}</p>}
+        {renderIncludes(service.includes)}
+      </div>
     </div>
   );
 };
