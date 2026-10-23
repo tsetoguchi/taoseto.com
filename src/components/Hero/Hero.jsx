@@ -54,12 +54,17 @@ export const Hero = () => {
               rel="noopener noreferrer"
               className={styles.linkWrapper}
             >
-              {/* No visible label, so the alt text carries the link's name. */}
+              {/* The caption already says what Konac is, so the alt text only
+                  names the mark rather than repeating it. */}
               <img
                 src={heroImage}
-                alt="Konac — my music project"
+                alt="Konac"
                 className={styles.heroImg}
               />
+              <span className={styles.musicLabel}>
+                <span className={styles.musicTitle}>my music</span>
+                <span className={styles.musicDomain}>kon.ac</span>
+              </span>
             </a>
           </div>
         </div>
