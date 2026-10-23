@@ -164,6 +164,36 @@
     opacity: 1;
 }
 
+/* A gallery-style placard: what the mark is, then where it goes. Inside the
+   link, so it clicks through and brightens with the mark. */
+.musicLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: var(--space-4);
+    color: rgba(var(--color-text-rgb), var(--ink-3));
+    transition: color var(--duration-fast) ease;
+}
+
+.linkWrapper:hover .musicLabel,
+.linkWrapper:focus-visible .musicLabel {
+    color: rgba(var(--color-text-rgb), var(--ink-1));
+}
+
+.musicTitle {
+    font-family: var(--font-default);
+    font-size: var(--text-small);
+    font-weight: var(--weight-medium);
+}
+
+.musicDomain {
+    font-family: var(--font-default);
+    font-size: var(--text-label);
+    font-weight: var(--weight-regular);
+    letter-spacing: 0.12em;
+}
+
 
 /* Short desktop viewports: the home screen does not scroll, so the column
    tightens rather than running under the fixed contact bar. */
